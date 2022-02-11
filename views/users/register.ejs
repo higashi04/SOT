@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate') %> 
+  <h1 class="m-3">Registro de Usuarios</h1>
+
+  <div class="mb-3 container">
+  <form action ="/register" method="POST" novalidate>
+    <div class="form-floating col-6 pb-2">
+      <input type="text" class="form-control form-control-lg" name="username" id="floatingUsername" placeholder="Usuario:" required>
+      <label for="floatingUsername" class="form-label">Usuario: </label>
+    </div>
+    <div class="form-floating col-6 pb-2">
+      <input type="email" class="form-control form-control-lg" name="email" id="floatingInput" placeholder="Email: " required>
+      <label for="floatingInput" class="form-label">Email: </label>
+    </div>
+    <div class="form-floating col-6 pb-2">
+      <input type="password" class="form-control form-control-lg" name="password" id="floatingPassword" placeholder="Contraseña:" required>
+      <label for="floatingPassword" class="form-label">Contraseña: </label>
+    </div>
+    <button class="btn btn-success m-3">Mandar</button>
+  </form>
+</div>
+

@@ -1,0 +1,17 @@
+<% layout('layouts/boilerplate') %> 
+  <h1 class="m-3">Edita tus datos personales</h1>
+
+  <div class="mb-3 container">
+  <form action ="/users/<%=user._id%>?_method=PUT" method="POST" novalidate>
+    <div class="form-floating col-6 pb-2">
+      <input type="text" class="form-control form-control-lg" name="firstName" id="floatingFirstName" placeholder="Usuario:" required>
+      <label for="floatingFirstName" class="form-label">Nombre(s): </label>
+    </div>
+    <div class="form-floating col-6 pb-2">
+        <input type="text" class="form-control form-control-lg" name="lastName" id="floatingLastName" placeholder="Usuario:" required>
+        <label for="floatingLastName" class="form-label">Apellidos: </label>
+      </div>
+    <button class="btn btn-success m-3">Mandar</button>
+  </form>
+</div>
+</script>

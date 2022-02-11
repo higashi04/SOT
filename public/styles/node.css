@@ -1,0 +1,32 @@
+:root {
+    --main-color: #4382B7;
+    --secondary-color: #090B34;
+    --third-color: #101018;
+    --fourthly-color: #4D4D4D;
+}
+
+.body{
+    background-color: var(--main-color);
+
+}
+.departamento{
+    border: 2px solid;
+    border-color: red;
+}
+.text-footer {
+    color: white;
+}
+.user{
+    background-color: var(--fourthly-color);
+    font: #fff;
+    line-height: 1.5;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+}
+.logo{
+    width: 20%;
+    padding: 0%;
+    max-width:100%;
+    height:auto;
+}

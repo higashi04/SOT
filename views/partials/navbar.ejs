@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">VillApp</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" href="#">Pricing</a>          
+        </div>
+        <div class="ms-auto navbar-nav">
+          <% if(!currentUser) {%> 
+          <a href="/login" class="btn btn-success">Iniciar Sesión</a>
+          <% } else { %> 
+            <span class="user"><a href="/users/<%=currentUser._id%> "> <%=currentUser.username%> </a> se encuentra en sesión </span>
+          <a href="/logout" class="btn btn-danger">Terminar Sesión</a>
+          <% } %> 
+        </div>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,16 @@
+<% layout('layouts/boilerplate') %> 
+<% for (user of users) {%>
+    <div class="container mt-3">
+        <div><%= user.username %> </div>
+        <div><%= user.firstName %> </div>
+        <div><%= user.lastName %> </div>
+        <div><%= user.email %> </div>
+        <a class="btn btn-outline-primary" href="/users/<%=user._id%>/edit">Editar</a></button>
+        <% if(currentUser.isAdmin) {%> 
+            <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-outline-danger">
+                    Eliminar
+                </button>
+            </form><% } %> 
+    </div>
+<% } %>  

@@ -1,0 +1,17 @@
+<% layout('layouts/boilerplate') %> 
+<h1>Perfil</h1>
+<div class="container">
+    <div class="col-6"><%=user.username%> </div>
+    <div class="col-6">Nombre: <%= user.firstName %>  </div>
+    <div class="col-6">Apellido: <%= user.lastName %>  </div>
+    <div class="col-6">Email: <%= user.email %> </div>
+    <a class="btn btn-outline-primary" href="/users/<%=user._id%>/edit">Editar</a></button>
+
+    <% if(currentUser.isAdmin) {%> 
+    <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
+        <button class="btn btn-outline-danger">
+            Eliminar
+        </button>
+    </form>
+    <% } %> 
+</div>
