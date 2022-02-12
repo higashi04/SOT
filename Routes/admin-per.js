@@ -5,11 +5,11 @@ const Users = require('../models/users');
 const isLoggedIn = require('../middleware/isLoggedin');
 
 router.get('/', isLoggedIn,(req, res) =>{
-    res.render('hr/home')
+    res.render('Administracion-de-personal/home')
 });
 router.get('/show', isLoggedIn, catchAsync(async(req, res)=>{
     const users = await Users.find({})
-    res.render('hr/show', {users})
+    res.render('Administracion-de-personal/show', {users})
 }));
 
 module.exports = router

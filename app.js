@@ -1,21 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const flash = require('connect-flash')
+const flash = require('connect-flash');
 const engine = require('ejs-mate');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override')
-
 //routes//
 const userRoutes = require('./Routes/users');
 const invRoutes = require('./Routes/inventory');
 const mttoRoutes = require('./Routes/mantenimiento-y-almacen');
-const hrRoutes = require('./Routes/hr');
+const hrRoutes = require('./Routes/admin-per');
+const qaRoutes = require('./Routes/qa');
 //models//
 const Users = require('./models/users')
 /////////
-
 const app = express();
 const path= require('path');
 /////////////// 
@@ -69,6 +68,7 @@ app.use('/', userRoutes);
 app.use('/inv', invRoutes);
 app.use('/mtto', mttoRoutes);
 app.use('/hr', hrRoutes);
+app.use('/qa', qaRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')

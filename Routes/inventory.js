@@ -41,15 +41,20 @@ router.get('/show/:id', isLoggedIn,catchAsync(async(req, res)=>{
     })
 }))
 router.put('/show/:id', isLoggedIn, catchAsync(async(req, res)=>{
-    console.log(req.session)
     const {id} = req.params;
     const qty = parseInt(req.body.cantidad)
     if(qty>0){
-            const item = await Inv.findByIdAndUpdate(id, req.body)
-            res.redirect(`/inv/show/${item._id}`)
+        const sum = (a, b)=>{return a + b}
+        const item = await Inv.findById(id)
+        const newInv = sum(qty, item.cantidad)
+        const updateInv = await Inv.findByIdAndUpdate(id, { item: {cantidad:{$in: newInv}}})
+        console.log(item.cantidad + qty)
+        console.log('**************')
+        console.log(newInv)
+        res.redirect(`/inv/show/${item._id}`)
     } else {
-            req.flash('error', 'Revise la cantidad')
-            res.redirect('/inv/show')
+        req.flash('error', 'Revise la cantidad')
+        res.redirect('/inv/show')
     }
 }))
 module.exports = router;

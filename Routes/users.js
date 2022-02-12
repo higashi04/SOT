@@ -33,7 +33,6 @@ router.post('/login', passport.authenticate('local', {failureFlash: true, failur
     } else {
         res.redirect('/')
     }
-    delete req.session.returnTo
 })
 
 ///userProfiles///
