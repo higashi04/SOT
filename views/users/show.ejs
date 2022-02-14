@@ -5,6 +5,7 @@
     <div class="col-6">Nombre: <%= user.firstName %>  </div>
     <div class="col-6">Apellido: <%= user.lastName %>  </div>
     <div class="col-6">Email: <%= user.email %> </div>
+    <div class="col-6">Puesto: <%= user.puesto %> </div>
     <a class="btn btn-outline-primary" href="/users/<%=user._id%>/edit">Editar</a></button>
 
     <% if(currentUser.isAdmin) {%> 

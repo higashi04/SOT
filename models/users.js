@@ -9,8 +9,10 @@ const UserSchema = new Schema({
         unique: true
     },
     isAdmin: {type: Boolean, default: false},
-    firstName: {type: String, default: 'blank'},
-    lastName: {type: String, default: 'blank'}
+    firstName: {type: String, default: ''},
+    lastName: {type: String, default: ''},
+    puesto: String,
+    employeeNumber: Number
 });
 
 

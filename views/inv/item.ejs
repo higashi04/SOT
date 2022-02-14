@@ -38,20 +38,31 @@
               </svg>Sustraer</button>
               <div class="collapse" id="collapseSubstract">
                 <div>
-                    <p>nada, y tu?</p>
+                    <div class="mt-3">
+                        <form action="/inv/show/<%=item._id%>/remove?_method=PUT" method="post">
+                            <div class="form-floating col-6 pb-2">
+                                <input type="number" class="form-control form-control-lg qtyNew" name="cantidad" id="floatingNum" placeholder="Cantidad: " required>
+                                <label for="floatingNum" class="form-label">Cantidad: </label>
+                            </div>
+                            <button class="btn btn-success">Actualizar</button>
+                        </form>
+                    </div>
                 </div>
               </div>
           </div>
     </div>
+    <h3 class="my-3"> Capturado por <% if (item.author) { %>
+        <%= item.author.firstName %> <%= item.author.lastName %>
+    <% } else {%> usuario dado de baja <% } %>    </h3>
 </div> 
-<script>
-    const qty = document.querySelector('.qty').innerText
-    const newQty = document.querySelector('.qtyNew').innerText
-    const sumQty = (e)=>{
-        return qty + newQty
-    }
-    newQty.oninput = sumQty()
-    console.log(qty)
-    console.log(newQty)
-    console.log(sumQty())
-</script>
+<div class="my-3"> <% console.log(item.increments) %> 
+    <% if (item.increments === undefined) { %>
+     <h3>No ha habido movimientos</h3>
+    <% } else {%>
+        <% for (i = 0; i <= item.increments.lenght; i++) {%>
+            <h4><%= item.increments[i].author._id %> </h4>
+            <h4><%= item.increments[i].fecha %> </h4>
+            <h4><%= i %> </h4>
+        <% } %>  
+    <% } %>  
+</div>
