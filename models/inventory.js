@@ -2,32 +2,6 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 const User = require('./users')
 
-// const IncrementSchema = new Schema({
-//     author: {
-//         type: Schema.Types.ObjectId,
-//         ref: 'User'
-//     },
-//     qty: Number,
-//     fecha: {
-//         type: Date,
-//         default: () => Date.now(),
-//         immutable: true
-//     }
-// });
-
-const DecrementSchema = new Schema({
-    author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    qty: Number,
-    fecha: {
-        type: Date,
-        default: () => new Date.now().toLocaleDateString(),
-        immutable: true
-    }
-});
-
 const InvSchema = new Schema({
     nombre: {
         type: String,
@@ -48,7 +22,8 @@ const InvSchema = new Schema({
             author: {
                 type: Schema.Types.ObjectId,
                 ref: 'User'
-            },
+            }
+            ,
             fecha: {
                         type: Date,
                         default: () => Date.now(),
@@ -57,9 +32,18 @@ const InvSchema = new Schema({
         }
     ],
     decrements: [
-        DecrementSchema
+        {
+            qty: Number,
+            author: {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            },
+            fecha: {
+                        type: Date,
+                        default: () => Date.now(),
+                        immutable: true
+                    }
+        }
     ]
 });
-
-
 module.exports = mongoose.model('Inv', InvSchema);

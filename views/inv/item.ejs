@@ -51,18 +51,52 @@
               </div>
           </div>
     </div>
-    <h3 class="my-3"> Capturado por <% if (item.author) { %>
-        <%= item.author.firstName %> <%= item.author.lastName %>
-    <% } else {%> usuario dado de baja <% } %>    </h3>
-</div> 
-<div class="my-3"> <% console.log(item.increments) %> 
-    <% if (item.increments === undefined) { %>
-     <h3>No ha habido movimientos</h3>
-    <% } else {%>
-        <% for (i = 0; i <= item.increments.lenght; i++) {%>
-            <h4><%= item.increments[i].author._id %> </h4>
-            <h4><%= item.increments[i].fecha %> </h4>
-            <h4><%= i %> </h4>
-        <% } %>  
-    <% } %>  
-</div>
+    <div class="m-3">
+        <h2>Capturado por <% if (item.author) { %>
+            <%= item.author.firstName %> <%= item.author.lastName %>
+        <% } else {%> usuario dado de baja <% } %></h2>
+    </div>
+    <div class="my-3 row"> 
+        <div class="col-6">
+            <% if (!item.increments) { %>
+                <% } else {%>
+                    <% item.increments.forEach((item, index, arr)=>{%>
+                       <h2> Movimiento <%= index+1 %> </h2>
+                       <h4> <%= item.fecha.toLocaleString() %></h4>
+                       <h4> Se  <% if (item.qty > 1) { %> 
+                        agregan
+                    <% } else {%> 
+                        agrega 
+                    <%}%> <%= item.qty %>  <% if (item.qty > 1) { %> 
+                        piezas
+                    <% } else {%> 
+                        pieza 
+                    <%}%> por <% if (item.author) { %>
+                        <%= item.author.firstName %> <%= item.author.lastName %>
+                    <% } else {%> usuario dado de baja <% } %> </h4>
+                    <%  }) %>  
+                <% } %> 
+        </div>
+        <div class="col-6">
+            <% if(!item.decrements) {%>
+            <% } else {%>
+                <% item.decrements.forEach((item, index, arr)=>{%>
+                    <h2> Movimiento <%= index+1 %> </h2>
+                    <h4><%= item.fecha.toLocaleString() %></h4>
+                    <h4> Se  <% if (item.qty > 1) { %> 
+                     eliminan
+                 <% } else {%> 
+                     elimina 
+                 <%}%> <%= item.qty %>  <% if (item.qty > 1) { %> 
+                     piezas
+                 <% } else {%> 
+                     pieza 
+                 <%}%> por <% if (item.author) { %>
+                    <%= item.author.firstName %> <%= item.author.lastName %>
+                <% } else {%> usuario dado de baja <% } %></h4>
+                 <%  }) %>  
+             <% } %>     
+        </div>
+    </div>
+</div>  
+

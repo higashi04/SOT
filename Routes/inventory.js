@@ -1,15 +1,14 @@
 const express = require('express')
 const router = express.Router();
-const Inv = require('../models/inventory');
 const isLoggedIn = require('../middleware/isLoggedin');
 const catchAsync = require('../AsyncErrors');
-const User = require('../models/users')
+/////models/////
+const User = require('../models/users');
+const Inv = require('../models/inventory');
 
 router.get('/show', isLoggedIn, catchAsync(async(req, res)=>{
     const inv = await Inv.find({}).populate({
         path: 'author',
-        path: 'increments',
-        path: 'decrements',
         strictPopulate: false
     })
     res.render('inv/inv-show', {inv})
@@ -39,7 +38,7 @@ router.post('/newItem', isLoggedIn, catchAsync(async(req, res)=>{
     }
 }));
 router.get('/show/:id', isLoggedIn,catchAsync(async(req, res)=>{
-    Inv.findById(req.params.id).populate('author').populate('increments').exec(function(err, foundItem) {
+    await Inv.findById(req.params.id).populate({path: 'author'}).populate({path: 'decrements', populate: {path: 'author'}}).populate({path: 'increments', populate: {path: 'author'}}).exec(function(err, foundItem) {
         if(err){
             req.flash('error', 'Se produjo un error')
             return res.redirect('/');
@@ -54,10 +53,8 @@ router.put('/show/:id', isLoggedIn, catchAsync(async(req, res)=>{
         const item = await Inv.findById(id)
         item.cantidad = parseInt(req.body.cantidad) + item.cantidad
         const updateData = {author: req.user, qty: qty}
-        item.increments.push(updateData) 
+        item.increments.push(updateData)
         await item.save()
-        await Inv.populate()
-        console.log(item.increments)
         res.redirect(`/inv/show/${item._id}`)
     } else {
         req.flash('error', 'Revise la cantidad')
@@ -70,6 +67,8 @@ router.put('/show/:id/remove', isLoggedIn, catchAsync(async(req, res)=>{
     if(qty>0){
         const item = await Inv.findById(id)
         item.cantidad = item.cantidad - parseInt(req.body.cantidad)
+        const updateData = {author: req.user, qty: qty}
+        item.decrements.push(updateData)
         if(item.cantidad >= 0) {  
         await item.save()
         res.redirect(`/inv/show/${item._id}`)
