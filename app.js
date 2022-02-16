@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
@@ -12,6 +13,7 @@ const invRoutes = require('./Routes/inventory');
 const mttoRoutes = require('./Routes/mantenimiento-y-almacen');
 const hrRoutes = require('./Routes/admin-per');
 const qaRoutes = require('./Routes/qa');
+const comprRoutes = require('./Routes/compras');
 //models//
 const Users = require('./models/users')
 /////////
@@ -69,6 +71,7 @@ app.use('/inv', invRoutes);
 app.use('/mtto', mttoRoutes);
 app.use('/hr', hrRoutes);
 app.use('/qa', qaRoutes);
+app.use('/compras', comprRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')
