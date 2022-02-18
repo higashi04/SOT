@@ -1,7 +1,61 @@
 <% layout('layouts/boilerplate') %> 
 <div class="container">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Excepturi voluptatum quaerat laboriosam, sequi harum maxime? 
-    Architecto modi blanditiis distinctio soluta sunt assumenda reiciendis ratione 
-    ducimus error est consectetur, facere corrupti!
+   <div class="row my-3">
+       <div class="col-6">
+        <img src="../assets/272707556_231916139148938_3564323865832014711_n-removebg-small.png" alt="">
+       </div>
+       <div class="col-6"> <%= new Date().toLocaleDateString() %>  </div>
+   </div>
+   <div class="row my-3">
+      <div class="col-6">
+        <p>Prop. Carlos Villarreal Muñiz</p>
+        <p>R.F.C. VIMC-C710915 6H3</p>
+        <p><span class="direc-svg">
+         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+             <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+             <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+           </svg>
+        </span> Río Verde #7535 <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+         <circle cx="8" cy="8" r="8"/>
+       </svg> Col. El Maestro</p>
+       <p><span class="direc-svg"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+      </svg></span> &#56;&#54;&#55; &#50;&#56;&#49; &#56;&#49;&#49;&#48;</p>
+      </div>
+      <div class="col-6">
+         <p> # de Folio</p>
+         <p><span class="direc-svg"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+          </svg></span> &#99;&#97;&#114;&#108;&#111;&#115;&#118;&#105;&#108;&#108;&#97;&#114;&#114;&#101;&#97;&#108;&#51;&#52;&#57;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</p>
+          <div>
+              Importe Total: $<span class="total"></span>
+              <button class="btn btn-info calculus">Calcula el total</button>
+          </div>
+      </div>
+   </div>
 </div>
+
+<div class="container">
+        <form action ="/" method="POST" novalidate>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="nombre" id="floatingname" placeholder="Usuario:" required>
+            <label for="floatingname" class="form-label">Nombre: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="telefono" id="floatingPhone" placeholder="Nombre(s):" required>
+            <label for="floatingFirstName" class="form-label">Teléfono: </label>
+          </div>
+          <div class="row">
+              <div class="form col-4"></div>
+              <div class="col-4 qty"></div>
+              <div class="col-4 importe"></div>
+          </div>
+          <button class="btn btn-success m-3" type="submit">Mandar</button>
+        </form>
+        <button class="btn btn-success addToForm"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+          </svg> Agregar filas</button>
+</div>
+
+<script src="../../JavaScript/purchases.js"></script>
