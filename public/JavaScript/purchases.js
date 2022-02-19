@@ -1,11 +1,13 @@
 const form = document.querySelector('.form');
+const forma = document.querySelector('#form');
 const qty = document.querySelector('.qty');
 const importe = document.querySelector('.importe');
 const addToForm = document.querySelector('.addToForm');
 const total = document.querySelector('.total');
-const btn = document.querySelector('.calculus')
-const num = document.querySelectorAll('.num')
-const importeSum = []
+const btn = document.querySelector('.calculus');
+const sum = document.querySelector('.sum')
+const importeSum = [];
+const pzs = [];
 
 function addItem() {
     const newDiv = document.createElement('div')
@@ -42,6 +44,10 @@ function addQty() {
     newLabel.id = id
     newLabel.htmlFor = 'cantidad'
     qty.appendChild(newDiv)
+    newLine.addEventListener('change', ()=>{ 
+        pzs.push(parseInt(newLine.value))
+        //newLine.disabled = true
+    }, { once: true }) 
 }
 
 function addImporte() {
@@ -61,6 +67,10 @@ function addImporte() {
     newLabel.id = id
     newLabel.htmlFor = 'importe'
     importe.appendChild(newDiv)
+    newLineImp.addEventListener('change', ()=>{
+        importeSum.push(parseInt(newLineImp.value))
+        //newLineImp.disabled = true
+    }, { once: true })
 }
 
 addToForm.addEventListener('click', ()=>{
@@ -69,10 +79,11 @@ addToForm.addEventListener('click', ()=>{
     addImporte();
 })
 btn.addEventListener('click', ()=>{
-    console.log(num)
-    importeSum.push(parseInt(num))
-    console.log(importeSum)
-    total.innerHTML = importeSum.reduce(function (a, b) {
+    const totals = []
+    for (i=0;i < pzs.length; i++){
+        totals.push(pzs[i] * importeSum[i])
+    }
+    total.innerHTML = totals.reduce(function (a, b) {
         return a + b;
       }, 0)
 })

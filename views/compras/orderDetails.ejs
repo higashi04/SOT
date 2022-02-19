@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate') %> 
+
+<div class="container">
+   <h1>Proveedor: <%= order.nombre %></h1> 
+    <h4>Teléfono: <%= order.telefono %></h4>
+   <% order.compra.forEach((item, index, array)=>{%>
+    <% const ind = index %> 
+   <div>Artículo: <%= order.compra[ind].objeto %></div>
+   <div>Cantidad de piezas: <%= order.compra[ind].cantidad %></div> 
+   <div>Precio Unitario: <%= order.compra[ind].importe %></div>  
+     <% const total = parseInt(order.compra[ind].cantidad) * parseInt(order.compra[ind].importe) %>
+    <div>Total: <%= total %> <%= index %>  </div>  
+   <%}) %> 
+
+</div>

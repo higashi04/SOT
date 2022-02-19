@@ -34,8 +34,10 @@ router.post('/login', passport.authenticate('local', {failureFlash: true, failur
     if (req.session.returnTo) {
         res.redirect(req.session.returnTo)
         delete req.session.returnTo
-    } else {
+    } else if(!req.session.returnTo) {
         res.redirect('/')
+    } else {
+      res.redirect('/')
     }
 })
 
@@ -54,7 +56,7 @@ router.get('/users/:id', isLoggedIn,(req, res)=>{
     })
 });
 router.get('/users/:id/edit', catchAsync(async(req,res)=>{
-    const user = await user.findById(req.params.id)
+    const user = await User.findById(req.params.id)
     res.render('users/edit', {user})
   }));
 router.put('/users/:id', isLoggedIn, async(req, res)=>{

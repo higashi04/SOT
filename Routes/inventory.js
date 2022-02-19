@@ -38,7 +38,14 @@ router.post('/newItem', isLoggedIn, catchAsync(async(req, res)=>{
     }
 }));
 router.get('/show/:id', isLoggedIn,catchAsync(async(req, res)=>{
-    await Inv.findById(req.params.id).populate({path: 'author'}).populate({path: 'decrements', populate: {path: 'author'}}).populate({path: 'increments', populate: {path: 'author'}}).exec(function(err, foundItem) {
+    await Inv.findById(req.params.id).populate({path: 'author'}).populate({
+        path: 'decrements', 
+        populate: {
+            path: 'author'
+        }}).populate({
+            path: 'increments', 
+            populate: {
+                path: 'author'}}).exec(function(err, foundItem) {
         if(err){
             req.flash('error', 'Se produjo un error')
             return res.redirect('/');
