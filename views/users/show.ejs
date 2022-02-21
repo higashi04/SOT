@@ -6,8 +6,9 @@
     <div class="col-6"><span class="title">Apellido: </span><%= user.lastName %>  </div>
     <div class="col-6"><span class="title">Email: </span><%= user.email %> </div>
     <div class="col-6"><span class="title">Puesto: </span><%= user.puesto %> </div>
+    <% if(currentUser.isAdmin || user._id.equals(currentUser._id) ) {%>
     <a class="btn btn-primary" href="/users/<%=user._id%>/edit">Editar</a></button>
-
+    <% } %> 
     <% if(currentUser.isAdmin) {%> 
     <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
         <button class="btn btn-danger">

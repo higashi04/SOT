@@ -10,13 +10,10 @@ const CompraSchema = new Schema({
         type: String,
         required: true
     },
-    compra:
-        {
-            objeto: [String],
-            cantidad: [Number],
-            importe: [Number]
-        }
-    ,
+    objeto: [String],
+    partNumber: [String],
+    cantidad: [Number],
+    importe: [Number],
     author: 
         {
             type: Schema.Types.ObjectId,

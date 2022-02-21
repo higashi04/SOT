@@ -39,17 +39,17 @@
         <form action ="/compras/orden/new" method="POST" id="form" novalidate>
           <div class="form-floating col-6 pb-2">
             <input type="text" class="form-control form-control-lg" name="nombre" id="floatingname" placeholder="Compañía:" required>
-            <label for="floatingname" class="form-label">Nombre: </label>
+            <label for="floatingname" class="form-label">Proveedor: </label>
           </div>
           <div class="form-floating col-6 pb-2">
             <input type="text" class="form-control form-control-lg" name="telefono" id="floatingPhone" placeholder="Teléfono:" required>
             <label for="floatingFirstName" class="form-label">Teléfono: </label>
           </div>
-          <div class="row">
-              <div class="form col-4"></div>
-              <div class="col-4 qty"></div>
+          <div class="row g-4">
+              <div class="form col-3"></div>
+              <div class="np col-3"></div>
+              <div class="col-3 qty"></div>
               <div class="col-3 importe"></div>
-              <div class="col-1 sum"></div>
           </div>
           <button class="btn btn-success m-3" type="submit">Mandar</button>
         </form>

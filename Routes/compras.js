@@ -13,14 +13,10 @@ router.get('/orden', isLoggedIn, (req, res) => {
 })
 
 router.post('/orden/new', isLoggedIn, catchAsync(async(req, res) => {
-    const {importe, nombre, cantidad, telefono, objeto} = req.body
+    const {importe, nombre, cantidad, telefono, objeto, partNumber} = req.body
     console.log(req.body)
     const compra = new Compra(req.body)
     compra.author = req.user
-    const compraObj = {objeto: objeto}
-    const compraQty = {cantidad: cantidad}
-    const compraPrice = {importe: importe}
-    compra.compra.push(compraObj, compraQty, compraPrice);
     await compra.save()
     req.flash('success', 'Orden de compra guardada.')
     res.redirect('/compras/orden')

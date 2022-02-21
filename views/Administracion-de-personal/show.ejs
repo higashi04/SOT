@@ -5,10 +5,12 @@
         <div><%= user.firstName %> </div>
         <div><%= user.lastName %> </div>
         <div><%= user.email %> </div>
-        <a class="btn btn-outline-primary" href="/users/<%=user._id%>/edit">Editar</a></button>
+       <% if(currentUser.isAdmin || user._id.equals(currentUser._id) ) {%>
+        <a class="btn btn-primary" href="/users/<%=user._id%>/edit">Editar</a></button>
+        <% } %>  
         <% if(currentUser.isAdmin) {%> 
             <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
-                <button class="btn btn-outline-danger">
+                <button class="btn btn-danger">
                     Eliminar
                 </button>
             </form><% } %> 

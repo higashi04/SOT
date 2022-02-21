@@ -1,11 +1,11 @@
 const form = document.querySelector('.form');
 const forma = document.querySelector('#form');
 const qty = document.querySelector('.qty');
+const np = document.querySelector('.np')
 const importe = document.querySelector('.importe');
 const addToForm = document.querySelector('.addToForm');
 const total = document.querySelector('.total');
-const btn = document.querySelector('.calculus');
-const sum = document.querySelector('.sum')
+const btn = document.querySelector('.calculus');9
 const importeSum = [];
 const pzs = [];
 
@@ -16,7 +16,7 @@ function addItem() {
     const id = Math.floor(Math.random() * 100) + 1
     newLine.type = 'text'
     newLine.id = id
-    newDiv.setAttribute('class', 'form-floating col-6 pb-2');
+    newDiv.setAttribute('class', 'form-floating pb-2');
     newDiv.appendChild(newLine)
     newDiv.appendChild(newLabel)
     newLine.className= 'form-control form-control-lg'
@@ -33,7 +33,7 @@ function addQty() {
     const newLabel = document.createElement('label')
     const id = Math.floor(Math.random() * 100) + 1
     newLine.type= 'number'
-    newDiv.setAttribute('class', 'form-floating col-6 pb-2');
+    newDiv.setAttribute('class', 'form-floating pb-2');
     newDiv.appendChild(newLine)
     newDiv.appendChild(newLabel)
     newLine.className= 'form-control form-control-lg'
@@ -46,8 +46,26 @@ function addQty() {
     qty.appendChild(newDiv)
     newLine.addEventListener('change', ()=>{ 
         pzs.push(parseInt(newLine.value))
-        //newLine.disabled = true
     }, { once: true }) 
+}
+
+function addPartNumber() {
+    const newDiv = document.createElement('div')
+    const newLine = document.createElement('input')
+    const newLabel = document.createElement('label')
+    const id = Math.floor(Math.random() * 100) + 1
+    newLine.type= 'text'
+    newDiv.setAttribute('class', 'form-floating pb-2');
+    newDiv.appendChild(newLine)
+    newDiv.appendChild(newLabel)
+    newLine.className= 'form-control form-control-lg'
+    newLine.placeholder= 'Número de parte'
+    newLine.id= id
+    newLine.name = 'partNumber'
+    newLabel.innerText = 'Número de parte'
+    newLabel.id = id
+    newLabel.htmlFor = 'partNumber'
+    np.appendChild(newDiv) 
 }
 
 function addImporte() {
@@ -57,7 +75,7 @@ function addImporte() {
     const id = Math.floor(Math.random() * 100) + 1
     newLineImp.type= 'number'
     newLineImp.id = id
-    newDiv.setAttribute('class', 'form-floating col-6 pb-2');
+    newDiv.setAttribute('class', 'form-floating pb-2');
     newDiv.appendChild(newLineImp)
     newDiv.appendChild(newLabel)
     newLineImp.className= 'form-control form-control-lg num'
@@ -69,12 +87,12 @@ function addImporte() {
     importe.appendChild(newDiv)
     newLineImp.addEventListener('change', ()=>{
         importeSum.push(parseInt(newLineImp.value))
-        //newLineImp.disabled = true
     }, { once: true })
 }
 
 addToForm.addEventListener('click', ()=>{
     addItem();
+    addPartNumber();
     addQty();
     addImporte();
 })
@@ -83,7 +101,8 @@ btn.addEventListener('click', ()=>{
     for (i=0;i < pzs.length; i++){
         totals.push(pzs[i] * importeSum[i])
     }
-    total.innerHTML = totals.reduce(function (a, b) {
-        return a + b;
-      }, 0)
+    const totalOne = totals.reduce(function (a, b) {
+        const preIva = a + b 
+        return preIva }, 0)
+    total.innerHTML = (totalOne * 1.16).toFixed(2)
 })
