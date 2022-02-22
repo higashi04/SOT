@@ -5,7 +5,7 @@ const np = document.querySelector('.np')
 const importe = document.querySelector('.importe');
 const addToForm = document.querySelector('.addToForm');
 const total = document.querySelector('.total');
-const btn = document.querySelector('.calculus');9
+const btn = document.querySelector('.calculus');
 const importeSum = [];
 const pzs = [];
 

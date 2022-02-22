@@ -2,32 +2,39 @@
   <h1 class="m-3">Registro de Usuarios</h1>
 
   <div class="mb-3 container">
-  <form action ="/register" method="POST" novalidate>
-    <div class="form-floating col-6 pb-2">
-      <input type="text" class="form-control form-control-lg" name="username" id="floatingUsername" placeholder="Usuario:" required>
-      <label for="floatingUsername" class="form-label">Usuario: </label>
+  <div class="row bg">
+    <div class="col-7 bg-img">
+      <img class="bg-logo" src="../../assets/272707556_231916139148938_3564323865832014711_n-removebg-small.png" alt="">
     </div>
-    <div class="form-floating col-6 pb-2">
-      <input type="text" class="form-control form-control-lg" name="firstName" id="floatingFirstName" placeholder="Nombre(s):" required>
-      <label for="floatingFirstName" class="form-label">Nombre(s): </label>
+    <div class="col-5 my-3">
+      <h4>Registre sus datos</h4>
+      <form action ="/register" method="POST" novalidate>
+        <div class="form-floating col-6 pb-2">
+          <input type="text" class="form-control form-control-lg" name="username" id="floatingUsername" placeholder="Usuario:" required>
+          <label for="floatingUsername" class="form-label">Usuario: </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+          <input type="text" class="form-control form-control-lg" name="firstName" id="floatingFirstName" placeholder="Nombre(s):" required>
+          <label for="floatingFirstName" class="form-label">Nombre(s): </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+          <input type="text" class="form-control form-control-lg" name="lastName" id="floatingLastName" placeholder="Apellido:" required>
+          <label for="floatingLastName" class="form-label">Apellido: </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+          <input type="email" class="form-control form-control-lg" name="email" id="floatingInput" placeholder="Email: " required>
+          <label for="floatingInput" class="form-label">Email: </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+          <input type="password" class="form-control form-control-lg" name="password" autoComplete="off" id="floatingPassword" placeholder="Contraseña:" required>
+          <label for="floatingPassword" class="form-label">Contraseña: </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+          <input type="text" class="form-control form-control-lg" name="puesto" id="floatingPuesto" placeholder="Puesto:" required>
+          <label for="floatingPuesto" class="form-label">Puesto: </label>
+        </div>
+        <button class="btn btn-success m-3">Mandar</button>
+      </form>
     </div>
-    <div class="form-floating col-6 pb-2">
-      <input type="text" class="form-control form-control-lg" name="lastName" id="floatingLastName" placeholder="Apellido:" required>
-      <label for="floatingLastName" class="form-label">Apellido: </label>
-    </div>
-    <div class="form-floating col-6 pb-2">
-      <input type="email" class="form-control form-control-lg" name="email" id="floatingInput" placeholder="Email: " required>
-      <label for="floatingInput" class="form-label">Email: </label>
-    </div>
-    <div class="form-floating col-6 pb-2">
-      <input type="password" class="form-control form-control-lg" name="password" id="floatingPassword" placeholder="Contraseña:" required>
-      <label for="floatingPassword" class="form-label">Contraseña: </label>
-    </div>
-    <div class="form-floating col-6 pb-2">
-      <input type="text" class="form-control form-control-lg" name="puesto" id="floatingPuesto" placeholder="Puesto:" required>
-      <label for="floatingPuesto" class="form-label">Puesto: </label>
-    </div>
-    <button class="btn btn-success m-3">Mandar</button>
-  </form>
+  </div>
 </div>
-
