@@ -59,7 +59,7 @@ app.use((req, res, next) =>{
 });
 
 //mongoStuff//
-const dbUrl = process.env.DB_URL
+const dbUrl = 'mongodb+srv://higashiTvillarreal:tigresKampeon@sot-cluster1.pzsgf.mongodb.net/trasn-vill?retryWrites=true&w=majority'
 mongoose.connect(dbUrl)
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'console error:'));

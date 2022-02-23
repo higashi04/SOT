@@ -103,13 +103,13 @@ router.post('/forgot', function(req, res, next) {
         var smtpTransport = nodemailer.createTransport({
           service: 'Gmail', 
           auth: {
-            user: process.env.USER,
-            pass: process.env.PASS
+            user: 'chigashi.tvillarreal@gmail.com',
+            pass: 'Trivium04!'
           }
         });
         var mailOptions = {
           to: user.email,
-          from: process.env.USER,
+          from: 'chigashi.tvillarreal@gmail.com',
           subject: 'Reseto de contraseña.',
           text: 'Ha recibido este correo, ya que usted (o alguien más) solicitó resetear su contraseña.\n\n' +
             'Favor de dar clic, o copiar el siguiente enlace en su barra de direcciones en su navegador:\n\n' +
@@ -167,13 +167,13 @@ router.post('/forgot', function(req, res, next) {
         var smtpTransport = nodemailer.createTransport({
           service: 'Gmail', 
           auth: {
-            user: process.env.USER,
-            pass: process.env.PASS
+            user: 'chigashi.tvillarreal@gmail.com',
+            pass: 'Trivium04!'
           }
         });
         var mailOptions = {
           to: user.email,
-          from: process.env.USER,
+          from: 'chigashi.tvillarreal@gmail.com',
           subject: 'Su contraseña ha sido cambiada.',
           text: 'Buen día,\n\n' +
             'Se confirma el cambio de contraseña para la cuenta asociada al correo ' + user.email + '\n'
