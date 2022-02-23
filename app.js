@@ -19,6 +19,9 @@ const Users = require('./models/users')
 /////////
 const app = express();
 const path= require('path');
+const MongoStore = require('connect-mongo');
+const dbUrl = process.env.DB_URL
+const secret = process.env.SECRET
 /////////////// 
 //ejsStuff//
 app.engine('ejs',engine);
@@ -28,8 +31,23 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'));
 app.use(methodOverride('_method'))
 //cookies//
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 3600,
+    crypto: {
+        secret: secret,
+    }
+});
+
+store.on('error', (e)=>{
+    console.log(e)
+})
+
 const sessionConfig = {
-    secret: 'secretToKeep',
+    store: store,
+    name: 'session',
+    secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -59,7 +77,6 @@ app.use((req, res, next) =>{
 });
 
 //mongoStuff//
-const dbUrl = 'mongodb+srv://higashiTvillarreal:tigresKampeon@sot-cluster1.pzsgf.mongodb.net/trasn-vill?retryWrites=true&w=majority'
 mongoose.connect(dbUrl)
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'console error:'));
