@@ -51,32 +51,3 @@
     left: 50%;
     margin: -155px 0 0 -175px;
 }
-
-.pass {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .pass__label {
-    width: 200px;
-    height: 10px;
-    border-radius: 3px;
-    text-align: center;
-  }
-  .pass__label--weak {
-    background-color: crimson;
-  }
-  .pass__label--fair {
-    background-color: yellow;
-  }
-  .pass__label--good {
-    background-color: silver;
-  }
-  .pass__label--strong {
-    background-color: limegreen;
-  }
-  .pass__text {
-    position: relative;
-    top: 20px;
-  }

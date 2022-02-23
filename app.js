@@ -59,7 +59,8 @@ app.use((req, res, next) =>{
 });
 
 //mongoStuff//
-mongoose.connect('mongodb://localhost:27017/trasn-vill')
+const dbUrl = process.env.DB_URL
+mongoose.connect(dbUrl)
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'console error:'));
 db.once('open', ()=> {
