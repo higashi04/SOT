@@ -13,7 +13,7 @@
           <% if(!currentUser) {%> 
           <a href="/login" class="btn btn-success">Iniciar Sesión</a>
           <% } else { %> 
-            <span class="user"><a href="/users/<%=currentUser._id%> "> <%=currentUser.username%> </a> se encuentra en sesión </span>
+            <span class="user mx-3"><a href="/users/<%=currentUser._id%>" class="btn btn-dark"> <%=currentUser.username%> está en sesión</a></span>
           <a href="/logout" class="btn btn-danger">Terminar Sesión</a>
           <% } %> 
         </div>

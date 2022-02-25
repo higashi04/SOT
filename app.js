@@ -6,7 +6,8 @@ const engine = require('ejs-mate');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const helmet = require('helmet')
 //routes//
 const userRoutes = require('./Routes/users');
 const invRoutes = require('./Routes/inventory');
@@ -29,7 +30,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'));
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
+app.use(helmet());
 //cookies//
 
 const store = MongoStore.create({
@@ -46,12 +48,13 @@ store.on('error', (e)=>{
 
 const sessionConfig = {
     store: store,
-    name: 'session',
+    name: 'makalaniaTemple',
     secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        //secure: true,
         expires: Date.now() + 1000 * 60 * 60*24,
         maxAge: 1000 * 60 * 60*24
     }
@@ -75,7 +78,7 @@ app.use((req, res, next) =>{
     res.locals.error = req.flash('error');
     next();
 });
-
+//'mongodb://localhost:27017/trasn-vill'
 //mongoStuff//
 mongoose.connect(dbUrl)
 const db = mongoose.connection;

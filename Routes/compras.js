@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const isLoggedIn = require('../middleware/isLoggedin');
 const catchAsync = require('../AsyncErrors');
+const {validaCompra} = require('../middleware/validate');
 
 const Compra = require('../models/purchase');
 
@@ -12,7 +13,7 @@ router.get('/orden', isLoggedIn, (req, res) => {
     res.render('compras/ordenNew')
 })
 
-router.post('/orden/new', isLoggedIn, catchAsync(async(req, res) => {
+router.post('/orden/new', isLoggedIn, validaCompra, catchAsync(async(req, res) => {
     const {importe, nombre, cantidad, telefono, objeto, partNumber} = req.body
     console.log(req.body)
     const compra = new Compra(req.body)
