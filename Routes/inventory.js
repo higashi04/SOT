@@ -18,7 +18,7 @@ router.get('/show', isLoggedIn, catchAsync(async(req, res)=>{
 router.get('/newItem', isLoggedIn, (req, res)=>{
     res.render('inv/new');
 })
-router.post('/newItem', isLoggedIn, validaInv, catchAsync(async(req, res)=>{
+router.post('/newItem', isLoggedIn, catchAsync(async(req, res)=>{
     try{
         const inv = new Inv(req.body.inv)
         const qty = req.body.inv.cantidad
@@ -54,7 +54,7 @@ router.get('/show/:id', isLoggedIn,catchAsync(async(req, res)=>{
         res.render('inv/item', {item: foundItem});
     })
 }))
-router.put('/show/:id', isLoggedIn, validaInv, catchAsync(async(req, res)=>{
+router.put('/show/:id', isLoggedIn, catchAsync(async(req, res)=>{
     const {id} = req.params;
     const qty = parseInt(req.body.cantidad)
     if(qty>0){
@@ -69,7 +69,7 @@ router.put('/show/:id', isLoggedIn, validaInv, catchAsync(async(req, res)=>{
         res.redirect('/inv/show')
     }
 }));
-router.put('/show/:id/remove', isLoggedIn, validaInv, catchAsync(async(req, res)=>{
+router.put('/show/:id/remove', isLoggedIn, catchAsync(async(req, res)=>{
     const {id} = req.params;
     const qty = parseInt(req.body.cantidad)
     if(qty>0){

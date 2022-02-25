@@ -4,7 +4,7 @@
 <div class="container">
     <% for (purchase of compra) {%>
         <div class="row">
-            <div class="col-3"><a href="/compras/show/<%=purchase._id%>"><%= purchase._id %></a> por <a href="/users/<%=purchase.author._id%>"><%= purchase.author.username %></a> </div>
+            <div class="col-9 order"><a class="btn btn-dark" href="/compras/show/<%=purchase._id%>"><%= purchase._id %></a> por <a class="btn btn-dark" href="/users/<%=purchase.author._id%>"><%= purchase.author.username %></a> </div>
         </div> 
     <% } %>  
 </div>
