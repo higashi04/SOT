@@ -54,7 +54,7 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        //secure: true,
+        secure: true,
         expires: Date.now() + 1000 * 60 * 60*24,
         maxAge: 1000 * 60 * 60*24
     }
@@ -80,7 +80,7 @@ app.use((req, res, next) =>{
 });
 //'mongodb://localhost:27017/trasn-vill'
 //mongoStuff//
-mongoose.connect(dbUrl)
+mongoose.connect('mongodb://localhost:27017/trasn-vill' || dbUrl)
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'console error:'));
 db.once('open', ()=> {

@@ -25,13 +25,16 @@ const extension = (joi) => ({
 const joi = BaseJoi.extend(extension)
 
 module.exports.InvSchema = joi.object({
-    inv: joi.object({
         nombre: joi.string().required().escapeHTML(),
         cantidad: joi.number().required().min(0)
-    }).required()
 });
 
 module.exports.CompraSchema = joi.object({
     nombre: joi.string().required().escapeHTML(),
-    telefono: joi.string().required().escapeHTML()
+    telefono: joi.string().required().escapeHTML(),
+    objeto: joi.string().required().escapeHTML(),
+    partNumber: joi.string().required().escapeHTML(),
+    cantidad: joi.number().required().min(0),
+    importe: joi.number().required().min(0)
+    
 });

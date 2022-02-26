@@ -1,10 +1,14 @@
 <% layout('layouts/boilerplate') %> 
 <h1 class="m-3">Ordenes de compra</h1>
 
-<div class="container">
-    <% for (purchase of compra) {%>
-        <div class="row">
-            <div class="col-9 order"><a class="btn btn-dark" href="/compras/show/<%=purchase._id%>"><%= purchase._id %></a> por <a class="btn btn-dark" href="/users/<%=purchase.author._id%>"><%= purchase.author.username %></a> </div>
-        </div> 
-    <% } %>  
-</div>
+<% for (purchase of compra) {%>
+<div class="card mx-5 my-3">
+    <div class="card-body">
+        <div class="container my-3">
+                <div class="row mb-3">
+                    <div class="col-7 order"><a class="btn btn-dark" href="/compras/show/<%=purchase._id%>"><%= purchase._id %></a> por <a class="btn btn-dark" href="/users/<%=purchase.author._id%>"><%= purchase.author.username %></a> </div>
+                </div>   
+          </div>
+     </div>
+  </div>
+  <% } %> 
