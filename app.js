@@ -7,7 +7,8 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const methodOverride = require('method-override');
-const helmet = require('helmet')
+const helmet = require('helmet');
+const ExpressError = require('./middleware/expressError');
 //routes//
 const userRoutes = require('./Routes/users');
 const invRoutes = require('./Routes/inventory');
@@ -103,12 +104,12 @@ app.get('/', (req, res) => {
 });
 
 app.all('*', (req, res, next) => {
-    next(new ExpressError('Page Not Found', 404))
+    next(new ExpressError('Error 404: El sitio no existe.', 404))
 })
 
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
-    if (!err.message) err.message = 'Oh No, Something Went Wrong!'
+    if (!err.message) err.message = 'Se ha producido un error.'
     res.status(statusCode).render('error', { err })
 })
 
