@@ -23,7 +23,7 @@ const Users = require('./models/users')
 const app = express();
 const path= require('path');
 const MongoStore = require('connect-mongo');
-const dbUrl = 'mongodb://localhost:27017/trasn-vill' || process.env.DB_URL
+const dbUrl =  process.env.DB_URL
 const secret = process.env.SECRET
 /////////////// 
 //ejsStuff//
