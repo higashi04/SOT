@@ -1,0 +1,86 @@
+<% layout('layouts/boilerplate') %> 
+
+<div class="container fs-4 my-3">
+    <h1>Unidad</h1>
+    <div class="row my-3">
+        <div class="col-3"><span class="title">Unidad: </span><%= bus.unidad %></div>
+        <div class="col-4 mx-2"><span class="title">Ubicación: </span> <%= bus.ubicacion %></div>
+        <div class="col-3"><span class="title">Número de Serie: </span><%= bus.serie %></div>
+    </div>
+    <div class="row my-3">
+        <div class="col-3"><span class="title">Marca TC: </span><%= bus.brandTC %></div>
+        <div class="col-4 mx-2"><span class="title">Modelo TC: </span><%= bus.modelTC %></div>
+        <div class="col-3"><span class="title">Año TC: </span><%= bus.yearTC %></div>
+    </div>
+</div>
+
+<div class="my-3 container">
+    <% if (!bus.mantenimiento) { %>
+     
+    <% } else {%>
+        <h2>Lista de órdenes de trabajo:</h2>
+        <% bus.mantenimiento.forEach((item, index, arr)=>{%>
+            <a class="btn btn-info" href="/mtto/<%= item._id %>"><%= item._id %></a> 
+        <% }) %> 
+    <% } %> 
+</div>
+
+<div class="container my-3">
+    <h1>Registro de Mantenimiento</h1>
+    <form action="/buses/show/<%=bus._id%>/mtto?_method=PUT" method="POST">
+       <div class="row">
+        <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="plan" id="floatingPlan" placeholder="Plan:" required>
+            <label for="floatingPlan" class="form-label">Plan: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="kms" id="floatingKms" placeholder="Kilometraje:" required>
+            <label for="floatingKms" class="form-label">Kilometraje: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="date" class="form-control form-control-lg" name="startDate" id="floatingStartDate" placeholder="Fecha de Inicio:" required>
+            <label for="floatingStartDate" class="form-label">Fecha de Inicio: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="date" class="form-control form-control-lg" name="promisedDate" id="floatingPromisedDate" placeholder="Fecha Promesa: " required>
+            <label for="floatingPromisedDate" class="form-label">Fecha Promesa: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="date" class="form-control form-control-lg" name="realEndDate" id="floatingRealEndDate" placeholder="Fecha de Termino:" required>
+            <label for="floatingRealEndDate" class="form-label">Fecha de Termino: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="planta" id="floatingPlant" placeholder="Planta:" required>
+            <label for="floatingPlanta" class="form-label">Planta: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="workType" id="floatingWorkType" placeholder="Tipo de Trabajo:" required>
+            <label for="floatingWorkType" class="form-label">Tipo de Trabajo: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="workPlan" id="floatingWorkPlan" placeholder="Plan de Trabajo:" required>
+            <label for="floatingWorkPlan" class="form-label">Plan de Trabajo: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="workshop" id="floatingWorkshop" placeholder="Taller:" required>
+            <label for="floatingWorkshop" class="form-label">Taller: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="supervisor" id="floatingSupervisor" placeholder="Supervisor:" required>
+            <label for="floatingSupervisor" class="form-label">Supervisor: </label>
+          </div>
+       </div>
+       <div class="row">
+        <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="materials" id="floatingMaterials" placeholder="Materiales:" required>
+            <label for="floatingMaterials" class="form-label">Materiales: </label>
+          </div>
+        <div class="form-floating col-6 pb-2">
+            <textarea type="text" class="form-control form-control-lg" name="workDone" id="floatingWorkDone" placeholder="Trabajo Realizado:" required></textarea>
+            <label for="floatingWorkDone" class="form-label">Trabajo Realizado: </label>
+        </div>
+       </div>
+          <button class="btn btn-success m-3">Mandar</button>
+    </form>
+</div>
+

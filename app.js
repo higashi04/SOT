@@ -16,13 +16,14 @@ const mttoRoutes = require('./Routes/mantenimiento-y-almacen');
 const hrRoutes = require('./Routes/admin-per');
 const qaRoutes = require('./Routes/qa');
 const comprRoutes = require('./Routes/compras');
+const busesRoutes = require('./Routes/buses');
 //models//
 const Users = require('./models/users')
 /////////
 const app = express();
 const path= require('path');
 const MongoStore = require('connect-mongo');
-const dbUrl = process.env.DB_URL
+const dbUrl = 'mongodb://localhost:27017/trasn-vill' //|| process.env.DB_URL
 const secret = process.env.SECRET
 /////////////// 
 //ejsStuff//
@@ -55,7 +56,7 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        secure: true,
+       // secure: true,
         expires: Date.now() + 1000 * 60 * 60*24,
         maxAge: 1000 * 60 * 60*24
     }
@@ -85,7 +86,7 @@ mongoose.connect(dbUrl)
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'console error:'));
 db.once('open', ()=> {
-    console.log('Database is operational')
+    console.log('Database is operational, ' + dbUrl )
 })
 ///Routes///
 app.use('/', userRoutes);
@@ -94,6 +95,7 @@ app.use('/mtto', mttoRoutes);
 app.use('/hr', hrRoutes);
 app.use('/qa', qaRoutes);
 app.use('/compras', comprRoutes);
+app.use('/buses', busesRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')

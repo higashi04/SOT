@@ -1,0 +1,16 @@
+<% layout('layouts/boilerplate') %> 
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 my-3">
+            <h1>Lista de Camiones</h1>
+        </div>
+    </div>
+    <div class="row">
+        <% for( unit of bus) { %>
+        <div class="col-3 my-3">
+            <a href="/buses/show/<%=unit._id%>" class="btn btn-dark"><%= unit.unidad %></a> 
+        </div>
+        <% } %>
+    </div>
+</div>
