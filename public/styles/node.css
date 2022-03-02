@@ -1,12 +1,13 @@
 :root {
     --main-color: #4382B7;
+    --main-color2: #669BC7;
     --secondary-color: #090B34;
     --third-color: #101018;
     --fourthly-color: #4D4D4D;
 }
 
 .body{
-   background: var(--main-color)
+   background: var(--main-color2);
 }
 
 .text-footer {

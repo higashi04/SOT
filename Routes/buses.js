@@ -54,7 +54,6 @@ router.put('/show/:id/mtto', isLoggedIn, catchAsync(async(req, res)=>{
     }catch(e){
         req.flash('error', 'Se produjo un error al intentar el registro.')
         res.redirect(`buses/show`)
-        console.log(e.message)
     }
 }))
 

@@ -1,5 +1,79 @@
 <% layout('layouts/boilerplate') %> 
 
-<h1><%= orden.plan %> </h1>
-<h1><%= orden.kms %> </h1>
-<h1><%= orden.workDone %> </h1>
+<h1 class="m-5">Orden de Trabajo</h1>
+
+<div class="container m-3">
+    <div class="row my-2">
+        <div class="col-3">
+            <span class="title">Plan:</span> <%= orden.plan %>
+        </div>
+        <div class="col-3">
+            <span class="title">Kilometraje:</span> <%= orden.kms %> kms
+        </div>
+        <div class="col-3">
+            <span class="title">Fecha de Inicio: </span><%= orden.startDate.toLocaleDateString() %>
+        </div>
+        <div class="col-3">
+            <span class="title">Fecha Promesa: </span><%= orden.promisedDate.toLocaleDateString() %> 
+        </div>  
+    </div>
+    <div class="row my-2">
+        <div class="col-3">
+            <span class="title">Fecha Real de Termino: </span><%= orden.realEndDate.toLocaleDateString() %> 
+        </div>
+        <div class="col-3">
+            <span class="title">Fecha de Captura: </span><%= orden.notificationDate.toLocaleDateString() %> 
+        </div>
+        <div class="col-3">
+            <span class="title">Planta: </span><%= orden.planta %> 
+        </div>
+        <div class="col-3">
+            <span class="title">Tipo de Trabajo: </span><%= orden.workType %> 
+        </div>
+    </div>
+    <div class="row my-2">
+        <div class="col-3">
+            <span class="title">Supervisor: </span><%= orden.supervisor %> 
+        </div>
+        <div class="col-3">
+            <span class="title">Plan de Trabajo: </span><%= orden.workPlan %> 
+        </div>
+        <div class="col-3">
+            <span class="title">Estado: </span>
+            <% if (orden.status === false) { %>
+               sin completar  
+            <% } else {%>
+                completado
+            <% } %> 
+        </div>
+        <% if (orden.status) {%>
+            <div class="col-3">
+                <span class="title">Fecha que se registra el termino: </span> <%= orden.completeDateRegister.toLocaleDateString() %> 
+            </div> 
+        <% } %> 
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-6">
+            <span class="title">Trabajo Realizado: </span>
+            <p><%= orden.workDone %></p>
+        </div>
+        <div class="col-6">
+            <span class="title">Material consumido: </span>
+            <p><%= orden.materials %> </p>
+        </div>
+    </div>
+</div>
+<% if (!orden.status) {%>
+<div class="container m-3">
+    <form action="/mtto/<%=orden._id%>?_method=PUT" method="post">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="status" name="status" value="true">
+            <label class="form-check-label title" for="status">¿Se terminó el trabajo?</label>
+          </div>
+          <button class="btn btn-success">Mandar</button>
+    </form>
+</div>
+<% } %>

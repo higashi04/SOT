@@ -14,12 +14,16 @@ const MaintSchema = new Schema({
     },
     planta: String,
     workType: String,
-    status: String,
+    status: {
+        type: Boolean,
+        default: false,
+    },
     workPlan: String,
     workshop: String,
     supervisor: String,
     workDone: String,
-    materials: String
+    materials: String,
+    completeDateRegister: Date
 });
 
 module.exports = mongoose.model('Maint', MaintSchema);
