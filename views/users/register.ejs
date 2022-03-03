@@ -30,7 +30,9 @@
           <label for="floatingPassword" class="form-label">Contraseña: </label>
         </div>
         <div class="form-floating col-6 pb-2">
-          <input type="text" class="form-control form-control-lg" name="puesto" id="floatingPuesto" placeholder="Puesto:" required>
+          <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingPuesto" name="puesto">
+            <option value="Seleccione uno">Seleccione uno</option>
+          </select>
           <label for="floatingPuesto" class="form-label">Puesto: </label>
         </div>
         <button class="btn btn-success m-3">Mandar</button>
@@ -38,3 +40,5 @@
     </div>
   </div>
 </div>
+
+<script src="../../JavaScript/puestos.js"></script>

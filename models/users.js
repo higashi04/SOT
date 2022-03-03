@@ -12,7 +12,25 @@ const UserSchema = new Schema({
     isAdmin: {type: Boolean, default: false},
     firstName: {type: String, default: ''},
     lastName: {type: String, default: ''},
-    puesto: String,
+    puesto: {
+        type: String,
+        enum: [
+            'Recepcionista', 
+            'Programador', 
+            'Gerente de Operaciones', 
+            'Gerente de Mantenimiento', 
+            'Contador', 
+            'Auxiliar Contable', 
+            'Ejecutivo de Mantenimiento y Almacen', 
+            'Supervisor de Coordinadores', 
+            'Auxiliar de Operaciones',
+            'Supervisor de Mantenimiento',
+            'Jefe de Mecánicos',
+            'Analista de Procesos',
+            'Ejecutivo de Compras',
+        ],
+        required: true
+    },
     employeeNumber: Number,
     resetPasswordToken: String,
     resetPasswordExpires: Date
