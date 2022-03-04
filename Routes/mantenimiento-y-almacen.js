@@ -5,6 +5,7 @@ const catchAsync = require('../AsyncErrors');
 
 const mtto = require('../models/mantenimiento');
 const bus = require('../models/buses');
+const Inv = require('../models/inventory');
 
 router.get('/', isLoggedIn, (req, res) =>{
     res.render('mantenimiento-y-almacen/home')

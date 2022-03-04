@@ -1,17 +1,17 @@
 <% layout('layouts/boilerplate') %> 
 <h1>Perfil</h1>
-<div class="container">
+<div class="container my-3">
     <div class="col-6"><span class="title">Usuario: </span><%=user.username%> </div>
     <div class="col-6"><span class="title">Nombre: </span><%= user.firstName %>  </div>
     <div class="col-6"><span class="title">Apellido: </span><%= user.lastName %>  </div>
     <div class="col-6"><span class="title">Email: </span><%= user.email %> </div>
     <div class="col-6"><span class="title">Puesto: </span><%= user.puesto %> </div>
     <% if(currentUser.isAdmin || user._id.equals(currentUser._id) ) {%>
-    <a class="btn btn-primary" href="/users/<%=user._id%>/edit">Editar</a></button>
+    <a class="btn btn-primary my-3" href="/users/<%=user._id%>/edit">Editar</a></button>
     <% } %> 
     <% if(currentUser.isAdmin) {%> 
     <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
-        <button class="btn btn-danger">
+        <button class="btn btn-danger my-3">
             Eliminar
         </button>
     </form>
