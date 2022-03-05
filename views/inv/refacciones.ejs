@@ -2,9 +2,34 @@
 
 <h1 class="my-3 p-5">Vale de Refacciones</h1>
 
-<p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Magni fugiat accusamus voluptatum quos nihil? 
-    Dicta perspiciatis quis, quaerat sapiente aut perferendis nihil id provident 
-    doloremque atque in reprehenderit aliquam nemo.
-</p>
+<div class="container m-5">
+    <form action="" method="post" novalidate>
+        <div class="row m-2">
+            <div class="form-floating col-4 pb-2">
+                <input type="text" class="form-control form-control-lg" name="orden" id="floatingOrden" placeholder="Orden de Trabajo:" required>
+                <label for="floatingOrden" class="form-label">Orden de Trabajo: </label>
+            </div>
+            <div class="form-floating col-4 pb-2">
+                <input type="text" class="form-control form-control-lg" name="unit" id="floatingUnit" placeholder="Unidad:" required>
+                <label for="floatingUnit" class="form-label">Unidad: </label>
+            </div>
+            <div class="col-4 pb-2">
+               <span class="title date">Fecha:  <%= new Date().toLocaleDateString() %> </span>
+            </div>
+        </div>
+        <div class="form row m-2 g-4">
+            <div class="np col-3 pb-2"></div>
+            <div class="description pb-2 col-3"></div>
+            <div class="qty col-3 pb-2"></div>
+        </div>
+       <div class="row m-2">
+        <div class="form-floating col-6 pb-2">
+            <textarea type="text" class="form-control form-control-lg" name="comments" id="floatingComments" placeholder="Comentarios:"></textarea>
+            <label for="floatingComments" class="form-label">Comentarios: </label>
+        </div>
+       </div>
+    </form>
+    <button class="btn btn-success addToForm">Agregar Campos</button>
+</div>
+
+<script src="../../JavaScript/refactions.js"></script>

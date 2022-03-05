@@ -7,6 +7,10 @@ const InvSchema = new Schema({
         required: true,
         unique: true
     },
+    partNumer: {
+        type: String,
+        required: true
+    },
     cantidad: {
         type: Number,
         required: true
