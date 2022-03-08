@@ -26,6 +26,7 @@ const joi = BaseJoi.extend(extension)
 
 module.exports.InvSchema = joi.object({
         nombre: joi.string().required().escapeHTML(),
+        partNumber: joi.string().required().escapeHTML(),
         cantidad: joi.number().required().min(0)
 });
 

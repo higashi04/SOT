@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %> 
 <h1 class="mx-3 p-5">Inventario</h1>
 
-<div class="container my-3">
+<div class="container my-3" id="data">
     <% for(item of inv) {%>
         <div class="card mb-3">
           <div class="row">
@@ -33,11 +33,14 @@
               </div>
           </div>
       </div>
-  <% } %> 
-  
-    <a class="btn btn-primary mb-3" href="/inv/newItem">Nuevo</a>
+  <% } %>     
 </div>
-
-    
-
-
+<div class="container">
+  <a class="btn btn-primary my-3 mx-3" href="/inv/newItem">Nuevo</a>
+  <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+</div>
+<span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+<span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+<script src="../../JavaScript/jspdf.min.js"></script>
+<script src="../../JavaScript/html2canvas.min.js"></script>
+<script src="../../JavaScript/printInv.js"></script>

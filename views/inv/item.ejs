@@ -1,14 +1,14 @@
 <% layout('layouts/boilerplate') %> 
 <div class="container mt-3">
-    <h1><%= item.nombre %></h1>
-    <div class="col-6">
-        <h2>
+    <div class="col-6  data">
+        <h1 id="name"><%= item.nombre %></h1>
+        <h2>  
             <span class="qty"><%= item.cantidad %></span> 
-            <% if (item.cantidad > 1) { %> 
-                piezas
-            <% } else {%> 
-                pieza 
-            <%}%>
+                <% if (item.cantidad > 1) { %> 
+                    piezas
+                <% } else {%> 
+                    pieza 
+                <%}%>
         </h2>
     </div>
     <div class="container row">
@@ -56,7 +56,7 @@
             <%= item.author.firstName %> <%= item.author.lastName %>
         <% } else {%> usuario dado de baja <% } %></h2>
     </div>
-    <div class="my-3 row"> 
+    <div class="my-3 row dataTwo"> 
         <div class="col-6">
             <% if (!item.increments) { %>
                 <% } else {%>
@@ -99,4 +99,12 @@
         </div>
     </div>
 </div>  
-
+<div class="container">
+    <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+</div>
+<span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+<span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+<script src="../../JavaScript/jspdf.min.js"></script>
+<script src="../../JavaScript/html2pdf.bundle.min.js"></script>
+<script src="../../JavaScript/html2canvas.min.js"></script>
+<script src="../../JavaScript/item-pdf.js"></script>

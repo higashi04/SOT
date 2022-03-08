@@ -7,7 +7,7 @@ const InvSchema = new Schema({
         required: true,
         unique: true
     },
-    partNumer: {
+    partNumber: {
         type: String,
         required: true
     },
