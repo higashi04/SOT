@@ -13,7 +13,7 @@ router.get('/orden', isLoggedIn, (req, res) => {
     res.render('compras/ordenNew')
 })
 
-router.post('/orden/new', isLoggedIn,  validaCompra,catchAsync(async(req, res) => {
+router.post('/orden/new', isLoggedIn, catchAsync(async(req, res) => {
     const compra = new Compra(req.body)
     compra.author = req.user
     await compra.save()

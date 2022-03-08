@@ -36,5 +36,5 @@ module.exports.CompraSchema = joi.object({
     partNumber: joi.string().required().escapeHTML(),
     cantidad: joi.number().required().min(0),
     importe: joi.number().required().min(0)
-    
+    //doesn't work with array, need to investigate issue
 });
