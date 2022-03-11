@@ -1,40 +1,12 @@
 <% layout('layouts/boilerplate') %> 
 <h1 class="mx-3 p-5">Inventario</h1>
+  <div class="container">
+    <div class="row">
+      <input type="text" class="m-3" name="searchBar" id="searchBar" onkeyup="search(this)">
+      <section id="searchResults"></section>
+    </div>
+  </div>
 
-<div class="container my-3" id="data">
-    <% for(item of inv) {%>
-        <div class="card mb-3">
-          <div class="row">
-              <div class="col-md-4">
-                  <!-- <img class="img-fluid" src=" " alt=""> -->
-                  <span>aqui va ir la foto</span>
-              </div>
-              <div class="col-md-8">
-                  <div class="card-body">
-                      <h5 class="card-title"><%= item.nombre %> </h5>
-                      <p class="card-text">
-                          <small class="text-muted"><%= item.cantidad %> 
-                            <% if (item.cantidad > 1) { %> 
-                              piezas
-                            <% } else{%> pieza <%}%> </small>
-                      </p>
-                      <p class="card-text">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collaps<%=item._id%>" aria-expanded="false" aria-controls="collapseExample">
-                            Opciones
-                          </button>
-                        </p>
-                        <div class="collapse" id="collaps<%=item._id%>">
-                          <div class="card card-body">
-                            <a href="/inv/show/<%=item._id%>">Detalles</a>
-                          </div>
-                        </div>
-                      </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  <% } %>     
-</div>
 <div class="container">
   <a class="btn btn-primary my-3 mx-3" href="/inv/newItem">Nuevo</a>
   <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
@@ -44,3 +16,35 @@
 <script src="../../JavaScript/jspdf.min.js"></script>
 <script src="../../JavaScript/html2canvas.min.js"></script>
 <script src="../../JavaScript/printInv.js"></script>
+<!-- <script src="../../JavaScript/liveSearch.js"></script> -->
+<script>
+  function search (e) {
+    const searchResults = document.getElementById('searchResults')
+    let match = e.value.match(/^[a-zA-Z ]*/);
+    let matchTwo = e.value.match(/\s*/);
+    if (matchTwo[0] === e.value) {
+      searchResults.innerHTML = ''
+      return
+    }
+    if (match[0] === e.value){
+      fetch('getInv', {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({payload: e.value})
+    }).then(res => res.json()).then(data => {
+      let payload = data.payload
+      searchResults.innerHTML = ''
+      if(payload.length < 1) {
+        searchResults.innerHTML = '<p>No hubo resultados</p>'
+        return
+      }
+      
+      payload.forEach((item, index) => {
+          searchResults.innerHTML = `<div><a class="btn btn-dark" href="/inv/show/${item._id}"> ${item.nombre}</a> </div>`
+      })
+    })
+    }
+    
+  }
+</script>
+

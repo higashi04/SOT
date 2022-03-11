@@ -13,6 +13,13 @@ router.get('/show', isLoggedIn, catchAsync(async(req, res)=>{
         strictPopulate: false
     })
     res.render('inv/inv-show', {inv})
+}));
+
+router.post('/getInv', isLoggedIn, catchAsync(async(req, res) => {
+    let payload = req.body.payload.trim()
+    let search = await Inv.find({nombre: {$regex: new RegExp('^'+payload+'.*', 'i')}}).exec();
+    search = search.slice(0, 10);
+    res.send({payload: search})
 }))
 
 router.get('/newItem', isLoggedIn, (req, res)=>{
