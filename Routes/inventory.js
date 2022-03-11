@@ -95,6 +95,14 @@ router.put('/show/:id/remove', isLoggedIn, catchAsync(async(req, res)=>{
         req.flash('error', 'Revise la cantidad')
         res.redirect('/inv/show')
     }
+}));
+
+router.post('/show/getMov', isLoggedIn, catchAsync(async(req, res) =>{
+    const gtDate = req.body.payload
+    console.log(gtDate)
+     let search = await Inv.find({"increments": {"fecha": {"$gte": gtDate}}}).exec()
+     console.log('search results: \n' + search)
+     res.send({payload: search})
 }))
 
 router.get('/repairs', isLoggedIn, catchAsync(async(req, res)=>{

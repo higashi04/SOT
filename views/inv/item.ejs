@@ -56,30 +56,38 @@
             <%= item.author.firstName %> <%= item.author.lastName %>
         <% } else {%> usuario dado de baja <% } %></h2>
     </div>
+    <div class="container">
+        <div class="row">
+           
+                <label for="searchDateGreaterThan">Fecha de inicio:</label>
+                <input type="date" class="m-3" name="searchDateGreaterThan" id="searchDateGreaterThan">
+                <!-- <input type="date" class="m-3" name="searchDateLowerThan" id="searchDateLowerThan" onkeyup="search(this)"> -->
+                <button class="btn btn-info" id="event" onclick="getDate(dateGt)">Filtrar</button>
+           
+        </div>
+      </div>
     <div class="my-3 row dataTwo"> 
+        <section id="searchResults"></section>
         <div class="col-6">
-            <% if (!item.increments) { %>
-                <% } else {%>
+            <% if (!item.increments) return %>
                     <% item.increments.forEach((item, index, arr)=>{%>
-                       <h2> Movimiento <%= index+1 %> </h2>
-                       <h4> <%= item.fecha.toLocaleString() %></h4>
-                       <h4> Se  <% if (item.qty > 1) { %> 
-                        agregan
-                    <% } else {%> 
-                        agrega 
-                    <%}%> <%= item.qty %>  <% if (item.qty > 1) { %> 
-                        piezas
-                    <% } else {%> 
-                        pieza 
-                    <%}%> por <% if (item.author) { %>
-                        <%= item.author.firstName %> <%= item.author.lastName %>
-                    <% } else {%> usuario dado de baja <% } %> </h4>
-                    <%  }) %>  
-                <% } %> 
+                        <h2> Movimiento <%= index+1 %> </h2>
+                        <h4> <%= item.fecha.toLocaleString() %></h4>
+                        <h4> Se  <% if (item.qty > 1) { %> 
+                         agregan
+                     <% } else {%> 
+                         agrega 
+                     <%}%> <%= item.qty %>  <% if (item.qty > 1) { %> 
+                         piezas
+                     <% } else {%> 
+                         pieza 
+                     <%}%> por <% if (item.author) { %>
+                         <%= item.author.firstName %> <%= item.author.lastName %>
+                     <% } else {%> usuario dado de baja <% } %> </h4>
+                     <%  }) %> 
         </div>
         <div class="col-6">
-            <% if(!item.decrements) {%>
-            <% } else {%>
+            <% if(!item.decrements) return%>
                 <% item.decrements.forEach((item, index, arr)=>{%>
                     <h2> Movimiento <%= index+1 %> </h2>
                     <h4><%= item.fecha.toLocaleString() %></h4>
@@ -94,8 +102,7 @@
                  <%}%> por <% if (item.author) { %>
                     <%= item.author.firstName %> <%= item.author.lastName %>
                 <% } else {%> usuario dado de baja <% } %></h4>
-                 <%  }) %>  
-             <% } %>     
+                 <%  }) %>     
         </div>
     </div>
 </div>  
@@ -106,5 +113,23 @@
 <span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
 <script src="../../JavaScript/jspdf.min.js"></script>
 <script src="../../JavaScript/html2pdf.bundle.min.js"></script>
-<script src="../../JavaScript/html2canvas.min.js"></script>
 <script src="../../JavaScript/item-pdf.js"></script>
+<script>
+    const dateGt = document.getElementById('searchDateGreaterThan')
+    function getDate(e){
+        console.log(e.value)
+        fetch('getMov', {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({payload: e.value})
+    }
+    ).then(res => res.json()).then(data => {
+        let payload = data.payload
+        searchResults.innerHTML = ''
+      if(payload.length < 1) {
+        searchResults.innerHTML = '<p>No hubo resultados</p>'
+        return
+      }
+    })
+    }
+</script>

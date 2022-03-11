@@ -3,7 +3,9 @@
   <div class="container">
     <div class="row">
       <input type="text" class="m-3" name="searchBar" id="searchBar" onkeyup="search(this)">
-      <section id="searchResults"></section>
+      <section>
+        <div class="row" id="searchResults"></div>
+      </section>
     </div>
   </div>
 
@@ -39,8 +41,15 @@
         return
       }
       
-      payload.forEach((item, index) => {
-          searchResults.innerHTML = `<div><a class="btn btn-dark" href="/inv/show/${item._id}"> ${item.nombre}</a> </div>`
+      payload.forEach((item, index, array ) => {
+        const newDiv = document.createElement('div')
+        newDiv.className = 'col-6 my-3'
+        const anchor = document.createElement('a')
+        anchor.className = 'btn btn-dark'
+        anchor.href = `/inv/show/${item._id}`
+        anchor.innerText = item.nombre
+        newDiv.appendChild(anchor)
+        searchResults.appendChild(newDiv)
       })
     })
     }
