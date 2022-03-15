@@ -10,7 +10,9 @@
   </div>
 
 <div class="container">
-  <a class="btn btn-primary my-3 mx-3" href="/inv/newItem">Nuevo</a>
+  <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
+    <a class="btn btn-primary my-3 mx-3" href="/inv/newItem">Nuevo</a>
+  <% } %>  
   <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
 </div>
 <span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>

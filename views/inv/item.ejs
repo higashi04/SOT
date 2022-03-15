@@ -11,6 +11,7 @@
                 <%}%>
         </h2>
     </div>
+    <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
     <div class="container row">
         <div class="col-6">
             <button class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseAdd" aria-expanded="false" aria-controls="collapse">
@@ -51,19 +52,19 @@
               </div>
           </div>
     </div>
+    <% } %> 
     <div class="m-3">
         <h2>Capturado por <% if (item.author) { %>
             <%= item.author.firstName %> <%= item.author.lastName %>
         <% } else {%> usuario dado de baja <% } %></h2>
     </div>
-    <div class="container">
+    <div class="container" hidden>
         <div class="row">
-           
-                <label for="searchDateGreaterThan">Fecha de inicio:</label>
-                <input type="date" class="m-3" name="searchDateGreaterThan" id="searchDateGreaterThan">
-                <!-- <input type="date" class="m-3" name="searchDateLowerThan" id="searchDateLowerThan" onkeyup="search(this)"> -->
-                <button class="btn btn-info" id="event" onclick="getDate(dateGt)">Filtrar</button>
-           
+                    <label for="searchDateGreaterThan">Buscar desde:</label>
+                    <input type="date" class="m-3" name="searchDateGreaterThan" id="searchDateGreaterThan">
+                    <label for="searchDateLowerThan">Hasta:</label>
+                    <input type="date" class="m-3" name="searchDateLowerThan" id="searchDateLowerThan">
+                    <button class="btn btn-info" id="eventBtn" onclick="getDate(dateGt)">Filtrar</button>
         </div>
       </div>
     <div class="my-3 row dataTwo"> 
@@ -108,28 +109,52 @@
 </div>  
 <div class="container">
     <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+    <button class="btn btn-info my-3" id="downloadExcel">Descarga Excel</button>
 </div>
 <span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
 <span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
 <script src="../../JavaScript/jspdf.min.js"></script>
 <script src="../../JavaScript/html2pdf.bundle.min.js"></script>
 <script src="../../JavaScript/item-pdf.js"></script>
+<script src="../../JavaScript/xlsx.full.min.js"></script>
+<script src="../../JavaScript/FileSaver.min.js"></script>
 <script>
     const dateGt = document.getElementById('searchDateGreaterThan')
-    function getDate(e){
-        console.log(e.value)
-        fetch('getMov', {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({payload: e.value})
-    }
-    ).then(res => res.json()).then(data => {
-        let payload = data.payload
-        searchResults.innerHTML = ''
-      if(payload.length < 1) {
-        searchResults.innerHTML = '<p>No hubo resultados</p>'
-        return
-      }
-    })
-    }
+    const searchResults = document.getElementById('searchResults')
+    const itemName = document.getElementById('name');
+    const currentUSer = document.getElementById('currentUser')
+    const dataToAddOne = document.getElementById('data')
+    const dataToAddTwo = document.getElementById('dataTwo')
+
+    // async function getDate(e){
+    //     e.preventDefault()
+    //     console.log(e.value)
+    //     try{
+    //         const response = await axios.get('/show/getMov') 
+    //         console.log(response)
+    //     } catch(err) {
+    //         console.log(err)
+    //     }
+    // }
+    // function getDate(e) {
+    //     fetch('getMov', {
+    //     method: 'POST',
+    //     headers: {"Content-Type": "application/json"},
+    //     body: JSON.stringify({payload: e.value})
+    // }
+    // ).then(res => res.json()).then(data => {
+    //     let payload = data.payload
+    //     searchResults.innerHTML = ''
+    //   if(payload.length < 1) {
+    //     searchResults.innerHTML = '<p>No hubo resultados</p>'
+    //     return
+    //   }
+    //     payload.forEach((item, index) => {
+    //         const newDiv = document.createElement('div')
+    //         newDiv.className = 'col-6'
+    //         newDiv.innerText = item.qty
+    //         searchResults.appendChild(newDiv)
+    //     })
+    // })
+    // }
 </script>

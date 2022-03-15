@@ -23,7 +23,12 @@ router.post('/getInv', isLoggedIn, catchAsync(async(req, res) => {
 }))
 
 router.get('/newItem', isLoggedIn, (req, res)=>{
+   if (req.user.isAdmin || req.user.puesto === 'Ejecutivo de Almacen y Diesel') {
     res.render('inv/new');
+   } else {
+       req.flash('error', 'No tiene autorización')
+       res.redirect('/inv/show')
+   }
 })
 router.post('/newItem', isLoggedIn, validaInv,catchAsync(async(req, res)=>{
     try{
@@ -98,7 +103,7 @@ router.put('/show/:id/remove', isLoggedIn, catchAsync(async(req, res)=>{
 }));
 
 router.post('/show/getMov', isLoggedIn, catchAsync(async(req, res) =>{
-    const gtDate = req.body.payload
+    const gtDate = Date(req.body.payload.searchDateGreaterThan)
     console.log(gtDate)
      let search = await Inv.find({"increments": {"fecha": {"$gte": gtDate}}}).exec()
      console.log('search results: \n' + search)
