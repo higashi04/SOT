@@ -17,6 +17,7 @@ const hrRoutes = require('./Routes/admin-per');
 const qaRoutes = require('./Routes/qa');
 const comprRoutes = require('./Routes/compras');
 const busesRoutes = require('./Routes/buses');
+const driversRoutes = require('./Routes/drivers');
 //models//
 const Users = require('./models/users')
 /////////
@@ -103,6 +104,7 @@ app.use('/hr', hrRoutes);
 app.use('/qa', qaRoutes);
 app.use('/compras', comprRoutes);
 app.use('/buses', busesRoutes);
+app.use('/driver', driversRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')

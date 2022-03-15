@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate') %> 
+
+<h1 class="m-3">Chofer Nuevo</h1>
+
+  <div class="mb-3 container">
+  <div class="row bg">
+    <div class="col-md-12 offset-md-4 my-3">
+      <h4>Datos Personales</h4>
+      <form action ="/driver/new" method="POST" novalidate>
+        <div class="form-floating col-6 pb-2">
+          <input type="text" class="form-control form-control-lg" name="name" id="floatingName" placeholder="Nombre:" required>
+          <label for="floatingName" class="form-label">Nombre: </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+          <input type="text" class="form-control form-control-lg" name="address" id="floatingAddress" placeholder="Dirección:" required>
+          <label for="floatingAddress" class="form-label">Dirección: </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+          <input type="text" class="form-control form-control-lg" name="phone" id="floatingPhone" placeholder="Teléfono:" required>
+          <label for="floatingPhone" class="form-label">Teléfono: </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+            <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingCoordinator" name="coordinator">
+              <option value="Seleccione uno">Coordinador:</option>
+              <option value='Elizardo Brewster Rubio'>Elizardo Brewster Rubio</option>
+              <option value="Jose Antonio Hernandez Garcia">Jose Antonio Hernandez Garcia</option>
+              <option value="David Benavides Chavez">David Benavides Chavez</option>
+              <option value="Jesus Nava">Jesus Nava</option>
+              <option value="Rodolfo Coronado">Rodolfo Coronado</option>
+            </select>
+            <div class="form-floating col-6 pb-2">
+                <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingCompany" name="company">
+                  <option value="Seleccione uno">Empresa:</option>
+                  <option value='OES'>OES</option>
+                  <option value="MEDLINE">MEDLINE</option>
+                  <option value="BPI">BPI</option>
+                  <option value="AISTERMI">AISTERMI</option>
+                  <option value="TRANSPORTES VILLARREAL">TRANSPORTES VILLARREAL</option>
+                </select>
+            <div class="form-floating col-6 pb-2">
+                <input type="date" class="form-control form-control-lg" name="alta" id="floatingDate" placeholder="Alta:" required>
+                <label for="floatingDate" class="form-label">Fecha de Ingreso: </label>
+            </div>
+        <button class="btn btn-success m-3">Mandar</button>
+      </form>
+    </div>
+  </div>
+</div>

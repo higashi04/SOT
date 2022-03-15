@@ -47,7 +47,6 @@ router.post('/newItem', isLoggedIn, validaInv,catchAsync(async(req, res)=>{
     } catch(e){
         req.flash('error', 'Se produjo un error al intentar el registro.')
         res.redirect('/inv/newItem')
-        console.log(e.message)
     }
 }));
 router.get('/show/:id', isLoggedIn,catchAsync(async(req, res)=>{

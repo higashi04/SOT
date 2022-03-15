@@ -1,0 +1,34 @@
+<% layout('layouts/boilerplate') %> 
+<div class="container m-3">
+    <div class="row">
+        <div class="col-md-8 offset-md-4 my-3">
+            <span class="title">Nombre: </span> <%= chofer.name %> 
+        </div>
+        <div class="col-md-8 offset-md-4 my-3">
+            <span class="title">Dirección: </span> <%= chofer.address %> 
+        </div>
+        <div class="col-md-8 offset-md-4 my-3">
+            <span class="title">Teléfono: </span> <%= chofer.phone %> 
+        </div>
+        <div class="col-md-8 offset-md-4 my-3">
+            <span class="title">Fecha de Ingreso: </span> <%= chofer.alta.toLocaleDateString() %> 
+        </div>
+        <div class="col-md-8 offset-md-4 my-3">
+            <span class="title">Compañía: </span> <%= chofer.company %> 
+        </div>
+        <div class="col-md-8 offset-md-4 my-3">
+            <span class="title">Coordinador: </span> <%= chofer.coordinator %> 
+        </div>
+        <%if (chofer.license) { %>
+        <div class="col-md-8 offset-md-4 my-3">
+            <span class="title">Licencia: </span> <%= chofer.license.number %> 
+        </div>
+        <% } %> 
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <a class="btn btn-primary" href="/driver/show/<%=chofer._id%>/license">Agregar Licencia</a>
+    </div>
+</div>

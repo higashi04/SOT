@@ -22,10 +22,15 @@ router.post('/orden/new', isLoggedIn, catchAsync(async(req, res) => {
 }));
 
 router.get('/show', isLoggedIn, catchAsync(async(req,res)=>{
-    const compra = await Compra.find({}).populate({
+    await Compra.find({}).populate({
         path: 'author'
-    })
-    res.render('compras/show', {compra})
+    }).exec((err, foundCompra) => {
+        if(err){
+            req.flash('error', 'Se produjo un error')
+            return res.redirect('/');
+        }
+        res.render('compras/show', {compra: foundCompra})
+    }) 
 }))
 
 router.get('/show/:id', isLoggedIn, catchAsync(async(req, res) =>{
