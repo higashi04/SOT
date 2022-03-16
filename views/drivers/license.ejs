@@ -1,2 +1,31 @@
 <% layout('layouts/boilerplate') %> 
-<h2>lorem</h2>
+<h2 class="offset-md-4 my-3">Licencia</h2>
+<% const minsInDay = 1000 * 3600 * 24 %>  
+<% const today = Date.now() %>
+<% const diff = licenseShow.expirationDate - licenseShow.startDate%>
+<% const days = Math.floor(diff/minsInDay) %> 
+<div class="container">
+    <div class="row my-3">
+        <div class="col-3">
+            <span class="title">Número de Licencia: </span> <%= licenseShow.number %>
+        </div>
+        <div class="col-3">
+            <span class="title">Tipo: </span> <%= licenseShow.licenseType %>
+        </div>
+        <div class="col-3">
+            <span class="title">Fecha de Emisión: </span> <%= licenseShow.startDate.toLocaleDateString() %> 
+        </div>
+        <div class="col-3">
+            <span class="title">Fecha de Expiración: </span> <%= licenseShow.expirationDate.toLocaleDateString() %> 
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-3">
+            <span class="title"> Días a Vencer: </span> <%= days %> <% if (days < 1) {%> día <% } else {%> días <% } %>   
+        </div>
+        <div class="col-3">
+            <span class="title">Faltan <%= (Math.floor(((diff - today)/minsInDay)*-1))/60 %>  </span>
+        </div>
+    </div>
+</div>
+

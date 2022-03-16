@@ -10,12 +10,6 @@ const LicenseSchema = new Schema({
     number: String,
     startDate: Date,
     expirationDate: Date,
-    daysRemaining: {
-        type: String,
-        default: function() {
-           return Math.abs(this.expirationDate - this.startDate)
-        }
-    }
 })
 
 module.exports = mongoose.model('license', LicenseSchema)

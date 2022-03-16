@@ -25,8 +25,7 @@ router.post('/new', isLoggedIn,catchAsync(async(req, res) =>{
     }
 }));
 router.get('/show',isLoggedIn, catchAsync(async(req, res) => {
-    const chofer = await driver.find({})
-    res.render('drivers/show', {chofer})
+    res.render('drivers/show')
 }));
 
 router.post('/getDriver', isLoggedIn, catchAsync(async(req, res) => {
@@ -36,20 +35,42 @@ router.post('/getDriver', isLoggedIn, catchAsync(async(req, res) => {
     res.send({payload: search})
 }));
 router.get('/show/:id', isLoggedIn, catchAsync(async(req, res)=>{
-    await driver.findById(req.params.id).populate({path: 'license'}).exec(
-        (err, foundData) => {
+    await driver.findById(req.params.id).populate({path: 'bus'}).populate({path: 'license'}).exec(
+       async (err, foundData) => {
             if(err) {
                 console.log(err)
                 req.flash('error', 'Se produjo un error')
                 return res.redirect('/driver/show')
             }
-            res.render('drivers/details', {chofer: foundData})
+            const buses = await Bus.find({})
+            res.render('drivers/details', {chofer: foundData, buses})
         })
 }));
-
-router.get('/show/:id/license', isLoggedIn, catchAsync(async(req, res) => {
-    res.render('drivers/license')
-}))
-
+router.put('/show/:id', isLoggedIn, catchAsync(async(req, res) =>{
+    try{
+        const {id} = req.params
+        const addBus = await driver.findById(id)
+        addBus.bus = req.body.unidad
+        await addBus.save()
+        req.flash('success', 'Se asigna unidad con éxito')
+        res.redirect(`/driver/show/${id}`)
+    } catch(e) {
+        req.flash('error', 'Se produjo un error')
+        console.log(e)
+        res.redirect('/driver/show')
+    }
+}));
+router.put('/show/:id/license', isLoggedIn, catchAsync(async(req, res) => {
+    const chofer = await driver.findById(req.params.id)
+    const newLicense = new license(req.body)
+    await newLicense.save()
+    chofer.license = newLicense
+    await chofer.save()
+    res.redirect(`/driver/show/${req.params.id}`)
+}));
+router.get('/show/:id/license/:id', isLoggedIn, catchAsync(async(req, res) => {
+    const licenseShow = await license.findById(req.params.id)
+    res.render('drivers/license', {licenseShow})
+}));
 
 module.exports = router
