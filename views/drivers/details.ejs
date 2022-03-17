@@ -21,7 +21,7 @@
         </div>
         <%if (chofer.license) { %>
         <div class="col-md-8 offset-md-4 my-3">
-            <span class="title">Licencia: </span> <a class="btn btn-dark" href="/driver/show/<%=chofer._id%>/license/<%=chofer.license._id%>"><%= chofer.license.number %></a>  
+            <span class="title">Licencia: </span> <a class="btn btn-dark" href="/driver/show/license/<%=chofer.license._id%>"><%= chofer.license.number %></a>  
         </div>
         <% } %>
         <% if (chofer.bus) {%>
@@ -29,48 +29,98 @@
                 <span class="title">Unidad: </span> <%= chofer.bus.unidad %> 
             </div>  
         <% } %> 
+        <% if (chofer.checklist) {%>
+            <div class="col-md-8 offset-md-4 my-3">
+                <span class="title">Chofer cuenta con su checklist.</span> 
+            </div>  
+        <% } %>  
     </div>
 </div>
-    <div class="my-3 mx-5 px-5">
-        <h2 class="title offset-md-4">Asigna una unidad</h2>
-        <form action="/driver/show/<%=chofer._id%>?_method=PUT" method="post">
-            <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingUnit" name="unidad">
-                <% for (bus of buses) {%>
-                    <option value="<%=bus._id%>"><%= bus.unidad %></option>
-                <% } %> 
-            </select>
-            <button class="btn btn-success offset-md-4">Grabar</button>
-        </form>
+<% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%>
+<div class="container my-3 mx-5 px-5 ">
+    <div class="row">
+        <div class="col">
+            <h2 class="title offset-md-4">Asigna una unidad</h2>
+            <form action="/driver/show/<%=chofer._id%>?_method=PUT" method="post">
+                <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingUnit" name="unidad">
+                    <% for (bus of buses) {%>
+                        <option value="<%=bus._id%>"><%= bus.unidad %></option>
+                    <% } %> 
+                </select>
+                <button class="btn btn-success offset-md-4">Grabar</button>
+            </form>
+        </div>
+        <div class="col">
+           <% if (!chofer.checklist) {%>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCheck" aria-expanded="false" aria-controls="collapseCheck">
+                Checklist de Nuevo Ingreso
+              </button>
+            <div class="collapse" id="collapseCheck">
+                <div class="container">
+                    <div class="offset-md-2 my-3">
+                        <form action="/driver/show/<%=chofer._id%>/checklist?_method=PUT" method="post">
+                            <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingEmployeeType" name="employeeType">
+                                <option value="Plan de Entrenamiento">Plan de Entrenamiento</option>
+                                <option value="Nuevo Ingreso">Nuevo Ingreso</option>
+                                <option value="Reingreso">Reingreso</option>
+                            </select>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchDriveTest" name="driveTest" value="true">
+                                <label class="form-check-label" for="flexSwitchDriveTest">Prueba de Manejo.</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitcHRproccess" name="HRproccess" value="true">
+                                <label class="form-check-label" for="flexSwitchHRproccess">Proceso de RH.</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchRulesHandbook" name="rulesHandbook" value="true">
+                                <label class="form-check-label" for="flexSwitchRulesHandbook">Reglamento Interno.</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchDriversLicense" name="driverLicense" value="true">
+                                <label class="form-check-label" for="flexSwitchDriversLicense">Licencia de Conducir.</label>
+                            </div>
+                            <button class="btn btn-success">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% } %> 
+        </div>
     </div>
-<div class="container my-3 offset-md-4">
-    <div>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
-            Agregar Licencia
-          </button>
-        </p>
-    <div class="collapse" id="collapse">
-        <div class="container">
-            <div class="m-3">
-                <form action="/driver/show/<%=chofer._id%>/license?_method=PUT" method="post">
-                    <div class="form-floating col-6 pb-2">
-                        <input type="text" class="form-control form-control-lg" name="licenseType" id="floatingLicenseType" placeholder="Tipo de Licencia:" required>
-                        <label for="floatingLicenseType" class="form-label">Tipo de Licencia: </label>
-                    </div>
-                    <div class="form-floating col-6 pb-2">
-                         <input type="text" class="form-control form-control-lg" name="number" id="floatingLicenseNumber" placeholder="Número de Licencia:" required>
-                         <label for="floatingLicenseNumber" class="form-label">Número de Licencia: </label>
-                    </div>
-                    <div class="form-floating col-6 pb-2">
-                        <input type="date" class="form-control form-control-lg" name="startDate" id="floatingStartDate" placeholder="Fecha de Emisión:" required>
-                        <label for="floatingStartDate" class="form-label">Fecha de Emisión: </label>
-                    </div>
-                    <div class="form-floating col-6 pb-2">
-                        <input type="date" class="form-control form-control-lg" name="expirationDate" id="floatingExpirationDate" placeholder="Fecha de Expiración:" required>
-                        <label for="floatingStartDate" class="form-label">Fecha de Emisión: </label>
-                    </div>
-                    <button class="btn btn-success">Guardar</button>
-                </form>
+</div> 
+<% } %> 
+<% if (!chofer.license && currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%>
+    <div class="container my-3 offset-md-4">
+        <div>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                Agregar Licencia
+              </button>
+            </p>
+        <div class="collapse" id="collapse">
+            <div class="container">
+                <div class="my-3 license-margin">
+                    <form action="/driver/show/<%=chofer._id%>/license?_method=PUT" method="post">
+                        <div class="form-floating col-6 pb-2">
+                            <input type="text" class="form-control form-control-lg" name="licenseType" id="floatingLicenseType" placeholder="Tipo de Licencia:" required>
+                            <label for="floatingLicenseType" class="form-label">Tipo de Licencia: </label>
+                        </div>
+                        <div class="form-floating col-6 pb-2">
+                             <input type="text" class="form-control form-control-lg" name="number" id="floatingLicenseNumber" placeholder="Número de Licencia:" required>
+                             <label for="floatingLicenseNumber" class="form-label">Número de Licencia: </label>
+                        </div>
+                        <div class="form-floating col-6 pb-2">
+                            <input type="date" class="form-control form-control-lg" name="startDate" id="floatingStartDate" placeholder="Fecha de Emisión:" required>
+                            <label for="floatingStartDate" class="form-label">Fecha de Emisión: </label>
+                        </div>
+                        <div class="form-floating col-6 pb-2">
+                            <input type="date" class="form-control form-control-lg" name="expirationDate" id="floatingExpirationDate" placeholder="Fecha de Expiración:" required>
+                            <label for="floatingStartDate" class="form-label">Fecha de Emisión: </label>
+                        </div>
+                        <button class="btn btn-success">Guardar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<% } %>  

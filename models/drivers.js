@@ -48,6 +48,10 @@ const DriverSchema = new Schema({
     license: {
         type: Schema.Types.ObjectId,
         ref: 'license'
+    },
+    checklist: {
+        type: Schema.Types.ObjectId,
+        ref: 'checklist'
     }
     })
 
