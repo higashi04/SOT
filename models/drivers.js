@@ -52,6 +52,18 @@ const DriverSchema = new Schema({
     checklist: {
         type: Schema.Types.ObjectId,
         ref: 'checklist'
+    },
+    fueDadoDeBaja: {
+        type: Boolean,
+        default: false,
+    },
+    esReingreso: {
+        type: Boolean,
+        default: false,
+        fecha: {
+            type: Date,
+            default: () => Date.now()
+        }
     }
     })
 

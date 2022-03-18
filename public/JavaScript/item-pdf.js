@@ -8,7 +8,7 @@ const itemName = document.querySelector('#name')
 
 const opt = {
     margin:       1,
-    filename:     'myfile.pdf',
+    filename:     `${itemName.innerHTML}.pdf`,
     image:        { type: 'jpeg', quality: 0.98 },
     html2canvas:  { scale: 2 },
     pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] },

@@ -7,6 +7,7 @@ const Bus = require('../models/buses');
 const driver = require('../models/drivers');
 const license = require('../models/licenses');
 const checklist = require('../models/checklist');
+const drivingTest = require('../models/drivingTest');
 
 router.get('/', isLoggedIn, (req, res) => {
     res.render('drivers/home')
@@ -21,7 +22,6 @@ router.get('/new', isLoggedIn, (req, res) => {
 
 });
 router.post('/new', isLoggedIn,catchAsync(async(req, res) =>{
-    console.log(req.body)
     try{
         const chofer = new driver(req.body)
         await chofer.save()
@@ -139,6 +139,39 @@ router.put('/show/:id/checklist', isLoggedIn, catchAsync(async(req, res) =>{
         req.flash('error', 'No tiene autorización para esto.')
         res.redirect(`/driver/show/${chofer._id}`)
     }
+}));
+router.get('/test', isLoggedIn,catchAsync(async(req, res) => {
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+        const choferes = await driver.find({})
+        const buses = await Bus.find({})
+        res.render('drivers/test', {choferes, buses})
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/driver/')
+    }
+}));
+router.post('/test', isLoggedIn, catchAsync(async(req, res) => {
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+        try{
+            const test = new drivingTest(req.body)
+            await test.save()
+            req.flash('success', 'La prueba de manejo se guardó correctamente.')
+            res.redirect('/driver/test')
+        } catch(e) {
+            req.flash('error', 'Se produjo un error')
+            res.redirect('/driver/test')
+        }
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/driver/')
+    }
+}));
+router.get('/test/show', isLoggedIn, catchAsync(async(req, res) =>{
+const drivingTests = await drivingTest.find({}).populate({path: 'driver'}).populate({path: 'unit'}).exec()
+res.render('drivers/testShow', {drivingTests})
+}));
+router.get('/test/show/:id', isLoggedIn, catchAsync(async(req, res) => {
+    const test = await drivingTest.findById(req.params.id).populate({path: 'driver'}).populate({path: 'unit'}).exec()
+    res.render('drivers/testDetails', {test})
 }))
-
 module.exports = router

@@ -5,6 +5,7 @@
 <% const expDate = new Date(licenseShow.expirationDate) %> 
 <% const diff = licenseShow.expirationDate - licenseShow.startDate%>
 <% const days = Math.floor(diff/minsInDay) %> 
+<% const daysToExp = Math.ceil((expDate.getTime() - today.getTime())/minsInDay) %> 
 <div class="container">
     <div class="row my-3">
         <div class="col-3">
@@ -25,7 +26,7 @@
             <span class="title"> Días a Vencer: </span> <%= days %> <% if (days < 1) {%> día <% } else {%> días <% } %>   
         </div>
         <div class="col-3">
-            <span class="title">Faltan <%= Math.ceil((expDate.getTime() - today.getTime())/minsInDay) %> <% if (days < 1) {%> día <% } else {%> días <% } %> </span>
+            <span class="title">Faltan <%= daysToExp %> <% if (daysToExp > 1) {%> días <% } else {%> día <% } %> </span>
         </div>
     </div>
 </div>

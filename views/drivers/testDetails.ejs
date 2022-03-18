@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3"> Resultados de <%= test.driver.name %> </h1>
+
+<div class="container">
+    <div class="row my-3">
+        <div class="col-4">
+            <span class="title">Chofer: </span> <%= test.driver.name %> 
+        </div>
+        <div class="col-4">
+            <span class="title">Unidad: </span> <%= test.unit.unidad %> 
+        </div>
+        <div class="col-4">
+            <span class="title">Fecha: </span> <%= test.testDate.toLocaleDateString() %> 
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-6 my-3 title">Encendido del Motor: </div>
+        <div class="col-6 my-3"><%= test.turnOnEngine ? 'Pasa' : 'No Pasa' %></div>
+        <div class="col-6 my-3 title">Movimiento de Vehiculo en primera velocidad:</div>
+        <div class="col-6 my-3"><%= test.firstEngine ? 'Pasa' : 'No Pasa' %></div>
+        <div class="col-6 my-3 title">No dominar cambios de velocidad:</div>
+        <div class="col-6 my-3"><%= test.engineChange ? 'Pasa' : 'No Pasa' %> </div>
+        <div class="col-6 my-3 title">Estacionamiento:</div>
+        <div class="col-6 my-3"><%= test.engineChange ? 'Pasa' : 'No Pasa' %> </div>
+        <div class="col-6 my-3 title">Inseguridad y no concentracion en la conduccion:</div>
+        <div class="col-6 my-3"><%= test.focus ? 'Pasa' : 'No Pasa' %></div>
+        <div class="col-6 my-3 title">No dominar movimientos en retroceso de vehiculo y uso de espejos retrovisores:</div>
+        <div class="col-6 my-3"><%= test.reverse ? 'Pasa' : 'No Pasa' %></div>
+        <div class="col-6 my-3 title">No adecuado uso del freno:</div>
+        <div class="col-6 my-3"><%= test.brake ? 'Pasa' : 'No Pasa' %></div>
+        <div class="col-6 my-3 title">Utilizacion de la velocidad maxima y minima establecidas:</div>
+        <div class="col-6 my-3"><%= test.speed ? 'Pasa' : 'No Pasa' %></div>
+        <div class="col-6 my-3 title">Se apagó el motor:</div>
+        <div class="col-6 my-3"><%= test.turnEngineOff ? 'Pasa' : 'No Pasa' %></div>
+        <div class="col-6 my-3 title">Precauciones, Imprudencias temerarias, o maniobras peligrosas:</div>
+        <div class="col-6 my-3"><%= test.precautions ? 'Pasa' : 'No Pasa' %></div>
+        <h3 class="offset-md-4 my-3"><%= test.pass ? 'Pasa' : 'No Pasa' %></h3>
+    </div>
+</div>

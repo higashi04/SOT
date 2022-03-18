@@ -3,8 +3,12 @@
 <div class="container my-3">
     <div class="row">
         <% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
-        <a class="btn btn-primary col-3 mx-auto" href="/driver/new">Registrar chofer</a>
+        <a class="btn btn-primary col-3 m-3" href="/driver/new">Registrar chofer</a>
         <% } %> 
-        <a class="btn btn-primary col-3 mx-auto" href="/driver/show"> Buscar choferes</a>
+        <a class="btn btn-primary col-3 m-3" href="/driver/show"> Buscar Choferes</a>
+        <% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
+        <a class="btn btn-primary col-3 m-3" href="/driver/test">Registrar Prueba de Manejo</a>
+        <% } %> 
+        <a class="btn btn-primary col-3 m-3" href="/driver/test/show/">Consultar Pruebas de Manejo</a>
     </div>
 </div>

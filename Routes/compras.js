@@ -10,7 +10,12 @@ router.get('/', isLoggedIn, (req, res) =>{
     res.render('compras/home')
 });
 router.get('/orden', isLoggedIn, (req, res) => {
+    if (req.user.puesto === 'Ejecutivo de Compras' || req.user.isAdmin) {
     res.render('compras/ordenNew')
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/compras/')
+    }
 })
 
 router.post('/orden/new', isLoggedIn, catchAsync(async(req, res) => {
