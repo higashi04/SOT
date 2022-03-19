@@ -3,47 +3,15 @@
 
 <div class="container">
     <div class="row">
-      <input type="text" class="m-3" name="searchBar" id="searchBar" onkeyup="search(this)">
+      <input type="text" class="m-3" name="searchBar" id="searchBar">
       <section>
         <div class="row" id="searchResults"></div>
       </section>
     </div>
   </div>
 
-<script>
-    function search (e) {
-      const searchResults = document.getElementById('searchResults')
-      let match = e.value.match(/^[a-zA-Z ]*/);
-      let matchTwo = e.value.match(/\s*/);
-      if (matchTwo[0] === e.value) {
-        searchResults.innerHTML = ''
-        return
-      }
-      if (match[0] === e.value){
-        fetch('getDriver', {
-          method: 'POST',
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({payload: e.value})
-      }).then(res => res.json()).then(data => {
-        let payload = data.payload
-        searchResults.innerHTML = ''
-        if(payload.length < 1) {
-          searchResults.innerHTML = '<p>No hubo resultados</p>'
-          return
-        }
-        
-        payload.forEach((item, index) => {
-          const newDiv = document.createElement('div')
-          newDiv.className = 'col-6 my-3'
-          const anchor = document.createElement('a')
-          anchor.className = 'btn btn-dark'
-          anchor.href = `/driver/show/${item._id}`
-          anchor.innerText = item.name
-          newDiv.appendChild(anchor)
-          searchResults.appendChild(newDiv)
-        })
-      })
-      }
-      
-    }
+  <script src="../../JavaScript/liveSearch.js"></script>
+  <script hidden>
+    const route = 'getDriver'
+    const origin = '/driver' 
   </script>

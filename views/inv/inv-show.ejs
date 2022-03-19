@@ -1,61 +1,22 @@
 <% layout('layouts/boilerplate') %> 
 <h1 class="mx-3 p-5">Inventario</h1>
   <div class="container">
-    <div class="row">
-      <input type="text" class="m-3" name="searchBar" id="searchBar" onkeyup="search(this)">
+    <div class="row"> 
+      <input type="text" class="m-3" name="searchBar" id="searchBar">
       <section>
         <div class="row" id="searchResults"></div>
       </section>
     </div>
   </div>
-
-<div class="container">
-  <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
-    <a class="btn btn-primary my-3 mx-3" href="/inv/newItem">Nuevo</a>
-  <% } %>  
   <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
 </div>
 <span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
 <span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
 <script src="../../JavaScript/jspdf.min.js"></script>
-<script src="../../JavaScript/html2canvas.min.js"></script>
 <script src="../../JavaScript/printInv.js"></script>
-<!-- <script src="../../JavaScript/liveSearch.js"></script> -->
-<script>
-  function search (e) {
-    const searchResults = document.getElementById('searchResults')
-    let match = e.value.match(/^[a-zA-Z ]*/);
-    let matchTwo = e.value.match(/\s*/);
-    if (matchTwo[0] === e.value) {
-      searchResults.innerHTML = ''
-      return
-    }
-    if (match[0] === e.value){
-      fetch('getInv', {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({payload: e.value})
-    }).then(res => res.json()).then(data => {
-      let payload = data.payload
-      searchResults.innerHTML = ''
-      if(payload.length < 1) {
-        searchResults.innerHTML = '<p>No hubo resultados</p>'
-        return
-      }
-      
-      payload.forEach((item, index, array ) => {
-        const newDiv = document.createElement('div')
-        newDiv.className = 'col-6 my-3'
-        const anchor = document.createElement('a')
-        anchor.className = 'btn btn-dark'
-        anchor.href = `/inv/show/${item._id}`
-        anchor.innerText = item.nombre
-        newDiv.appendChild(anchor)
-        searchResults.appendChild(newDiv)
-      })
-    })
-    }
-    
-  }
+<script src="../../JavaScript/liveSearch.js"></script>
+<script hidden>
+  const route = 'getInv'
+  const origin = '/inv' 
 </script>
 
