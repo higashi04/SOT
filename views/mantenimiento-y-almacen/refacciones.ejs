@@ -3,15 +3,19 @@
 <h1 class="my-3 p-5">Vale de Refacciones</h1>
 
 <div class="container m-5">
-    <form action="" method="post" novalidate>
+    <form action="/mtto/repairs" method="post" novalidate>
         <div class="row m-2">
             <div class="form-floating col-4 pb-2">
                 <input type="text" class="form-control form-control-lg" name="orden" id="floatingOrden" placeholder="Orden de Trabajo:" required>
                 <label for="floatingOrden" class="form-label">Orden de Trabajo: </label>
             </div>
             <div class="form-floating col-4 pb-2">
-                <input type="text" class="form-control form-control-lg" name="unit" id="floatingUnit" placeholder="Unidad:" required>
-                <label for="floatingUnit" class="form-label">Unidad: </label>
+                <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingUnit" name="unidad">
+                        <option> Unidad: </option>
+                    <% for (bus of buses) {%>
+                        <option value="<%=bus._id%>"><%= bus.unidad %></option>
+                    <% } %> 
+                </select>
             </div>
             <div class="col-4 pb-2">
                <span class="title date">Fecha:  <%= new Date().toLocaleDateString() %> </span>
@@ -27,6 +31,11 @@
             <textarea type="text" class="form-control form-control-lg" name="comments" id="floatingComments" placeholder="Comentarios:"></textarea>
             <label for="floatingComments" class="form-label">Comentarios: </label>
         </div>
+       </div>
+       <div class="row">
+           <div class="offset-md-4 my-3">
+               <button class="btn btn-success">Mandar</button>
+           </div>
        </div>
     </form>
     <button class="btn btn-success addToForm">Agregar Campos</button>

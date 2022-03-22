@@ -109,15 +109,5 @@ router.post('/show/getMov', isLoggedIn, catchAsync(async(req, res) =>{
      res.send({payload: search})
 }))
 
-router.get('/repairs', isLoggedIn, catchAsync(async(req, res)=>{
-    await Inv.findOne({}).exec((err, foundItem) => {
-        if (err){
-            req.flash('error', 'Se produjo un error')
-            return res.redirect('/');
-        }
-        res.render('inv/refacciones', {item: foundItem})
-    })
-}))
-
 module.exports = router;
 

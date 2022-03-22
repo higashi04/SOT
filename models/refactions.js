@@ -3,27 +3,27 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const RefacSchema = new Schema({
-    partNum:[
+    partNumber:[
          {
         type: String,
         required: true
     }
 ],
-    object: [
+    objeto: [
         {
         type: String,
         required: true
     }
 ],
-    qty: [
+    cantidad: [
         {
         type: String,
         required: true
     }
 ],
     unit: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: 'bus'
     },
     fecha: {
         type: Date,
@@ -34,7 +34,7 @@ const RefacSchema = new Schema({
         type: String,
         required: true
     },
-    comments: String
+    comments: String,
 })
 
 module.exports = mongoose.model('Refacc', RefacSchema);

@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %> 
 
-<div class="container m-3 data">
+<div class="container m-3" id="data">
     <h1 class="m-5">Orden de Trabajo</h1>
     <div class="row my-2">
         <div class="col-3">
@@ -82,9 +82,10 @@
     </div>
     <span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
     <span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+    <span hidden id="currentOrder"><%= orden._id %></span>
     <script src="../../JavaScript/jspdf.min.js"></script>
-    <script src="../../JavaScript/html2canvas.min.js"></script>
-    <script src="../../JavaScript/printMant.js"></script>
+    <script src="../../JavaScript/html2pdf.bundle.min.js"></script>
+    <script src="../../JavaScript/purchaseOderPdf.js"></script>
 <% } %>  
     
 
