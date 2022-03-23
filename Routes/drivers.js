@@ -174,4 +174,12 @@ router.get('/test/show/:id', isLoggedIn, catchAsync(async(req, res) => {
     const test = await drivingTest.findById(req.params.id).populate({path: 'driver'}).populate({path: 'unit'}).exec()
     res.render('drivers/testDetails', {test})
 }))
+router.get('/audit', isLoggedIn, (req, res) =>{ 
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+        res.render('drivers/driverAudit')
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/driver/')
+    }
+})
 module.exports = router

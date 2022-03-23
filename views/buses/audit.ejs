@@ -15,12 +15,12 @@
                 <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingBus" name="unit">
                     <option value="Seleccione uno">Unidad:</option>
                     <% for (bus of units) {%>
-                        <option value="<%= bus._id %>"><%= bus.unidad %></option>
+                        <option value="<%= bus.unidad %>"><%= bus.unidad %></option>
                     <% } %>  
                 </select>
             <div class="form-floating col-6 pb-2">
-                <input type="date" class="form-control form-control-lg" name="testDate" id="floatingDate" placeholder="Fecha:" required>
-                <label for="floatingDate" class="form-label">Fecha: </label>
+                <input type="date" class="form-control form-control-lg" name="date" id="date" placeholder="Fecha:" required>
+                <label for="date" class="form-label">Fecha: </label>
             </div>
             <div class="title">
                 <div class="row mb-3">

@@ -3,7 +3,6 @@ const searchResults = document.getElementById('searchResults');
 const resultsDisplay = document.getElementById('searchResults');
 searchBar.addEventListener('change',  function(e) {
     e.preventDefault();
-    console.log(searchBar.value)
     let match = searchBar.value.match(/^[a-zA-Z ]*/);
     let matchTwo = searchBar.value.match(/\s*/);
     if (matchTwo[0] === searchBar.value) {
@@ -28,8 +27,8 @@ searchBar.addEventListener('change',  function(e) {
         newDiv.className = 'col-6 my-3'
         const anchor = document.createElement('a')
         anchor.className = 'btn btn-dark'
-        anchor.href = `${origin}/show/${item._id}`
-        anchor.innerText = item.nombre || item.name
+        anchor.href = `${origin}/${item._id}`
+        anchor.innerText = item.nombre || item.name || item.unit
         newDiv.appendChild(anchor)
         searchResults.appendChild(newDiv)
       })

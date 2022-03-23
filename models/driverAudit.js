@@ -1,73 +1,92 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
-const unitChecklist = new Schema({
-    unit: {
-        type: String
-    },
-    date: Date,
+const driverAuditSchema = new Schema({
     driver: {
         type: Schema.Types.ObjectId,
-        ref: 'driver'
+        ref: 'driver',
+        required: true
     },
-    sideMirrors: {
+    date: {
+        type: Date,
+        required: true
+    },
+    unit: {
+        type: String,
+        required: true
+    },
+    dressCode: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    windshield: {
+    parking: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    wipers: {
+    noCommerce: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    fuel: {
+    currentDriverLicense: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    seatbelt: {
+    unitId: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    lights: {
+    formFtv012: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    insideCleaness: {
+    formFtv006: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    outsideCleaness: {
+    safetyVest: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    seats: {
+    credential: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    windows: {
+    faceMask: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    horn: {
+    gel: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    doors: {
+    extinguisher: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    frontWheels: {
+    firstAidKit: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    backWheels: {
+    gps: {
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
-    comments: String,
-    inspectedBy: String
+    hydraulicJack: {
+        type: String,
+        enum: ['Sí', 'No', 'N/A']
+    },
+    wrench: {
+        type: String,
+        enum: ['Sí', 'No', 'N/A']
+    },
+    spareTire: {
+        type: String,
+        enum: ['Sí', 'No', 'N/A']
+    },
+    safetyTriangle: {
+        type: String,
+        enum: ['Sí', 'No', 'N/A']
+    },
 })
 
-module.exports = mongoose.model('unitChecklist', unitChecklist)
+module.exports = mongoose.model('audit', driverAuditSchema)

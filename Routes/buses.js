@@ -45,7 +45,6 @@ router.get('/show/:id', isLoggedIn, catchAsync(async(req, res)=>{
 }));
 
 router.put('/show/:id/mtto', isLoggedIn, catchAsync(async(req, res)=>{
-    console.log('the route is being hit')
     try{
         const unit = await Bus.findById(req.params.id)
         const mant = new mtto(req.body)
@@ -60,11 +59,17 @@ router.put('/show/:id/mtto', isLoggedIn, catchAsync(async(req, res)=>{
     }
 }));
 router.get('/audit', isLoggedIn, catchAsync(async(req, res) =>{
-    const choferes = await chofer.find({})
-    const units = await Bus.find({})
-    res.render('buses/audit', {choferes, units})
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+        const choferes = await chofer.find({})
+        const units = await Bus.find({})
+        res.render('buses/audit', {choferes, units})
+    } else {
+       req.flash('error', 'No tiene autorización para esto.')
+       res.redirect('/buses')
+}
 }));
 router.post('/audit', isLoggedIn, catchAsync(async(req, res) =>{
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
     try{
         const audit = new unitChecklist(req.body)
         audit.save()
@@ -74,5 +79,28 @@ router.post('/audit', isLoggedIn, catchAsync(async(req, res) =>{
         req.flash('error', 'Se produjo un error al intentar el registro.')
         res.redirect('/buses')
     }
-}))
+} else {
+    req.flash('error', 'No tiene autorización para esto.')
+    res.redirect('/buses')
+}
+}));
+
+router.get('/audit/show', isLoggedIn, catchAsync(async(req, res) =>{
+    res.render('buses/audit-show')
+}));
+router.get('/audit/show/:id', isLoggedIn, catchAsync(async(req, res) => {
+    await unitChecklist.findById(req.params.id).populate({path: 'driver'}).exec((err, foundAudit) =>{
+        if(err){
+            req.flash('error', 'Se produjo un error')
+            return res.redirect('/buses');
+        }
+        res.render('buses/audit-details', {audit: foundAudit})
+    })
+}));
+router.post('/audit/getAudit', isLoggedIn, catchAsync(async(req, res) =>{
+    let payload = req.body.payload.trim()
+    let search = await unitChecklist.find({unit: {$regex: new RegExp('^'+payload+'.*', 'i')}}).exec();
+    search = search.slice(0, 10);
+    res.send({payload: search})
+})); 
 module.exports = router

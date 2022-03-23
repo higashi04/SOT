@@ -8,8 +8,13 @@
         <div class="col-6">
             <a class="btn btn-primary m-3" href="/buses/show">Lista de Camiones</a>
         </div>
+        <% if (currentUser.isAdmin || currentUser.puesto === 'Supervisor de Coordinadores') {%> 
         <div class="col-6">
             <a class="btn btn-primary m-3" href="/buses/audit">Nuevo Checklist de Unidad</a>
         </div>
+        <% } %>
+        <div class="col-6">
+            <a class="btn btn-primary m-3" href="/buses/audit/show">Consulta Checklists de Unidad</a>
+        </div> 
     </div>
 </div>

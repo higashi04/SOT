@@ -64,7 +64,13 @@ const DriverSchema = new Schema({
             type: Date,
             default: () => Date.now()
         }
-    }
+    },
+    audits: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'audit'
+        }
+    ]
     })
 
 module.exports = mongoose.model('driver', DriverSchema)
