@@ -123,4 +123,15 @@
             </div>
         </div>
     </div>
-<% } %>  
+<% } %> 
+<% if (chofer.audits) {%>
+    <div class="container">
+        <div class="row">
+            <% for(audit of chofer.audits) {%>
+                <div class="col-4 my-3">
+                    <a class="btn btn-dark" href="/driver/audit/<%=audit._id%>"><%= audit.date.toLocaleDateString() %> </a>
+                </div>
+            <% } %>  
+        </div>
+    </div>
+<% } %>   

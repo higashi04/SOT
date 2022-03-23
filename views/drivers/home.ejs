@@ -10,5 +10,8 @@
         <a class="btn btn-primary col-3 m-3" href="/driver/test">Registrar Prueba de Manejo</a>
         <% } %> 
         <a class="btn btn-primary col-3 m-3" href="/driver/test/show/">Consultar Pruebas de Manejo</a>
+        <% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
+            <a class="btn btn-primary col-3 m-3" href="/driver/audit">Registrar Auditoria a Choferes Y/O Coordinadores</a>
+        <% } %> 
     </div>
 </div>

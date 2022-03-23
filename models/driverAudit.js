@@ -87,6 +87,8 @@ const driverAuditSchema = new Schema({
         type: String,
         enum: ['Sí', 'No', 'N/A']
     },
+    auditedBy: String,
+    comments: String
 })
 
 module.exports = mongoose.model('audit', driverAuditSchema)

@@ -8,6 +8,7 @@ const driver = require('../models/drivers');
 const license = require('../models/licenses');
 const checklist = require('../models/checklist');
 const drivingTest = require('../models/drivingTest');
+const driverAudit = require('../models/driverAudit');
 
 router.get('/', isLoggedIn, (req, res) => {
     res.render('drivers/home')
@@ -43,7 +44,7 @@ router.post('/getDriver', isLoggedIn, catchAsync(async(req, res) => {
     res.send({payload: search})
 }));
 router.get('/show/:id', isLoggedIn, catchAsync(async(req, res)=>{
-    await driver.findById(req.params.id).populate({path: 'bus'}).populate({path: 'license'}).exec(
+    await driver.findById(req.params.id).populate({path: 'audits'}).populate({path: 'bus'}).populate({path: 'license'}).exec(
        async (err, foundData) => {
             if(err) {
                 console.log(err)
@@ -174,12 +175,42 @@ router.get('/test/show/:id', isLoggedIn, catchAsync(async(req, res) => {
     const test = await drivingTest.findById(req.params.id).populate({path: 'driver'}).populate({path: 'unit'}).exec()
     res.render('drivers/testDetails', {test})
 }))
-router.get('/audit', isLoggedIn, (req, res) =>{ 
+router.get('/audit', isLoggedIn, catchAsync(async(req, res) =>{ 
     if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
-        res.render('drivers/driverAudit')
+        const choferes = await driver.find({})
+        const buses = await Bus.find({})
+        res.render('drivers/driverAudit', {choferes, buses})
     } else {
         req.flash('error', 'No tiene autorización para esto.')
         res.redirect('/driver/')
     }
-})
+}));
+router.put('/audit', isLoggedIn, catchAsync(async(req, res) => {
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+        try{
+            const newAudit = new driverAudit(req.body)
+            const chofer = await driver.findById(req.body.driver)
+            await newAudit.save()
+            chofer.audits.push(newAudit)
+            await chofer.save()
+            req.flash('success', 'La auditoria ha sido guardada correctamente.')
+            res.redirect('/driver')
+        } catch(e) {
+            req.flash('error', 'Se produjo un error')
+            res.redirect('/driver')
+        }
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/driver/')
+}
+}));
+router.get('/audit/:id', isLoggedIn, catchAsync(async(req, res) => {
+    await driverAudit.findById(req.params.id).populate({path: 'driver'}).exec((err, foundAudit) =>{
+        if(err) {
+            req.flash('error', 'Se produjo un error')
+            res.redirect('/driver')
+        }
+        res.render('drivers/driverAuditShow', {audit: foundAudit})
+    })
+}));
 module.exports = router

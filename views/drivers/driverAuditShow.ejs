@@ -1,0 +1,50 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="my-3 offset-md-2"> Auditoria a <%= audit.driver.name %> con fecha de <%= audit.date.toLocaleDateString() %>  </h1>
+
+<div class="container my-3">
+    <div class="row m-5">
+        <div class="col-3 my-3"><span class="title">Codigo de vestimenta(Prohibido utilizar sandalias,pijamas,short).</span></div>
+        <div class="col-3 my-3"><%= audit.dressCode %> </div>
+        <div class="col-3 my-3"><span class="title">Unidad estacionada adecuadamente.</span></div>
+        <div class="col-3 my-3"><%= audit.parking %> </div>
+        <div class="col-3 my-3"><span class="title">Coordinadores y/o Choferes deberan  abstenerse de la venta ambulante.</span></div>
+        <div class="col-3 my-3"><%= audit.noCommerce %> </div>
+        <div class="col-3 my-3"><span class="title">Licencia de Manejo Vigente.</span></div>
+        <div class="col-3 my-3"><%= audit.currentDriverLicense %> </div>
+        <div class="col-3 my-3"><span class="title">La unidad está identificada con la ruta.</span></div>
+        <div class="col-3 my-3"><%= audit.unitId %> </div>
+        <div class="col-3 my-3"><span class="title">Llenado de Registro F-TV012.</span></div>
+        <div class="col-3 my-3"><%= audit.formFtv012 %> </div>
+        <div class="col-3 my-3"><span class="title">Llenado de Registro F-TV006.</span></div>
+        <div class="col-3 my-3"><%= audit.formFtv006 %> </div>
+        <div class="col-3 my-3"><span class="title">Chaleco de Seguridad.</span></div>
+        <div class="col-3 my-3"><%= audit.safetyVest %> </div>
+        <div class="col-3 my-3"><span class="title">Gafete.</span></div>
+        <div class="col-3 my-3"><%= audit.credential %> </div>
+        <div class="col-3 my-3"><span class="title">Cubrebocas.</span></div>
+        <div class="col-3 my-3"><%= audit.faceMask %> </div>
+        <div class="col-3 my-3"><span class="title">Gel.</span></div>
+        <div class="col-3 my-3"><%= audit.gel %> </div>
+        <div class="col-3 my-3"><span class="title">Extintor.</span></div>
+        <div class="col-3 my-3"><%= audit.extinguisher %> </div>
+        <div class="col-3 my-3"><span class="title">Botiquin.</span></div>
+        <div class="col-3 my-3"><%= audit.firstAidKit %> </div>
+        <div class="col-3 my-3"><span class="title">GPS.</span></div>
+        <div class="col-3 my-3"><%= audit.gps %> </div>
+        <div class="col-3 my-3"><span class="title">Gato Hidráulico</span></div>
+        <div class="col-3 my-3"><%= audit.hydraulicJack %> </div>
+        <div class="col-3 my-3"><span class="title">Cruceta (Llave de Tuercas).</span></div>
+        <div class="col-3 my-3"><%= audit.wrench %> </div>
+        <div class="col-3 my-3"><span class="title">Llanta de Refacción.</span></div>
+        <div class="col-3 my-3"><%= audit.spareTire %> </div>
+        <div class="col-3 my-3"><span class="title">Triangulos de Seguridad (Reflejantes).</span></div>
+        <div class="col-3 my-3"><%= audit.safetyTriangle %> </div>
+    </div>
+    <div class="row m-5">
+        <div class="col-12"><span class="title">Comentarios:</span></div>
+        <div class="col-12"><%= audit.comments %> </div>
+    </div>
+    <div class="row m-5">
+        <div class="col-6"><span class="title">Auditado por: </span> <%= audit.auditedBy %> </div>
+    </div>
+</div>
