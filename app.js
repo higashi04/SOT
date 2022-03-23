@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'));
 app.use(methodOverride('_method'));
-// app.use(helmet());
+app.use(helmet());
 //cookies//
 
 const store = MongoStore.create({
