@@ -1,0 +1,12 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="offset-md-4 my-3">Consulta de Hojas de Asistencia</h1>
+
+<div class="container">
+    <div class="row">
+        <% for (list of attendanceLists) {%>
+            <div class="col-4 m-3">
+                <a class="btn btn-dark" href="/hr/attendance/show/<%=list._id%>"><%= list.date.toLocaleDateString() %></a>
+            </div>
+        <% } %>  
+    </div>
+</div>

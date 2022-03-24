@@ -1,0 +1,27 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="offset-md-4 my-3 data" id="name"> Asistencia del <%= list.date.toLocaleDateString() %>  </h1> 
+<div class="container my-3 dataTwo">
+    <div class="row attendance-head">
+        <div class="col-3 field title">Nombre:</div>
+        <div class="col-3 field title">Se presenta a trabajar:</div>
+        <div class="col-3 field title">Retardo:</div>
+        <div class="col-3 title">Observaciones:</div>
+    </div>
+    <div class="row attendance-list">
+        <% list.user.forEach((item,index) =>{%> 
+            <div class="col-3 field"><%= item.firstName %> <%= item.lastName %></div>
+            <div class="col-3 field"><%= list.isPresent[index] ? 'Sí' : 'No' %></div>
+            <div class="col-3 field"><%= list.isOnTime[index] ? 'Sí' : 'No' %></div>
+            <div class="col-3"> <% if (!list.comments[index]) {%> N/A <% } else {%>  <%= list.comments[index] %> <% } %>  </div>
+        <%})%> 
+    </div>
+</div>
+<div class="container offset-md-4 my-3">
+    <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+</div>
+
+<span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+<span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+<script src="../../../JavaScript/jspdf.min.js"></script>
+<script src="../../../JavaScript/html2pdf.bundle.min.js"></script>
+<script src="../../../JavaScript/attendancePDF.js"></script>

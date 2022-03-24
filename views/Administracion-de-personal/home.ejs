@@ -12,7 +12,11 @@
                         </p>
                         <div class="collapse" id="collapse">
                             <div class="card card-body">
-                                <a class="btn btn-primary" href="/hr/show">lista</a>
+                                <a class="btn btn-primary m-3" href="/hr/show">Lista</a>
+                             <% if (currentUser.puesto === 'Recepcionista' || currentUser.isAdmin){%>  
+                                <a class="btn btn-primary m-3" href="/hr/attendance">Asistencia</a>
+                                <a class="btn btn-primary m-3" href="/hr/attendance/show">Consultar Asistencia</a>
+                            <% } %> 
                             </div>
                         </div>
                     </div>
@@ -63,11 +67,11 @@
                                 Opciones
                             </button>
                         </p>
-                        <div class="collapse" id="collapse3">
-                            <div class="card card-body">
-                                <a class="btn btn-primary" href="/driver">Opciones</a>
-                            </div>
+                    <div class="collapse" id="collapse3">
+                        <div class="card card-body">
+                            <a class="btn btn-primary" href="/driver">Opciones</a>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
