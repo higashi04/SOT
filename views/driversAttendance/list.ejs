@@ -1,0 +1,36 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="my-3 offset-md-2"> <%= list.kind %>  </h1>
+
+<div class="container">
+    <div class="row attendance-head">
+        <div class="col-6 mt-3">
+            <select class="form-select form-select mb-3" aria-label=".form-select" id="attendance" name="day">
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+                <option value="Sábado">Sábado</option>
+                <option value="Domingo">Domingo</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="row attendance-list">
+        <div class="col field">Nombre</div>
+        <div class="col field">Unidad</div>
+        <div class="col field">Coordinador</div>
+        <div class="col">Tiene sus entradas y salidas?</div>
+    </div>
+    <form action="/driverAttendance/<%=list._id%>/monday?_method=PUT" method="post">
+        <% for (driver of drivers) {%>
+            <div class="row attendance-list">
+                <div class="col field"><%= driver.name %> </div>
+                <div class="col field"> <%= driver.bus.unidad %></div>
+                <div class="col field"><%= driver.coordinator %>  </div>
+                <div class="col"></div>
+            </div>
+        <% } %>  
+        <button class="btn btn-success my-3">Guardar Cambios</button>
+    </form>
+</div>

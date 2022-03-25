@@ -18,6 +18,8 @@ const qaRoutes = require('./Routes/qa');
 const comprRoutes = require('./Routes/compras');
 const busesRoutes = require('./Routes/buses');
 const driversRoutes = require('./Routes/drivers');
+const driversAttendance = require('./Routes/driversAttendance');
+const drivingRoutes = require('./Routes/driversRoutes');
 //models//
 const Users = require('./models/users')
 /////////
@@ -106,6 +108,8 @@ app.use('/qa', qaRoutes);
 app.use('/compras', comprRoutes);
 app.use('/buses', busesRoutes);
 app.use('/driver', driversRoutes);
+app.use('/driverAttendance', driversAttendance);
+app.use('/driving', drivingRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')

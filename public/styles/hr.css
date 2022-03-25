@@ -8,3 +8,6 @@
 .field{
     border-right: 1px solid black;
 }
+.inCellText {
+    width: 6rem;
+}
