@@ -17,10 +17,18 @@ const driverAttendanceSchema = new Schema({
         type: String,
         enum: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
     },
-    inOut: {
-        type: Boolean,
-        required: true
-    }
+    inOne: [{
+        type: Boolean
+    }],
+    outOne: [{
+        type: Boolean
+    }],
+    inTwo: [{
+        type: Boolean
+    }],
+    outTwo: [{
+        type: Boolean
+    }]
 })
 
 module.exports = mongoose.model('driverAttendance', driverAttendanceSchema);
