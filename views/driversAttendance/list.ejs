@@ -14,16 +14,16 @@
             <div class="col">Domingo</div>
         </div>
         <% list.monday.driver.forEach((item, index) => {%>
-           <div class="row attendance-list">
+           <div class="row attendance-list"> 
             <div class="col field innerCellText text-wrap"><%= list.monday.driver[index].name %> </div>
             <div class="col field"><%= list.monday.driver[index].coordinator %> </div>
-            <div class="col field"><%= list.monday.inOne && list.monday.inTwo && list.monday.outOne && list.monday.outTwo ? 'Asistencia' : 'Revisar entradas y salidas' %> </div>
-            <div class="col field"><%= list.monday.inOne && list.monday.inTwo && list.monday.outOne && list.monday.outTwo ? 'Asistencia' : 'Revisar entradas y salidas' %> </div>
-            <div class="col field"><%= list.monday.inOne && list.monday.inTwo && list.monday.outOne && list.monday.outTwo ? 'Asistencia' : 'Revisar entradas y salidas' %> </div>
-            <div class="col field"><%= list.monday.inOne && list.monday.inTwo && list.monday.outOne && list.monday.outTwo ? 'Asistencia' : 'Revisar entradas y salidas' %> </div>
-            <div class="col field"><%= list.monday.inOne && list.monday.inTwo && list.monday.outOne && list.monday.outTwo ? 'Asistencia' : 'Revisar entradas y salidas' %> </div>
-            <div class="col field"><%= list.monday.inOne && list.monday.inTwo && list.monday.outOne && list.monday.outTwo ? 'Asistencia' : 'Revisar entradas y salidas' %> </div>
-            <div class="col "><%= list.monday.inOne && list.monday.inTwo && list.monday.outOne && list.monday.outTwo ? 'Asistencia' : 'Revisar entradas y salidas' %> </div>
+            <div class="col field"><%= list.monday.inOne[index] && list.monday.inTwo[index] && list.monday.outOne[index] && list.monday.outTwo[index] ? 'Asistencia' : 'Falta' %></div>
+            <div class="col field"><%= list.tuesday.inOne[index] && list.tuesday.inTwo[index] && list.tuesday.outOne[index] && list.tuesday.outTwo[index] ? 'Asistencia' : 'Falta' %> </div>
+            <div class="col field"><%= list.wednesday.inOne[index] && list.wednesday.inTwo[index] && list.wednesday.outOne[index] && list.wednesday.outTwo[index] ? 'Asistencia' : 'Falta' %></div>
+            <div class="col field"><%= list.thursday.inOne[index] && list.thursday.inTwo[index] && list.thursday.outOne[index] && list.thursday.outTwo[index] ? 'Asistencia' : 'Falta' %></div>
+            <div class="col field"><%= list.friday.inOne[index] && list.friday.inTwo[index] && list.friday.outOne[index] && list.friday.outTwo[index] ? 'Asistencia' : 'Falta' %> </div>
+            <div class="col field"><%= list.saturday.inOne[index] && list.saturday.inTwo[index] && list.saturday.outOne[index] && list.saturday.outTwo[index] ? 'Asistencia' : 'Falta' %></div>
+            <div class="col "><%= list.sunday.inOne[index] && list.sunday.inTwo[index] && list.sunday.outOne[index] && list.sunday.outTwo[index] ? 'Asistencia' : 'Falta' %></div>
            </div>
          <% }) %> 
     </div>

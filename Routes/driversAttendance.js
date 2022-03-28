@@ -139,7 +139,6 @@ router.put('/:id', isLoggedIn, catchAsync(async(req,res) =>{
         const choferes = await drivers.find({})
         const list = await driverWeek.findById(id)
         day(req.body, newAttendance, list, choferes)
-        console.log(req.body)
         res.redirect('/driverAttendance')
     } catch(e) {
         console.log(e)
