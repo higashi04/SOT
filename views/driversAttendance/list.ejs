@@ -42,6 +42,7 @@
         <div class="row attendance-head">
             <form action="/driverAttendance/<%=list._id%>?_method=PUT" method="post">
             <div class="col-6 mt-3">
+                <label for="day">Selecione el día:</label>
                 <select class="form-select form-select mb-3" aria-label=".form-select" id="attendance" name="day">
                     <% if (!list.monday) {%><option value="Lunes">Lunes</option><% } %>
                     <% if (!list.tuesday) {%><option value="Martes">Martes</option><% } %>

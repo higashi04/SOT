@@ -6,8 +6,17 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="#">Features</a>
-          <a class="nav-link" href="#">Pricing</a>          
+          <% if (currentUser) {%>
+            <% if(currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%>
+              <a class="nav-link" href="/driver">Choferes</a>
+            <% } %>
+            <% if(currentUser.puesto === 'Recepcionista' || currentUser.isAdmin) { %> 
+              <a class="nav-link" href="/hr/attendance">Asistencia</a>
+            <% } %>
+            <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
+              <a class="nav-link" href="/inv/show">Inventario</a>
+            <% } %> 
+          <% } %>    
         </div>
         <div class="ms-auto navbar-nav">
           <% if(!currentUser) {%> 
