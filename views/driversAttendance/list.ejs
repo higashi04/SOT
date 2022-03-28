@@ -65,7 +65,7 @@
             <% for (driver of drivers) {%>
                 <div class="row attendance-list">
                     <div class="col field"><%= driver.name %> </div>
-                    <div class="col field"> <%= driver.bus.unidad %></div>
+                    <div class="col field"> <%= !driver.bus ? '' : driver.bus.unidad %></div>
                     <div class="col field"><%= driver.coordinator %></div>
                     <div class="col field">           
                         <select class="form-select form-select my-3" aria-label=".form-select" id="inOne" name="inOne">

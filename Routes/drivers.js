@@ -172,8 +172,14 @@ const drivingTests = await drivingTest.find({}).populate({path: 'driver'}).popul
 res.render('drivers/testShow', {drivingTests})
 }));
 router.get('/test/show/:id', isLoggedIn, catchAsync(async(req, res) => {
-    const test = await drivingTest.findById(req.params.id).populate({path: 'driver'}).populate({path: 'unit'}).exec()
-    res.render('drivers/testDetails', {test})
+        await drivingTest.findById(req.params.id).populate({path: 'driver'}).populate({path: 'unit'}).exec((err, foundTests) =>{
+        if(err){
+            req.flash('error', 'Se produjo un error.')
+            res.redirect('/driver')
+        }
+        res.render('drivers/testDetails', {test: foundTests})
+    })
+    
 }))
 router.get('/audit', isLoggedIn, catchAsync(async(req, res) =>{ 
     if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {

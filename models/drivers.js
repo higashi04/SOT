@@ -3,7 +3,6 @@ const Schema = mongoose.Schema
 
 const DriverSchema = new Schema({
     name: String,
-    address: String,
     phone: String,
     createdAt: 
     {
