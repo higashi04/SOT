@@ -6,11 +6,14 @@ const attendanceSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
     }],
+    day: {
+        type: String,
+        enum: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
+    },
     date: {
         type: Date,
         default: () => Date.now(),
         immutable: true,
-        required: true
     },
     isPresent: [{
         type: Boolean,

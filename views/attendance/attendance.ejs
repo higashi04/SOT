@@ -1,37 +1,107 @@
 <% layout('layouts/boilerplate') %>
-<h1 class="offset-md-4 my-3">Asistencia Diaria</h1>
-
-<div class="container">
-    <form action="/hr/attendance" method="post">
-    <div class="row attendance-head">
-        <div class="col-3 title field">Nombre:</div>
-        <div class="col-3 title field"><label class="form-check-label col-4 me-5" for="isPresent">Se presenta a trabajar:</label></div>
-        <div class="col-3 title field"><label class="form-check-label col-4 me-5" for="isOnTime">Retardo:</label></div>
-        <div class="col-3 title ">Observaciones:</div>
+<h1 class="data m-3"> Asistencia Semanal de Personal Administrativo </h1>
+<% if (list.monday && list.tuesday && list.wednesday && list.thursday && list.friday && list.saturday  && list.sunday) {%>  
+    <div class="container dataTwo my-3">
+        <table>
+            <thead class="attendance-head">
+              <tr>
+                <th class="col-3 title field">Nombre:</th>
+                <th class="col-1 title field">Horario:</th>
+                <th class="col-2 title field">Se presenta a trabajar:</th>
+                <th class="col-2 title field">Retardo:</th>
+                <th class="col-4 title">Observaciones:</th>
+              </tr>
+              <tr>
+                  <th class="field"></th>
+                  <th class="field"></th>
+                  <th class="field">Lunes / Martes / Miércoles / Jueves / Viernes / Sábado / Domingo</th>
+                  <th class="field">Lunes / Martes / Miércoles / Jueves / Viernes / Sábado / Domingo</th>
+                  <th class="field">Lunes / Martes / Miércoles / Jueves / Viernes / Sábado / Domingo</th>
+              </tr>
+            </thead>
+        <% users.forEach((item, index) => {%>
+            <tbody>
+            <tr class="attendance-list">
+                <td class="col-2 field"><%= item.firstName %> <%= item.lastName %></td>
+                <td class="col-2 field">9:00 - 17:00</td>
+                <td class="col-2 field">
+                    <%= list.monday.isPresent[index] ? 'A' : 'F' %> / <%= list.tuesday.isPresent[index] ? 'A' : 'F' %> / <%= list.wednesday.isPresent[index] ? 'A' : 'F' %> / <%= list.thursday.isPresent[index] ? 'A' : 'F' %> / <%= list.friday.isPresent[index] ? 'A' : 'F' %> / <%= list.saturday.isPresent[index] ? 'A' : 'F' %> / <%= list.sunday.isPresent[index] ? 'A' : 'F' %>
+                </td>
+                <td class="pt-1 field">
+                    <%= list.monday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.tuesday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.wednesday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.thursday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.friday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.saturday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.sunday.isOnTime[index] ? 'Sí' : 'No' %>
+                </td>
+                <td class="col-5 pt-1">
+                    <%= list.monday.comments[index] ? list.monday.comments[index] : 'N/A' %> / <%= list.tuesday.comments[index] ? list.tuesday.comments[index] : 'N/A' %> / <%= list.wednesday.comments[index] ? list.wednesday.comments[index] : 'N/A' %> / <%= list.thursday.comments[index] ? list.thursday.comments[index] : 'N/A' %> / <%= list.friday.comments[index] ? list.friday.comments[index] : 'N/A' %> / <%= list.saturday.comments[index] ? list.saturday.comments[index] : 'N/A' %> / <%= list.sunday.comments[index] ? list.sunday.comments[index] : 'N/A' %>
+                </td>
+            </tr>
+        <% }) %>  
+            </tbody>
+        </table> 
     </div>
-        <% for (user of users) {%>
-        <div class="row attendance-list">
-            <div class="col-3 field">
-                <%= user.firstName %> <%= user.lastName %>  
-            </div>
-            <div class="col-3 field pt-1">
-                <select class="form-select form-select mb-3" aria-label=".form-select" id="isPresent" name="isPresent">
-                    <option value="true">Sí</option>
-                    <option value="false">No</option>
+    <div class="container offset-md-4 my-3">
+        <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+    </div>
+    <span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+    <span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+    <span hidden id="name"><%= list.kind %> <%= list.date.toLocaleDateString() %> </span>
+    <script src="../../../JavaScript/jspdf.min.js"></script>
+    <script src="../../../JavaScript/html2pdf.bundle.min.js"></script>
+    <script src="../../../JavaScript/attendancePDF.js"></script>
+        
+<% } else {%>
+<h1 class="offset-md-4 my-3">Asistencia Diaria</h1> 
+<div class="container">
+    <form action="/hr/attendance/<%=list._id%>?_method=PUT" method="post">       
+        <div class="container">
+            <div class="row">
+                <label for="day">Selecione el día:</label>
+                <select class="form-select form-select mb-3" aria-label=".form-select" id="attendance" name="day">
+                    <% if (!list.monday) {%><option value="Lunes">Lunes</option><% } %>
+                    <% if (!list.tuesday) {%><option value="Martes">Martes</option><% } %>
+                    <% if (!list.wednesday) {%><option value="Miércoles">Miércoles</option><% } %>
+                    <% if (!list.thursday) {%><option value="Jueves">Jueves</option><% } %>
+                    <% if (!list.friday) {%><option value="Viernes">Viernes</option><% } %>
+                    <% if (!list.saturday) {%><option value="Sábado">Sábado</option><% } %>
+                    <% if (!list.sunday) {%><option value="Domingo">Domingo</option><% } %>
                 </select>
-            </div>
-            <div class="col-3 field pt-1">
-                <select class="form-select form-select mb-3" aria-label=".form-select" id="isOnTime" name="isOnTime">
-                    <option value="true">Sí</option>
-                    <option value="false">No</option>
-                </select>
-            </div>
-            <div class="form-floating col-3 pb-2">
-                <textarea type="text" class="form-control form-control-lg" name="comments" id="floatingComments" placeholder="Observaciones:"></textarea>
-                <label for="floatingComments" class="form-label">Observaciones: </label>
             </div>
         </div>
-        <% } %>  
+        <table>
+            <thead class="attendance-head">
+              <tr>
+                <th class="col-3 title field">Nombre:</th>
+                <th class="col-1 title field">Horario:</th>
+                <th class="col-2 title field">Se presenta a trabajar:</th>
+                <th class="col-2 title field">Retardo:</th>
+                <th class="col-4 title">Observaciones:</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% for (user of users) {%>
+                <tr class="attendance-list">
+                    <td class="col-2 field"><%= user.firstName %> <%= user.lastName %></td>
+                    <td class="col-2 field">9:00 - 17:00</td>
+                    <td class="col-2 field">
+                        <select class="form-select form-select mb-3" aria-label=".form-select" id="isPresent" name="isPresent">
+                            <option value="true">Sí</option>
+                            <option value="false">No</option>
+                        </select>
+                    </td>
+                    <td class="pt-1 field">
+                        <select class="form-select form-select mb-3" aria-label=".form-select" id="isOnTime" name="isOnTime">
+                            <option value="true">Sí</option>
+                            <option value="false">No</option>
+                        </select>
+                    </td>
+                    <td class="col-5 pt-1 form-floating">
+                        <textarea type="text" class="form-control form-control-lg" name="comments" id="floatingComments" placeholder="Observaciones:"></textarea>
+                        <label for="floatingComments" class="form-label">Observaciones: </label>
+                    </td>
+                </tr>
+                <% } %>  
+            </tbody>
+            </table>
         <button class="btn btn-success my-5">Guardar</button>
     </form>
 </div>
+<% } %> 
