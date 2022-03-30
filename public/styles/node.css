@@ -55,3 +55,14 @@
 .license-margin{
     margin-left: -50px;
 }
+.pass-toggle{
+    position: absolute;
+    right: 15px;
+    transform: translate(0,-50);
+    top: 27%;
+    cursor: pointer;
+}
+.bi-eye-fill{
+    font-size: 20px;
+    color: #7a797e
+}
