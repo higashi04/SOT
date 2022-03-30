@@ -15,6 +15,10 @@ const InvSchema = new Schema({
         type: Number,
         required: true
     },
+    estante: {
+        type: String,
+        required: true
+    },
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

@@ -18,12 +18,17 @@ router.get('/orden', isLoggedIn, (req, res) => {
     }
 })
 
-router.post('/orden/new', isLoggedIn, catchAsync(async(req, res) => {
-    const compra = new Compra(req.body)
-    compra.author = req.user
-    await compra.save()
-    req.flash('success', 'Orden de compra guardada.')
-    res.redirect('/compras/orden')
+router.post('/orden/new', isLoggedIn, validaCompra,catchAsync(async(req, res) => {
+    try{
+        const compra = new Compra(req.body)
+        compra.author = req.user
+        await compra.save()
+        req.flash('success', 'Orden de compra guardada.')
+        res.redirect('/compras/orden')
+    } catch(e) {
+        req.flash('error', 'Se produjo un error.')
+        req.redirect('/compras')
+    }
 }));
 
 router.get('/show', isLoggedIn, catchAsync(async(req,res)=>{

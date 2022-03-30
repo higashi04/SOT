@@ -27,15 +27,21 @@ const joi = BaseJoi.extend(extension)
 module.exports.InvSchema = joi.object({
         nombre: joi.string().required().escapeHTML(),
         partNumber: joi.string().required().escapeHTML(),
-        cantidad: joi.number().required().min(0)
+        cantidad: joi.number().required().min(0),
+        estante: joi.string().required().escapeHTML()
 });
 
 module.exports.CompraSchema = joi.object({
     nombre: joi.string().required().escapeHTML(),
     telefono: joi.string().required().escapeHTML(),
-    objeto: joi.string().required().escapeHTML(),
-    partNumber: joi.string().required().escapeHTML(),
-    cantidad: joi.number().required().min(0),
-    importe: joi.number().required().min(0)
+    objeto: joi.array().items(
+        joi.string().required().escapeHTML()
+    ),
+    partNumber: joi.array().items(
+        joi.string().required().escapeHTML()),
+    cantidad: joi.array().items(
+        joi.number().required().min(0)),
+    importe: joi.array().items(
+        joi.number().required().min(0))
     //doesn't work with array, need to investigate issue
 });
