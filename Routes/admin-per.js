@@ -11,7 +11,6 @@ const day = async(day, newAttendance, list) =>{
         case 'Lunes':
             list.monday = newAttendance
             await list.save()
-            console.log(list)
             break;
         case 'Martes':
             list.tuesday = newAttendance

@@ -1,6 +1,5 @@
 <% layout('layouts/boilerplate') %>
-<h1 class="data m-3">Personal Administrativo </h1>
-<% if (list.monday && list.tuesday && list.wednesday && list.thursday && list.friday && list.saturday  && list.sunday) {%>  
+<h1 class="data m-3">Personal Administrativo </h1> 
     <div class="container my-3">
        <div class="dataTwo">
         <h2 class="col-md-offset-4 my-3">Asistencia</h2>
@@ -9,13 +8,13 @@
               <tr>
                 <th class="col-2 title field ps-2">Nombre:</th>
                 <th class="col-1 title field ps-2">Horario:</th>
-                <th class="col title field ps-2">Lunes <%= list.monday.date.toLocaleDateString() %> </th>
-                <th class="col title field ps-2">Martes <%= list.tuesday.date.toLocaleDateString() %></th>
-                <th class="col title field ps-2">Miércoles <%= list.wednesday.date.toLocaleDateString() %></th>
-                <th class="col title field ps-2">Jueves <%= list.thursday.date.toLocaleDateString() %></th>
-                <th class="col title field ps-2">Viernes <%= list.friday.date.toLocaleDateString() %></th>
-                <th class="col title field ps-2">Sábado <%= list.saturday.date.toLocaleDateString() %></th>
-                <th class="col title ps-2">Domingo <%= list.sunday.date.toLocaleDateString() %></th>
+                <% if(list.monday) {%><th class="col title field ps-2">Lunes <%= list.monday.date.toLocaleDateString() %> </th><% } %> 
+                <% if(list.tuesday) {%><th class="col title field ps-2">Martes <%= list.tuesday.date.toLocaleDateString() %></th><% } %>
+                <% if(list.wednesday) {%><th class="col title field ps-2">Miércoles <%= list.wednesday.date.toLocaleDateString() %></th><% } %>
+                <% if(list.thursday) {%><th class="col title field ps-2">Jueves <%= list.thursday.date.toLocaleDateString() %></th><% } %>
+                <% if(list.friday) {%><th class="col title field ps-2">Viernes <%= list.friday.date.toLocaleDateString() %></th><% } %>
+                <% if(list.saturday) {%><th class="col title field ps-2">Sábado <%= list.saturday.date.toLocaleDateString() %></th><% } %>
+                <% if(list.sunday) {%><th class="col title ps-2">Domingo <%= list.sunday.date.toLocaleDateString() %></th><% } %>
               </tr>
             </thead>
         <% users.forEach((item, index) => {%>
@@ -23,27 +22,27 @@
             <tr class="attendance-list">
                 <td class="col field ps-2"><%= item.firstName %> <%= item.lastName %></td>
                 <td class="col field px-2">9:00 - 17:00</td>
-                <td class="col field ps-2">
+                <% if(list.monday) {%><td class="col field ps-2">
                     <%= list.monday.isPresent[index] ? 'Asiste' : 'Falta' %> 
-                </td>
-                <td class="col ps-2 field">
+                </td><% } %>
+                <% if(list.tuesday) {%><td class="col ps-2 field">
                     <%= list.tuesday.isPresent[index] ? 'Asiste' : 'Falta' %> 
-                </td>
-                <td class="col ps-2 field">
+                </td><% } %>
+                <% if(list.wednesday) {%><td class="col ps-2 field">
                     <%= list.wednesday.isPresent[index] ? 'Asiste' : 'Falta' %> 
-                </td>
-                <td class="col ps-2 field">
+                </td><% } %>
+                <% if(list.thursday) {%><td class="col ps-2 field">
                     <%= list.thursday.isPresent[index] ? 'Asiste' : 'Falta' %> 
-                </td>
-                <td class="col ps-2 field">
+                </td><% } %>
+                <% if(list.friday) {%><td class="col ps-2 field">
                     <%= list.friday.isPresent[index] ? 'Asiste' : 'Falta' %> 
-                </td>
-                <td class="col ps-2 field">
+                </td><% } %>
+                <% if(list.saturday) {%><td class="col ps-2 field">
                     <%= list.saturday.isPresent[index] ? 'Asiste' : 'Falta' %> 
-                </td>
-                <td class="col ps-2">
+                </td><% } %>
+                <% if(list.sunday) {%><td class="col ps-2">
                     <%= list.sunday.isPresent[index] ? 'Asiste' : 'Falta' %> 
-                </td>
+                </td><% } %>
             </tr>
         <% }) %>  
             </tbody>
@@ -70,27 +69,27 @@
             <tr class="attendance-list">
                 <td class="col field ps-2"><%= item.firstName %> <%= item.lastName %></td>
                 <td class="col field px-2">9:00 - 17:00</td>
-                <td class="col field ps-2">
+                <% if(list.monday) {%><td class="col field ps-2">
                     <%= list.monday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
-                </td>
-                <td class="col ps-2 field">
+                </td><% } %>
+                <% if(list.tuesday) {%><td class="col ps-2 field">
                     <%= list.tuesday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
-                </td>
-                <td class="col ps-2 field">
+                </td><% } %>
+                <% if(list.wednesday) {%><td class="col ps-2 field">
                     <%= list.wednesday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
-                </td>
-                <td class="col ps-2 field">
+                </td><% } %>
+                <% if(list.thursday) {%><td class="col ps-2 field">
                     <%= list.thursday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
-                </td>
-                <td class="col ps-2 field">
+                </td><% } %>
+                <% if(list.friday) {%><td class="col ps-2 field">
                     <%= list.friday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
-                </td>
-                <td class="col ps-2 field">
+                </td><% } %>
+                <% if(list.saturday) {%><td class="col ps-2 field">
                     <%= list.saturday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
-                </td>
-                <td class="col ps-2">
+                </td><% } %>
+                <% if(list.sunday) {%><td class="col ps-2">
                     <%= list.sunday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
-                </td>
+                </td><% } %>
             </tr>
         <% }) %>  
             </tbody>
@@ -117,27 +116,27 @@
                 <tr class="attendance-list">
                     <td class="col field ps-2"><%= item.firstName %> <%= item.lastName %></td>
                     <td class="col field px-2">9:00 - 17:00</td>
-                    <td class="col field ps-2">
+                    <% if(list.monday) {%><td class="col field ps-2">
                         <%= list.monday.comments[index] ? list.monday.comments[index] : 'N/A' %> 
-                    </td>
-                    <td class="col ps-2 field">
+                    </td><% } %>
+                    <% if(list.tuesday) {%><td class="col ps-2 field">
                         <%= list.tuesday.comments[index] ? list.tuesday.comments[index] : 'N/A'  %> 
-                    </td>
-                    <td class="col ps-2 field">
+                    </td><% } %>
+                    <% if(list.wednesday) {%><td class="col ps-2 field">
                         <%= list.wednesday.comments[index] ? list.wednesday.comments[index] : 'N/A' %> 
-                    </td>
-                    <td class="col ps-2 field">
+                    </td><% } %>
+                    <% if(list.thursday) {%><td class="col ps-2 field">
                         <%= list.thursday.comments[index] ? list.thursday.comments[index] : 'N/A' %> 
-                    </td>
-                    <td class="col ps-2 field">
+                    </td><% } %>
+                    <% if(list.friday) {%><td class="col ps-2 field">
                         <%= list.friday.comments[index] ? list.friday.comments[index] : 'N/A' %> 
-                    </td>
-                    <td class="col ps-2 field">
+                    </td><% } %>
+                    <% if(list.saturday) {%><td class="col ps-2 field">
                         <%= list.saturday.comments[index] ? list.saturday.comments[index] : 'N/A' %> 
-                    </td>
-                    <td class="col ps-2">
+                    </td><% } %>
+                    <% if(list.sunday) {%><td class="col ps-2">
                         <%= list.sunday.comments[index] ? list.sunday.comments[index] : 'N/A' %> 
-                    </td>
+                    </td><% } %>
                 </tr>
             <% }) %>  
                 </tbody>
@@ -154,7 +153,8 @@
     <script src="../../../JavaScript/html2pdf.bundle.min.js"></script>
     <script src="../../../JavaScript/attendancePDF.js"></script>
         
-<% } else {%>
+<% if (list.monday && list.tuesday && list.wednesday && list.thursday && list.friday && list.saturday  && list.sunday) {%>
+<%} else {%>  
 <h1 class="offset-md-4 my-3">Asistencia Diaria</h1> 
 <div class="container">
     <form action="/hr/attendance/<%=list._id%>?_method=PUT" method="post">       
