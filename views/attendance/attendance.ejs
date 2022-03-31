@@ -1,42 +1,148 @@
 <% layout('layouts/boilerplate') %>
-<h1 class="data m-3"> Asistencia Semanal de Personal Administrativo </h1>
+<h1 class="data m-3">Personal Administrativo </h1>
 <% if (list.monday && list.tuesday && list.wednesday && list.thursday && list.friday && list.saturday  && list.sunday) {%>  
-    <div class="container dataTwo my-3">
+    <div class="container my-3">
+       <div class="dataTwo">
+        <h2 class="col-md-offset-4 my-3">Asistencia</h2>
         <table>
             <thead class="attendance-head">
               <tr>
-                <th class="col-3 title field">Nombre:</th>
-                <th class="col-1 title field">Horario:</th>
-                <th class="col-2 title field">Se presenta a trabajar:</th>
-                <th class="col-2 title field">Retardo:</th>
-                <th class="col-4 title">Observaciones:</th>
-              </tr>
-              <tr>
-                  <th class="field"></th>
-                  <th class="field"></th>
-                  <th class="field">Lunes / Martes / Miércoles / Jueves / Viernes / Sábado / Domingo</th>
-                  <th class="field">Lunes / Martes / Miércoles / Jueves / Viernes / Sábado / Domingo</th>
-                  <th class="field">Lunes / Martes / Miércoles / Jueves / Viernes / Sábado / Domingo</th>
+                <th class="col-2 title field ps-2">Nombre:</th>
+                <th class="col-1 title field ps-2">Horario:</th>
+                <th class="col title field ps-2">Lunes <%= list.monday.date.toLocaleDateString() %> </th>
+                <th class="col title field ps-2">Martes <%= list.tuesday.date.toLocaleDateString() %></th>
+                <th class="col title field ps-2">Miércoles <%= list.wednesday.date.toLocaleDateString() %></th>
+                <th class="col title field ps-2">Jueves <%= list.thursday.date.toLocaleDateString() %></th>
+                <th class="col title field ps-2">Viernes <%= list.friday.date.toLocaleDateString() %></th>
+                <th class="col title field ps-2">Sábado <%= list.saturday.date.toLocaleDateString() %></th>
+                <th class="col title ps-2">Domingo <%= list.sunday.date.toLocaleDateString() %></th>
               </tr>
             </thead>
         <% users.forEach((item, index) => {%>
             <tbody>
             <tr class="attendance-list">
-                <td class="col-2 field"><%= item.firstName %> <%= item.lastName %></td>
-                <td class="col-2 field">9:00 - 17:00</td>
-                <td class="col-2 field">
-                    <%= list.monday.isPresent[index] ? 'A' : 'F' %> / <%= list.tuesday.isPresent[index] ? 'A' : 'F' %> / <%= list.wednesday.isPresent[index] ? 'A' : 'F' %> / <%= list.thursday.isPresent[index] ? 'A' : 'F' %> / <%= list.friday.isPresent[index] ? 'A' : 'F' %> / <%= list.saturday.isPresent[index] ? 'A' : 'F' %> / <%= list.sunday.isPresent[index] ? 'A' : 'F' %>
+                <td class="col field ps-2"><%= item.firstName %> <%= item.lastName %></td>
+                <td class="col field px-2">9:00 - 17:00</td>
+                <td class="col field ps-2">
+                    <%= list.monday.isPresent[index] ? 'Asiste' : 'Falta' %> 
                 </td>
-                <td class="pt-1 field">
-                    <%= list.monday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.tuesday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.wednesday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.thursday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.friday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.saturday.isOnTime[index] ? 'Sí' : 'No' %> / <%= list.sunday.isOnTime[index] ? 'Sí' : 'No' %>
+                <td class="col ps-2 field">
+                    <%= list.tuesday.isPresent[index] ? 'Asiste' : 'Falta' %> 
                 </td>
-                <td class="col-5 pt-1">
-                    <%= list.monday.comments[index] ? list.monday.comments[index] : 'N/A' %> / <%= list.tuesday.comments[index] ? list.tuesday.comments[index] : 'N/A' %> / <%= list.wednesday.comments[index] ? list.wednesday.comments[index] : 'N/A' %> / <%= list.thursday.comments[index] ? list.thursday.comments[index] : 'N/A' %> / <%= list.friday.comments[index] ? list.friday.comments[index] : 'N/A' %> / <%= list.saturday.comments[index] ? list.saturday.comments[index] : 'N/A' %> / <%= list.sunday.comments[index] ? list.sunday.comments[index] : 'N/A' %>
+                <td class="col ps-2 field">
+                    <%= list.wednesday.isPresent[index] ? 'Asiste' : 'Falta' %> 
+                </td>
+                <td class="col ps-2 field">
+                    <%= list.thursday.isPresent[index] ? 'Asiste' : 'Falta' %> 
+                </td>
+                <td class="col ps-2 field">
+                    <%= list.friday.isPresent[index] ? 'Asiste' : 'Falta' %> 
+                </td>
+                <td class="col ps-2 field">
+                    <%= list.saturday.isPresent[index] ? 'Asiste' : 'Falta' %> 
+                </td>
+                <td class="col ps-2">
+                    <%= list.sunday.isPresent[index] ? 'Asiste' : 'Falta' %> 
                 </td>
             </tr>
         <% }) %>  
             </tbody>
-        </table> 
+        </table>
+       </div>
+       <div>
+        <h2 class="col-md-offset-4 my-3">Puntualidad</h2>
+        <table>
+            <thead class="attendance-head">
+              <tr>
+                <th class="col-2 title field ps-2">Nombre:</th>
+                <th class="col-1 title field ps-2">Horario:</th>
+                <th class="col title field ps-2">Lunes</th>
+                <th class="col title field ps-2">Martes</th>
+                <th class="col title field ps-2">Miércoles</th>
+                <th class="col title field ps-2">Jueves</th>
+                <th class="col title field ps-2">Viernes</th>
+                <th class="col title field ps-2">Sábado</th>
+                <th class="col title ps-2">Domingo</th>
+              </tr>
+            </thead>
+        <% users.forEach((item, index) => {%>
+            <tbody>
+            <tr class="attendance-list">
+                <td class="col field ps-2"><%= item.firstName %> <%= item.lastName %></td>
+                <td class="col field px-2">9:00 - 17:00</td>
+                <td class="col field ps-2">
+                    <%= list.monday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
+                </td>
+                <td class="col ps-2 field">
+                    <%= list.tuesday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
+                </td>
+                <td class="col ps-2 field">
+                    <%= list.wednesday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
+                </td>
+                <td class="col ps-2 field">
+                    <%= list.thursday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
+                </td>
+                <td class="col ps-2 field">
+                    <%= list.friday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
+                </td>
+                <td class="col ps-2 field">
+                    <%= list.saturday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
+                </td>
+                <td class="col ps-2">
+                    <%= list.sunday.isOnTime[index] ? 'Puntual' : 'Impuntual' %> 
+                </td>
+            </tr>
+        <% }) %>  
+            </tbody>
+        </table>
+       </div>
+        <div>
+            <h2 class="col-md-offset-4 my-3">Observaciones</h2>
+            <table>
+                <thead class="attendance-head">
+                  <tr>
+                    <th class="col-2 title field ps-2">Nombre:</th>
+                    <th class="col-1 title field ps-2">Horario:</th>
+                    <th class="col title field ps-2">Lunes</th>
+                    <th class="col title field ps-2">Martes</th>
+                    <th class="col title field ps-2">Miércoles</th>
+                    <th class="col title field ps-2">Jueves</th>
+                    <th class="col title field ps-2">Viernes</th>
+                    <th class="col title field ps-2">Sábado</th>
+                    <th class="col title ps-2">Domingo</th>
+                  </tr>
+                </thead>
+            <% users.forEach((item, index) => {%>
+                <tbody>
+                <tr class="attendance-list">
+                    <td class="col field ps-2"><%= item.firstName %> <%= item.lastName %></td>
+                    <td class="col field px-2">9:00 - 17:00</td>
+                    <td class="col field ps-2">
+                        <%= list.monday.comments[index] ? list.monday.comments[index] : 'N/A' %> 
+                    </td>
+                    <td class="col ps-2 field">
+                        <%= list.tuesday.comments[index] ? list.tuesday.comments[index] : 'N/A'  %> 
+                    </td>
+                    <td class="col ps-2 field">
+                        <%= list.wednesday.comments[index] ? list.wednesday.comments[index] : 'N/A' %> 
+                    </td>
+                    <td class="col ps-2 field">
+                        <%= list.thursday.comments[index] ? list.thursday.comments[index] : 'N/A' %> 
+                    </td>
+                    <td class="col ps-2 field">
+                        <%= list.friday.comments[index] ? list.friday.comments[index] : 'N/A' %> 
+                    </td>
+                    <td class="col ps-2 field">
+                        <%= list.saturday.comments[index] ? list.saturday.comments[index] : 'N/A' %> 
+                    </td>
+                    <td class="col ps-2">
+                        <%= list.sunday.comments[index] ? list.sunday.comments[index] : 'N/A' %> 
+                    </td>
+                </tr>
+            <% }) %>  
+                </tbody>
+            </table>   
+        </div>
     </div>
     <div class="container offset-md-4 my-3">
         <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
