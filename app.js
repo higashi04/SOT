@@ -20,6 +20,7 @@ const busesRoutes = require('./Routes/buses');
 const driversRoutes = require('./Routes/drivers');
 const driversAttendance = require('./Routes/driversAttendance');
 const drivingRoutes = require('./Routes/driversRoutes');
+const tripsRoutes = require('./Routes/trips')
 //models//
 const Users = require('./models/users')
 /////////
@@ -110,6 +111,7 @@ app.use('/buses', busesRoutes);
 app.use('/driver', driversRoutes);
 app.use('/driverAttendance', driversAttendance);
 app.use('/driving', drivingRoutes);
+app.use('/trips', tripsRoutes)
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')
