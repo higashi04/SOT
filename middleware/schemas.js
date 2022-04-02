@@ -31,17 +31,17 @@ module.exports.InvSchema = joi.object({
         estante: joi.string().required().escapeHTML()
 });
 
-module.exports.CompraSchema = joi.object({
-    nombre: joi.string().required().escapeHTML(),
-    telefono: joi.string().required().escapeHTML(),
-    objeto: joi.array().items(
-        joi.string().required().escapeHTML()
-    ),
-    partNumber: joi.array().items(
-        joi.string().required().escapeHTML()),
-    cantidad: joi.array().items(
-        joi.number().required().min(0)),
-    importe: joi.array().items(
-        joi.number().required().min(0))
-    //doesn't work with array, need to investigate issue
-});
+// module.exports.CompraSchema = joi.object({
+//     nombre: joi.string().required().escapeHTML(),
+//     telefono: joi.string().required().escapeHTML(),
+//     objeto: joi.array().items(
+//         joi.string().required().escapeHTML()
+//     ),
+//     partNumber: joi.array().items(
+//         joi.string().required().escapeHTML()),
+//     cantidad: joi.array().items(
+//         joi.number().required().min(0)),
+//     importe: joi.array().items(
+//         joi.number().required().min(0))
+//     //doesn't work with array, need to investigate issue
+// });

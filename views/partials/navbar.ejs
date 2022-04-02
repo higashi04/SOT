@@ -15,6 +15,9 @@
             <% } %>
             <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
               <a class="nav-link" href="/inv/show">Inventario</a>
+            <% } %>
+            <% if(currentUser.puesto === 'Ejecutivo de Compras' || currentUser.isAdmin) {%>
+              <a href="/compras" class="nav-link"> Compras </a>
             <% } %> 
           <% } %>    
         </div>
@@ -22,7 +25,7 @@
           <% if(!currentUser) {%> 
           <a href="/login" class="btn btn-success">Iniciar Sesión</a>
           <% } else { %> 
-            <span class="user mx-3"><a href="/users/<%=currentUser._id%>" class="btn btn-dark"> <%=currentUser.username%> está en sesión</a></span>
+            <span class="user mx-3"><a href="/users/<%=currentUser._id%>" class="nav-link"> <%=currentUser.username%> está en sesión</a></span>
           <a href="/logout" class="btn btn-danger">Terminar Sesión</a>
           <% } %> 
         </div>

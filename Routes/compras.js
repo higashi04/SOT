@@ -6,6 +6,30 @@ const {validaCompra} = require('../middleware/validate');
 
 const Compra = require('../models/purchase');
 
+const serialMaker = () => {
+    let prefix = ''
+    var seq = 0
+    return {
+        set_prefix: p =>{
+            prefix = String(p)
+        },
+        set_seq: s =>{
+            seq = s + Math.floor(Math.random() * 999)
+        },
+        gensym: () => {
+            const result = prefix + seq
+            return result
+        }
+    }
+}
+const serial = () => {
+    const seqer = serialMaker()
+    seqer.set_prefix('Compra')
+    seqer.set_seq(1000);
+    const unique = seqer.gensym();
+    return unique
+}
+
 router.get('/', isLoggedIn, (req, res) =>{
     res.render('compras/home')
 });
@@ -18,10 +42,11 @@ router.get('/orden', isLoggedIn, (req, res) => {
     }
 })
 
-router.post('/orden/new', isLoggedIn, validaCompra,catchAsync(async(req, res) => {
+router.post('/orden/new', isLoggedIn, catchAsync(async(req, res) => {
     try{
         const compra = new Compra(req.body)
         compra.author = req.user
+        compra.serial = serial()
         await compra.save()
         req.flash('success', 'Orden de compra guardada.')
         res.redirect('/compras/orden')

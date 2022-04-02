@@ -18,8 +18,8 @@ const CompraSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }
-    
+        },
+    serial: String
 })
 
 module.exports = mongoose.model('Compra', CompraSchema);

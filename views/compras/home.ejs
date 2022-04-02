@@ -1,9 +1,13 @@
 <% layout('layouts/boilerplate') %> 
-<div class="container card my-3">
-    <div class="row">
-      <% if (currentUser.puesto === 'Ejecutivo de Compras' || currentUser.isAdmin) {%>
-        <a href="compras/orden" class="btn btn-primary my-3">Orden de Compra</a>
-    <% } %> 
-        <a href="compras/show" class="btn btn-primary mb-3">Listado</a>
+<div class="container my-3">
+    <div class="row m-3">
+        <div class="col-6">
+            <% if (currentUser.puesto === 'Ejecutivo de Compras' || currentUser.isAdmin) {%>
+                <a href="compras/orden" class="btn btn-primary">Orden de Compra</a>
+            <% } %> 
+        </div>
+        <div class="col-6">
+            <a href="compras/show" class="btn btn-primary">Listado</a>
+        </div>
     </div>
 </div>
