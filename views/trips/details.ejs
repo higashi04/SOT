@@ -1,0 +1,44 @@
+<% layout('layouts/boilerplate') %> 
+
+<h1 class="my-5 offset-md-2 data" id="name"><%= trip.serial %> </h1>
+
+<div class="container mt-5 fontIncrease dataTwo">
+    <div class="row m-3">
+        <div class="col-3">
+            <span class="title">Fecha: </span><%= trip.date %> 
+        </div>
+        <div class="col-3">
+            <span class="title">Hora: </span><%= trip.hour %> 
+        </div>
+        <div class="col-3">
+            <span class="title">Chofer: </span><%= trip.name %> 
+        </div>
+        <div class="col-3">
+            <span class="title">Unidad: </span><%= trip.unit %> 
+        </div>
+    </div>
+    <div class="row m-3">
+        <div class="col-6">
+            <span class="title">Lugar a Donde se Dirigió: </span><%= trip.where %> 
+        </div>
+        <div class="col-6">
+            <span class="title">Fecha de Carga de Combustible: </span><%= trip.fuelLoadDate.toLocaleDateString() %> 
+        </div>
+    </div>
+    <div class="row m-3">
+        <div class="col-6">
+            <span class="title">Cantidad de Combustible Cargado: </span><%= trip.fuelLoadQty %> 
+        </div>
+        <div class="col-6">
+            <span class="title">Odómetro: </span><%= trip.odometer %>  
+        </div>
+    </div>
+</div>
+<div class="container offset-md-4 my-3">
+    <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+</div>
+<span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+<span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+<script src="../../../JavaScript/jspdf.min.js"></script>
+<script src="../../../JavaScript/html2pdf.bundle.min.js"></script>
+<script src="../../../JavaScript/tripsPDF.js"></script>

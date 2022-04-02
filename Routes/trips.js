@@ -57,5 +57,15 @@ router.post('/new', isLoggedIn, catchAsync(async(req, res) => {
 router.get('/show', isLoggedIn, (req, res) =>{
     res.render('trips/show')
 })
+router.post('/getTrips', isLoggedIn, catchAsync(async(req, res) =>{
+    let payload = req.body.payload.trim()
+    let search = await trips.find({date: {$regex: new RegExp('^'+payload+'.*', 'i')}}).exec()
+    search = search.slice(0, 10)
+    res.send({payload: search})
+}));
+router.get('/show/:id', isLoggedIn, catchAsync(async(req, res) => {
+    const trip = await trips.findById(req.params.id)
+    res.render('trips/details', {trip})
+}))
 
 module.exports = router

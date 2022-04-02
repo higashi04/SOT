@@ -1,9 +1,9 @@
 const searchBar = document.getElementById('searchBar');
 const searchResults = document.getElementById('searchResults');
-const resultsDisplay = document.getElementById('searchResults');
+
 searchBar.addEventListener('change',  function(e) {
     e.preventDefault();
-    let match = searchBar.value.match(/^[a-zA-Z ]*/);
+    let match = searchBar.value.match(/^[a-zA-Z0-9_.-]*$/);
     let matchTwo = searchBar.value.match(/\s*/);
     if (matchTwo[0] === searchBar.value) {
       searchResults.innerHTML = ''
@@ -28,7 +28,7 @@ searchBar.addEventListener('change',  function(e) {
         const anchor = document.createElement('a')
         anchor.className = 'btn btn-dark'
         anchor.href = `${origin}/${item._id}`
-        anchor.innerText = item.nombre || item.name || item.unit
+        anchor.innerText = `${item.serial} con fecha ${item.date.slice(0,10)}` || item.name || item.unit || item.nombre
         newDiv.appendChild(anchor)
         searchResults.appendChild(newDiv)
       })
