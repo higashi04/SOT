@@ -20,7 +20,7 @@
     <% } else {%>
         <h2>Lista de órdenes de trabajo:</h2>
         <% bus.mantenimiento.forEach((item, index, arr)=>{%>
-            <a class="btn btn-info" href="/mtto/<%= item._id %>"><%= item._id %></a> 
+            <a class="btn btn-info" href="/mtto/<%= item._id %>"><%= item.serial %></a> 
         <% }) %> 
     <% } %> 
 </div>

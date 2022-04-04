@@ -8,6 +8,7 @@ const busSchema = new Schema({
     yearTC: String,
     unidad: String,
     ubicacion: String,
+    tipo: String,
     mantenimiento: [{
         type: Schema.Types.ObjectId,
         ref: 'Maint'

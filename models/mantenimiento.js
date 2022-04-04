@@ -23,7 +23,8 @@ const MaintSchema = new Schema({
     supervisor: String,
     workDone: String,
     materials: String,
-    completeDateRegister: Date
+    completeDateRegister: Date,
+    serial: String
 });
 
 module.exports = mongoose.model('Maint', MaintSchema);

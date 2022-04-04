@@ -8,6 +8,31 @@ const chofer = require('../models/drivers')
 const mtto = require('../models/mantenimiento');
 const unitChecklist = require('../models/unitChecklist');
 
+const serialMaker = () => {
+    let prefix = ''
+    var seq = 0
+    return {
+        set_prefix: p =>{
+            prefix = String(p)
+        },
+        set_seq: s =>{
+            seq = s + Math.floor(Math.random() * 999)
+        },
+        gensym: () => {
+            const result = prefix + seq
+            return result
+        }
+    }
+}
+const serial = () => {
+    const seqer = serialMaker()
+    seqer.set_prefix('Mantenimiento')
+    seqer.set_seq(1000);
+    const unique = seqer.gensym();
+    return unique
+}
+
+
 router.get('/', isLoggedIn, (req, res) =>{
     res.render('buses/home')
 });
@@ -48,6 +73,7 @@ router.put('/show/:id/mtto', isLoggedIn, catchAsync(async(req, res)=>{
     try{
         const unit = await Bus.findById(req.params.id)
         const mant = new mtto(req.body)
+        mant.serial = serial()
         await mant.save()
         unit.mantenimiento.push(mant)
         unit.save()
