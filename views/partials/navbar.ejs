@@ -19,6 +19,9 @@
             <% if(currentUser.puesto === 'Ejecutivo de Compras' || currentUser.isAdmin) {%>
               <a href="/compras" class="nav-link"> Compras </a>
             <% } %> 
+            <% if(currentUser.puesto === 'Auxiliar de Operaciones' || currentUser.isAdmin) {%>
+              <a href="/routes" class="nav-link"> Rutas Fijas </a>
+            <% } %> 
           <% } %>    
         </div>
         <div class="ms-auto navbar-nav">

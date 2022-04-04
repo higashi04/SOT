@@ -28,7 +28,13 @@ searchBar.addEventListener('change',  function(e) {
         const anchor = document.createElement('a')
         anchor.className = 'btn btn-dark'
         anchor.href = `${origin}/${item._id}`
-        anchor.innerText = `${item.serial} con fecha ${item.date.slice(0,10)}` || item.name || item.unit || item.nombre
+        if( origin === '/trips/show'){
+          anchor.innerText = `${item.serial} con fecha ${item.date.slice(0,10)}`
+        } else if(origin === '/routes/show') {
+          anchor.innerText = `${item.company} con fecha ${item.date.slice(0,10)}`
+        } else {
+          anchor.innerText = item.name || item.unit || item.nombre
+        }
         newDiv.appendChild(anchor)
         searchResults.appendChild(newDiv)
       })

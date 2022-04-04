@@ -1,0 +1,56 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="offset-md-4 my-3">Registro de Rutas Diarias Fijas</h1>
+
+<div class="container">
+    <form action="/routes/new" method="post">
+        <div class="row">
+            <div class="form-floating col-6 pb-2">
+                <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingCompany" name="company">
+                  <option value='OES'>OES</option>
+                  <option value="MEDLINE">MEDLINE</option>
+                  <option value="BPI">BPI</option>
+                  <option value="AISTERMI">AISTERMI</option>
+                  <option value="TRANSPORTES VILLARREAL">TRANSPORTES VILLARREAL</option>
+                </select>
+                <label for="floatingCompany">Empresa:</label>
+            </div>
+            <div class="col-6 form-floating pb-2">
+                <input type="date" class="form-control form-control-lg" name="date" id="date" placeholder="Fecha:" required>
+                <label for="date" class="form-label">Fecha: </label>
+            </div>
+        </div>
+        <div class="row header">
+            <div class="col">Ruta</div>
+            <div class="col ps-3">Chofer</div>
+            <div class="col">Turno</div>
+            <div class="col">Servicio</div>
+            <div class="col">Personas</div>
+            <div class="col">Hora de Inicio</div>
+            <div class="col">Hora Termino</div>
+        </div>
+        <div class="row" id="newFields">
+            <div class="col mb-5 pb-5" id="rutas"></div>
+            <div class="col ps-3" id="driver"></div>
+            <div class="col mb-5 pb-5" id="shift"></div>
+            <div class="col mb-5 pb-5" id="service"></div>
+            <div class="col mb-5 pb-5" id="people"></div>
+            <div class="col mb-5 pb-5" id="start"></div>
+            <div class="col mb-5 pb-5" id="end"></div>
+        </div>
+        <button class="btn btn-success">Guardar</button>
+    </form>
+</div>
+
+<div class="form-floating col-6 mb-3" id="driverSelect" hidden>
+    <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingDriver" name="driver">
+        <% for (chofer of choferes) {%>
+            <option value="<%= chofer._id %>"><%= chofer.name %></option>
+        <% } %>  
+    </select>
+    <label for="floatingCompany">Chofer:</label>
+</div>
+<button class="btn btn-success addToForm m-3" id="eventBtn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+  </svg> Agregar filas</button>
+<script src="../../JavaScript/newRoutes.js"></script>
