@@ -32,6 +32,8 @@ searchBar.addEventListener('change',  function(e) {
           anchor.innerText = `${item.serial} con fecha ${item.date.slice(0,10)}`
         } else if(origin === '/routes/show') {
           anchor.innerText = `${item.company} con fecha ${item.date.slice(0,10)}`
+        } else if(origin === '/driving/show'){
+          anchor.innerText = `${item.driver} capturado el ${item.createdAt.slice(0,10)}`
         } else {
           anchor.innerText = item.name || item.unit || item.nombre
         }

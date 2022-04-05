@@ -1,0 +1,71 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3 data" id="name"> <%= list.serial  %>  </h1>
+
+<div class="container dataTwo my-3 rutas-table">
+    <div class="row rutas-head">
+        <div class="col-6">
+           <span class="title">Chofer: </span><%= list.driver %> 
+        </div>
+        <div class="col-6">
+           <span class="title">Unidad: </span><%= list.bus %> 
+        </div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col">Folio</div>
+        <div class="col-2">Ruta</div>
+        <div class="col">Servicio</div>
+        <div class="col">Turno</div>
+        <div class="col">Pasajeros</div>
+        <div class="col">KM Inicial</div>
+        <div class="col">KM Final</div>
+        <div class="col">Hora Inicial</div>
+        <div class="col">Hora Final</div>
+        <div class="col">Fecha</div>
+        <div class="col">Combustible</div>
+    </div>
+    <% list.route.forEach((item, index) => {%>
+        <div class="row rutas-row">
+            <div class="col">
+                <%= index + 1 %> 
+            </div>
+            <div class="col-2">
+                <%= list.route[index] %> 
+            </div>
+            <div class="col">
+                <%= list.service[index] %> 
+            </div>
+            <div class="col">
+                <%= list.shift[index] %>
+            </div>
+            <div class="col">
+                <%= list.numOfPassengers[index] %>
+            </div>
+            <div class="col">
+                <%= list.startKm[index] %>
+            </div>
+            <div class="col">
+                <%= list.endKm[index] %>
+            </div>
+            <div class="col">
+                <%= list.startTime[index] %>
+            </div>
+            <div class="col">
+                <%= list.endTime[index] %>
+            </div>
+            <div class="col">
+                <%= list.date[index] %>
+            </div>
+            <div class="col">
+                <%= list.fuel[index] %>
+            </div>
+        </div>
+    <% }); %> 
+</div>
+<div class="container">
+    <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+ </div>
+<span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+<span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+<script src="../../JavaScript/jspdf.min.js"></script>
+<script src="../../JavaScript/html2pdf.bundle.min.js"></script>
+<script src="../../JavaScript/standardRoutesPDF.js"></script>

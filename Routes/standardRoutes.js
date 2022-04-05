@@ -28,7 +28,6 @@ router.post('/new', isLoggedin, catchAsync(async(req, res) =>{
             req.flash('success', 'Se guarda el registro correctamente.')
             res.redirect('/routes')
         } catch(e){
-            console.log(e)
             req.flash('error', 'Se produjo un error.')
             res.redirect('/routes')
         }
@@ -49,7 +48,7 @@ router.post('/getReg', isLoggedin, catchAsync(async(req, res) => {
 }));
 
 router.get('/show/:id', isLoggedin, catchAsync(async(req, res) => {
-    await routes.findById(req.params.id).populate({path: 'driver'}).exec((err, foundRoute) =>{
+    await routes.findById(req.params.id).populate({path: 'driver', populate: {path: 'bus'}}).exec((err, foundRoute) =>{
         if(err) {
             req.flash('error', 'Se produjo un error.')
             res.redirect('/routes')
