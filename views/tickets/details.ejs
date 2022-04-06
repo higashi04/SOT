@@ -1,0 +1,51 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="offset-md-4 my-3"> Ticket No: <%= ticket.serial %> </h1>
+
+<div class="container m-5 fontIncrease">
+    <div class="row my-3">
+        <div class="col-6">
+          <span class="title">Problema: </span><%= ticket.issueTitle %> 
+        </div>
+        <div class="col-6">
+            <span class="title">Fecha de Registro: </span> <%= ticket.issueDate.toLocaleDateString() %> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <span class="title">Descripción: </span> <%= ticket.userComments %> 
+        </div>
+    </div>
+    <% if(ticket.sysAdminComments) {%>
+        <% ticket.sysAdminComments.forEach((item, index) =>{%>
+            <div class="row">
+                <div class="col-12">
+                    <span class="title">Respuesta <%= index + 1 %>: </span> <%= item %> 
+                </div>
+            </div> 
+        <%}) %> 
+    <% } %>  
+</div>
+
+<% if(currentUser.isAdmin && ticket.isSolved !== true) {%>
+    <h4 class="offset-md-4 my-3">Para ser llenado por el administrador</h4>
+    <div class="container fontIncrease">
+        <form action="/tickets/show/<%= ticket._id %>?_method=PUT" method="post">
+            <div class="row my-3">
+                <div class="form-floating col-12 pb-2">
+                    <textarea type="text" class="form-control form-control-lg" name="sysAdminComments" id="floatingComments" placeholder="Qué se hizo para resolver el problema:"></textarea>
+                    <label for="floatingComments" class="form-label">Qué se hizo para resolver el problema: </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-12 pb-2">
+                    <select class="form-select form-select mb-3" aria-label=".form-select" id="isSolved" name="isSolved">
+                        <option value="true">Sí</option>
+                        <option value="false">No</option>
+                    </select>
+                    <label for="isSolved" class="form-label">¿Fue resuelto?: </label>
+                </div>
+            </div>
+            <button class="btn btn-success"> Actualizar </button>
+        </form>
+    </div>
+<% } %>  

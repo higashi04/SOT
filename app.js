@@ -22,6 +22,7 @@ const driversAttendance = require('./Routes/driversAttendance');
 const drivingRoutes = require('./Routes/driversRoutes');
 const tripsRoutes = require('./Routes/trips');
 const standardRoutesRoutes = require('./Routes/standardRoutes');
+const ticketRoutes = require('./Routes/tickets');
 //models//
 const Users = require('./models/users')
 /////////
@@ -113,7 +114,8 @@ app.use('/driver', driversRoutes);
 app.use('/driverAttendance', driversAttendance);
 app.use('/driving', drivingRoutes);
 app.use('/trips', tripsRoutes);
-app.use('/routes', standardRoutesRoutes)
+app.use('/routes', standardRoutesRoutes);
+app.use('/tickets', ticketRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')
