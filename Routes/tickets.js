@@ -31,7 +31,7 @@ const serial = () => {
 }
 
 const mail = async(headers, data, user, ticket) => {
-    const admin = await User.findOne({isAdmin: true})
+    const admin = await User.findOne({puesto: 'Programador'})
         const smtpTransport = nodemailer.createTransport({
             service: 'Gmail', 
             auth: {

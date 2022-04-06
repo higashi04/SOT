@@ -4,14 +4,20 @@
   <div class="mb-3 container">
   <form action ="/users/<%=user._id%>?_method=PUT" method="POST" novalidate>
     <div class="form-floating col-6 pb-2">
-      <input type="text" class="form-control form-control-lg" name="firstName" id="floatingFirstName" placeholder="Usuario:" required>
+      <input type="text" class="form-control form-control-lg" name="firstName" id="floatingFirstName" placeholder="Nombre(s):" value="<%= user.firstName %>" required>
       <label for="floatingFirstName" class="form-label">Nombre(s): </label>
     </div>
     <div class="form-floating col-6 pb-2">
-        <input type="text" class="form-control form-control-lg" name="lastName" id="floatingLastName" placeholder="Usuario:" required>
+        <input type="text" class="form-control form-control-lg" name="lastName" id="floatingLastName" placeholder="Apellidos:"  value="<%= user.lastName %>"required>
         <label for="floatingLastName" class="form-label">Apellidos: </label>
-      </div>
+    </div>
+    <div class="form-floating col-6 pb-2">
+      <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingPuesto" name="puesto">
+        <option value="Seleccione uno">Seleccione uno</option>
+      </select>
+      <label for="floatingPuesto" class="form-label">Puesto: </label>
+    </div>
     <button class="btn btn-success m-3">Mandar</button>
   </form>
 </div>
-</script>
+<script src="../../JavaScript/puestos.js"></script>
