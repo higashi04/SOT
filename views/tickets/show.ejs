@@ -1,14 +1,31 @@
 <% layout('layouts/boilerplate') %>
 <h1 class="offset-md-4">Listado de Tickets</h1>
 <div class="container my-5">
-    <% for (ticket of tickets) {%>
+    <h3 class="offset-md-4">Tickets Abiertos</h3>
         <div class="row m-3">
-            <div class="col-12">
-                <a class="btn <%= ticket.severity === 'bajo' ? 'btn-info' : ticket.severity === 'medio' ? 'btn-warning' : 'btn-danger' %>" 
-                    href="/tickets/show/<%=ticket._id%>">
-                    <%= ticket.serial %> 
-                </a>
+            <% for (ticket of tickets) {%>
+                <div class="col-3 my-3">
+                    <% if(ticket.isSolved !== true) {%>
+                        <a class="btn <%= ticket.severity === 'bajo' ? 'btn-info' : ticket.severity === 'medio' ? 'btn-warning' : 'btn-danger' %>" 
+                            href="/tickets/show/<%=ticket._id%>">
+                            <%= ticket.serial %> 
+                        </a>
+                    <% } %> 
+                </div>
+            <% } %>
+        </div>  
+</div>
+<div class="container my-5">
+    <h3 class="offset-md-4">Tickets Cerrados</h3>
+    <div class="row m-3">
+    <% for (ticket of tickets) {%>
+            <div class="col-3 my-3">
+                <% if(ticket.isSolved === true) {%>
+                    <a class="btn btn-dark" 
+                        href="/tickets/show/<%=ticket._id%>">
+                        <%= ticket.serial %> 
+                    </a>
+                <% } %> 
             </div>
-        </div>
     <% } %>  
 </div>
