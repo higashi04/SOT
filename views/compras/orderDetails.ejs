@@ -43,24 +43,27 @@
          </svg></span> &#99;&#97;&#114;&#108;&#111;&#115;&#118;&#105;&#108;&#108;&#97;&#114;&#114;&#101;&#97;&#108;&#51;&#52;&#57;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</p>
      </div>
   </div>
-   <h1>Proveedor: <%= order.nombre %></h1> 
+   <h2>Proveedor: <%= order.nombre %></h2> 
     <h4>Teléfono: <%= order.telefono %></h4>
 
     <h2>Desglose: </h2>
    <div class="container m-3">
-      <% order.objeto.forEach((item, index, array)=>{%> 
-         <div><span class="title">Artículo:</span> <%= item %></div>
-         <div><span class="title">Número de parte:</span> <%= order.partNumber[index] %></div> 
-         <div><span class="title">Cantidad de piezas:</span> <%= order.cantidad[index] %></div> 
-         <div><span class="title">Importe:</span> $<%= order.importe[index] %>.00</div>  
-           <% const subTotal = parseInt(order.importe[index]) %>
-           <% total.push(subTotal);%> 
-          <div class="mb-3"><span class="title">Subtotal:</span> $<%= subTotal %>.00 </div>  
+      <div class="row">
+         <% order.objeto.forEach((item, index, array)=>{%> 
+            <div class="col-6">
+               <div><span class="title">Artículo:</span> <%= item %></div>
+               <div><span class="title">Número de parte:</span> <%= order.partNumber[index] %></div> 
+               <div><span class="title">Cantidad de piezas:</span> <%= order.cantidad[index] %></div> 
+               <div><span class="title">Importe:</span> $<%= order.importe[index].toFixed(2) %></div>  
+               <% const subTotal = parseFloat(order.importe[index]) %>
+               <% total.push(subTotal);%> 
+            </div>
          <%}) %> 
+      </div>
    </div>
    <% const sum = total.reduce( (a,b)=> a + b ) %>
   
-   <h3><span class="title">Total: </span> $<%= sum  %></h3>  
+   <h3><span class="title">Total: </span> $<%= sum.toFixed(2) %></h3>  
    <div class="row offset-md-8">
       <div class="col-12 mb-5">
          Autorizado por:

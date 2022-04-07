@@ -14,7 +14,7 @@ const serialMaker = () => {
             prefix = String(p)
         },
         set_seq: s =>{
-            seq = s + Math.floor(Math.random() * 999)
+            seq = s + Math.floor(Math.random() * 99999)
         },
         gensym: () => {
             const result = prefix + seq
@@ -25,7 +25,7 @@ const serialMaker = () => {
 const serial = () => {
     const seqer = serialMaker()
     seqer.set_prefix('Compra')
-    seqer.set_seq(1000);
+    seqer.set_seq(000000);
     const unique = seqer.gensym();
     return unique
 }
