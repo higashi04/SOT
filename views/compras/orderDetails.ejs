@@ -52,8 +52,8 @@
          <div><span class="title">Artículo:</span> <%= item %></div>
          <div><span class="title">Número de parte:</span> <%= order.partNumber[index] %></div> 
          <div><span class="title">Cantidad de piezas:</span> <%= order.cantidad[index] %></div> 
-         <div><span class="title">Precio Unitario:</span> $<%= order.importe[index] %>.00</div>  
-           <% const subTotal = parseInt(order.cantidad[index]) * parseInt(order.importe[index]) %>
+         <div><span class="title">Importe:</span> $<%= order.importe[index] %>.00</div>  
+           <% const subTotal = parseInt(order.importe[index]) %>
            <% total.push(subTotal);%> 
           <div class="mb-3"><span class="title">Subtotal:</span> $<%= subTotal %>.00 </div>  
          <%}) %> 
