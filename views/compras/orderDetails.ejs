@@ -1,6 +1,18 @@
 <% layout('layouts/boilerplate') %> 
 <% const total = [] %> 
 <div class="container" id="data">
+   <div class="row my-3 text-muted">
+      <div class="col-4">
+         TV-PRO-006
+      </div>
+      <div class="col-4">
+         EMISION 15-03-22  
+      </div>
+      <div class="col-4">
+         REVISION 15-03-22
+      </div>
+   </div>
+   <hr>
    <div class="row my-3">
       <div class="col-6">
        <img src="../../assets/272707556_231916139148938_3564323865832014711_n-removebg-small.png" alt="">
@@ -48,8 +60,13 @@
    </div>
    <% const sum = total.reduce( (a,b)=> a + b ) %>
   
-   <h3><span class="title">Total: </span> $<%= (sum * 1.16).toFixed(2) %></h3>  
-
+   <h3><span class="title">Total: </span> $<%= sum  %></h3>  
+   <div class="row offset-md-8">
+      <div class="col-12 mb-5">
+         Autorizado por:
+      </div>
+      <hr class="mt-5">
+   </div>
 </div>
 <div class="container">
    <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>

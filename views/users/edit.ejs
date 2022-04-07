@@ -11,12 +11,14 @@
         <input type="text" class="form-control form-control-lg" name="lastName" id="floatingLastName" placeholder="Apellidos:"  value="<%= user.lastName %>"required>
         <label for="floatingLastName" class="form-label">Apellidos: </label>
     </div>
-    <div class="form-floating col-6 pb-2">
-      <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingPuesto" name="puesto">
-        <option value="Seleccione uno">Seleccione uno</option>
-      </select>
-      <label for="floatingPuesto" class="form-label">Puesto: </label>
-    </div>
+    <% if (currentUser.isAdmin) {%>
+      <div class="form-floating col-6 pb-2">
+        <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingPuesto" name="puesto">
+          <option value="Seleccione uno">Seleccione uno</option>
+        </select>
+        <label for="floatingPuesto" class="form-label">Puesto: </label>
+      </div>
+    <% } %>  
     <button class="btn btn-success m-3">Mandar</button>
   </form>
 </div>

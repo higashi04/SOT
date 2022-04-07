@@ -1,22 +1,20 @@
 <% layout('layouts/boilerplate') %> 
-<h1 class="mx-3 p-5">Inventario</h1>
+<h1 class="mx-3 p-5 data">Inventario</h1>
   <div class="container">
     <div class="row"> 
       <input type="text" class="m-3" name="searchBar" id="searchBar">
-      <section>
+      <section class="dataTwo">
         <div class="row" id="searchResults"></div>
       </section>
     </div>
   </div>
-  <div class="container">
-    <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
-      <a class="btn btn-primary my-3 mx-3" href="/inv/newItem">Nuevo</a>
-    <% } %>
+<div class="container">
   <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
 </div>
 <span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
 <span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
 <script src="../../JavaScript/jspdf.min.js"></script>
+<script src="../../JavaScript/html2pdf.bundle.min.js"></script>
 <script src="../../JavaScript/printInv.js"></script>
 <script src="../../JavaScript/invSearchParams.js"></script>
 <script src="../../JavaScript/liveSearch.js"></script>

@@ -7,6 +7,10 @@ const {validaInv} = require('../middleware/validate');
 const User = require('../models/users');
 const Inv = require('../models/inventory');
 
+router.get('/', isLoggedIn, (req, res) =>{
+    res.render('inv/home')
+})
+
 router.get('/show', isLoggedIn, catchAsync(async(req, res)=>{
     const inv = await Inv.find({}).populate({
         path: 'author',
