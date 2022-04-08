@@ -47,19 +47,23 @@
     <h4>Teléfono: <%= order.telefono %></h4>
 
     <h2>Desglose: </h2>
-   <div class="container m-3">
-      <div class="row">
-         <% order.objeto.forEach((item, index, array)=>{%> 
-            <div class="col-6 my-3">
-               <div><span class="title">Artículo:</span> <%= item %></div>
-               <div><span class="title">Número de parte:</span> <%= order.partNumber[index] %></div> 
-               <div><span class="title">Cantidad de piezas:</span> <%= order.cantidad[index] %></div> 
-               <div><span class="title">Importe:</span> $<%= order.importe[index].toFixed(2) %></div>  
+   <div class="container m-3 rutas-table">
+      <div class="row rutas-head">
+         <div class="col-3 title">Artículo</div>
+         <div class="col-3 title">Número de Parte</div>
+         <div class="col-3 title">Cantidad</div>
+         <div class="col-3 title">Importe</div>
+      </div>
+      <% order.objeto.forEach((item, index, array)=>{%> 
+         <div class="row rutas-row">
+               <div class="col-3"> <%= item %></div>
+               <div class="col-3"> <%= order.partNumber[index] %></div> 
+               <div class="col-3"> <%= order.cantidad[index] %></div> 
+               <div class="col-3">$<%= order.importe[index].toFixed(2) %></div>  
                <% const subTotal = parseFloat(order.importe[index]) %>
                <% total.push(subTotal);%> 
-            </div>
-         <%}) %> 
-      </div>
+         </div>
+      <%}) %> 
    </div>
    <% const sum = total.reduce( (a,b)=> a + b ) %>
   
