@@ -15,4 +15,30 @@ router.get('/new', isLoggedIn, (req, res)=>{
         res.redirect('/bajas');
     }
 })
+router.post('/new', isLoggedIn, catchAsync(async(req, res) =>{
+    if(req.user.puesto === 'Analista de Procesos' || req.user.isAdmin) {
+        try{
+            const newBaja = new bajasSchema(req.body)
+            newBaja.save()
+            req.flash('success', 'Registro guardado correctamente.')
+            res.redirect('/bajas/new')
+        }catch(e) {
+            req.flash('error', 'Se produjo un error.')
+            res.redirect('/bajas/new')
+        }
+    } else {
+        req.flash('error', 'No está autorizado para esto.')
+        res.redirect('/bajas/new')
+    }
+}));
+
+router.get('/show', isLoggedIn, catchAsync(async(req, res) => {
+    try{
+        const bajas = await bajasSchema.find({}).exec()
+        res.render('bajas/show', {bajas})
+    } catch(e) {
+        req.flash('error', 'Se produjo un error.')
+        res.redirect('/bajas')
+    }
+}));
 module.exports = router;

@@ -1,10 +1,50 @@
 <% layout('layouts/boilerplate') %> 
-<h1 class="my-3 offset-md-8">Registro de Baja</h1>
+<h1 class="my-3 offset-md-2">Registro de Baja</h1>
 
 <div class="container">
-    <div class="row">
-        <div class="col-3 title">
-            Nombre
+    <form action ="/bajas/new" method="POST" novalidate>
+        <div class="row">
+            <div class="form-floating col-6 pb-2">
+                <input type="text" class="form-control form-control-lg" name="name" id="floatingName" placeholder="Nombre:" required>
+                <label for="floatingName" class="form-label">Nombre: </label>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="form-floating col-6 pb-2">
+                <input type="text" class="form-control form-control-lg" name="adress" id="floatingAdress" placeholder="Dirección:">
+                <label for="floatingAdress" class="form-label">Dirección: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-6 pb-2">
+                <input type="text" class="form-control form-control-lg" name="curp" id="floatingCurp" placeholder="CURP:">
+                <label for="floatingCurp" class="form-label">CURP: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-6 pb-2">
+                <input type="text" class="form-control form-control-lg" name="rfc" id="floatingRfc" placeholder="RFC:">
+                <label for="floatingRfc" class="form-label">RFC: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-6 pb-2">
+                <input type="date" class="form-control form-control-lg" name="upDate" id="floatingUpDate" placeholder="Fecha de Contratación:">
+                <label for="floatingUpDate" class="form-label">Fecha de Contratación: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-6 pb-2">
+                <input type="date" class="form-control form-control-lg" name="downDate" id="floatingRfc" placeholder="Fecha de Baja:">
+                <label for="floating" class="form-label">Fecha de Baja: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-6 pb-2">
+                <textarea type="text" class="form-control form-control-lg" name="comments" id="floatingcomments" placeholder="Comentarios:" required></textarea>
+                <label for="floatingcomments" class="form-label">Comentarios: </label>
+            </div>
+        </div>
+        <button class="btn btn-success m-3">Mandar</button>
+    </form>
 </div>
