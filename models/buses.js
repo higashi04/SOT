@@ -6,7 +6,10 @@ const busSchema = new Schema({
     modelTC: String,
     serie: String,
     yearTC: String,
-    unidad: String,
+    unidad: {
+        type: String,
+        unique: true
+    },
     ubicacion: String,
     tipo: String,
     mantenimiento: [{
