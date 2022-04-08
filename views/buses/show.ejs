@@ -7,10 +7,25 @@
         </div>
     </div>
     <div class="row">
-        <% for( unit of bus) { %>
-        <div class="col-3 my-3">
-            <a href="/buses/show/<%=unit._id%>" class="btn btn-dark"><%= unit.unidad %></a> 
+        <div class="col-6">
+            <h3>Camiones</h3>
+            <% for( unit of bus) { %>
+                <div class="col-3 my-3">
+                    <% if (unit.tipo.toLowerCase() === 'camion') {%>
+                        <a href="/buses/show/<%=unit._id%>" class="btn btn-dark"><%= unit.unidad %></a>  
+                    <% } %> 
+                </div>
+            <% } %> 
         </div>
-        <% } %>
+        <div class="col-6">
+            <h3>Urbans</h3>
+            <% for(unit of bus) {%>
+                <div class="col-3 my-3">
+                    <% if(unit.tipo.toLowerCase() === 'urban') {%>
+                        <a href="/buses/show/<%=unit._id%>" class="btn btn-dark"><%= unit.unidad %></a> 
+                    <% } %>  
+                </div>
+            <% } %>  
+        </div>
     </div>
 </div>

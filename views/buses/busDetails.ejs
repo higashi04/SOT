@@ -25,7 +25,7 @@
         <% }) %> 
     <% } %> 
 </div>
-
+<% if(currentUser.puesto === 'Ejecutivo de Mantenimiento y Almacen' || currentUser.isAdmin) {%> 
 <div class="container my-3">
     <h1>Registro de Mantenimiento</h1>
     <form action="/buses/show/<%=bus._id%>/mtto?_method=PUT" method="POST">
@@ -84,4 +84,5 @@
           <button class="btn btn-success m-3">Mandar</button>
     </form>
 </div>
+<% } %> 
 
