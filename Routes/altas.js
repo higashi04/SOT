@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const isLoggedIn = require('../middleware/isLoggedin');
-const bajasSchema = require('../models/bajasSchema');
+const altasSchema = require('../models/altasSchema');
 const catchAsync = require('../AsyncErrors');
 const ticketsSchema = require('../models/ticketSchema');
 const User = require('../models/users');
@@ -57,51 +57,50 @@ const mail = async(headers, data, user, ticket) => {
 const newTicket = async(user, headers) =>{
     const createTicket = new ticketsSchema()
     createTicket.user = user._id
-    createTicket.issueTitle = 'Registrar baja de usuario'
-    createTicket.userComments = `Dar seguimiento a la baja del perfil correspondiente, si aplica, en ${headers}/bajas/show`
+    createTicket.issueTitle = 'Registrar alta de usuario'
+    createTicket.userComments = `Dar seguimiento a la creación del perfil correspondiente, si aplica, en ${headers}/altas/show`
     createTicket.severity = 'medio'
     createTicket.serial = serial()
     await createTicket.save()
     mail(headers, createTicket._id, user.username, createTicket.serial)
 }
 
-
 router.get('/', isLoggedIn, (req, res) =>{
-    res.render('bajas/home')
+    res.render('altas/home')
 })
 router.get('/new', isLoggedIn, (req, res)=>{
     if(req.user.puesto === 'Analista de Procesos' || req.user.isAdmin) {
-        res.render('bajas/new');
+        res.render('altas/new');
     } else {
         req.flash('error', 'No tiene autorización para esto.')
-        res.redirect('/bajas');
+        res.redirect('/altas');
     }
 })
 router.post('/new', isLoggedIn, catchAsync(async(req, res) =>{
     if(req.user.puesto === 'Analista de Procesos' || req.user.isAdmin) {
         try{
-            const newBaja = new bajasSchema(req.body)
-            newBaja.save()
-            newTicket()
+            const newAlta = new altasSchema(req.body)
+            newAlta.save()
+            newTicket(req.user, req.headers.host)
             req.flash('success', 'Registro guardado correctamente.')
-            res.redirect('/bajas/new')
+            res.redirect('/altas/new')
         }catch(e) {
             req.flash('error', 'Se produjo un error.')
-            res.redirect('/bajas/new')
+            res.redirect('/altas/new')
         }
     } else {
         req.flash('error', 'No está autorizado para esto.')
-        res.redirect('/bajas/new')
+        res.redirect('/altas/new')
     }
 }));
 
 router.get('/show', isLoggedIn, catchAsync(async(req, res) => {
     try{
-        const bajas = await bajasSchema.find({}).exec()
-        res.render('bajas/show', {bajas})
+        const altas = await altasSchema.find({}).exec()
+        res.render('altas/show', {altas})
     } catch(e) {
         req.flash('error', 'Se produjo un error.')
-        res.redirect('/bajas')
+        res.redirect('/altas')
     }
 }));
 module.exports = router;
