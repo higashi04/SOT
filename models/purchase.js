@@ -21,7 +21,12 @@ const CompraSchema = new Schema({
         },
     serial: {
         type: String,
-        unique: true
+        unique: [true, 'El número asignado por sistema se repitió, favor de volver a intentar.']
+    },
+    date: {
+        type: Date,
+        default: ()=> Date.now(),
+        immutable: true
     }
 })
 

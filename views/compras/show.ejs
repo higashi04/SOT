@@ -1,18 +1,19 @@
 <% layout('layouts/boilerplate') %> 
 <h1 class="m-3">Ordenes de compra</h1>
-<% for (purchase of compra) {%>
-    <div class="mx-5 my-3">
-        <div class="container my-3">
-                <div class="row mb-3">
-                <div class="col-7 order">
-                        <a class="btn btn-dark" href="/compras/show/<%=purchase._id%>">
-                            <%= purchase.serial %>
-                        </a> por 
-                    <a class="btn btn-dark" href="/users/<%=purchase.author._id%>">
-                        <%= purchase.author.username %>
+<% const pur = compra.reverse() %>
+<div class="mx-5 my-3">
+    <div class="container my-3">
+        <div class="row m-3">
+            <% for (purchase of compra) {%>
+                <div class="col-6 order my-2">
+                    <a class="btn btn-dark" href="/compras/show/<%=purchase._id%>">
+                        <%= purchase.serial %>
                     </a> 
+                        por <%= purchase.author.firstName %> <%= purchase.author.lastName %> con fecha de <%= purchase.date.toLocaleDateString() %> 
                 </div>
-            </div>   
-        </div>
+            <% } %>  
+        </div> 
     </div>
-<% } %> 
+</div>
+ 
+
