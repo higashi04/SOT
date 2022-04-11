@@ -59,7 +59,7 @@
                <div class="col-3"> <%= item %></div>
                <div class="col-3"> <%= order.partNumber[index] %></div> 
                <div class="col-3"> <%= order.cantidad[index] %></div> 
-               <div class="col-3">$<%= order.importe[index].toFixed(2) %></div>  
+               <div class="col-3">$<%= order.importe[index] %></div>  
                <% const subTotal = parseFloat(order.importe[index]) %>
                <% total.push(subTotal);%> 
          </div>

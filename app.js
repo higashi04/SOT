@@ -26,6 +26,7 @@ const ticketRoutes = require('./Routes/tickets');
 const bajaRoutes = require('./Routes/bajas');
 const altasRoutes = require('./Routes/altas');
 const tallerRoutes = require('./Routes/taller');
+const recepcionRoutes = require('./Routes/recepcion');
 //models//
 const Users = require('./models/users')
 /////////
@@ -122,6 +123,7 @@ app.use('/tickets', ticketRoutes);
 app.use('/bajas', bajaRoutes);
 app.use('/altas', altasRoutes);
 app.use('/taller', tallerRoutes);
+app.use('/reception', recepcionRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')

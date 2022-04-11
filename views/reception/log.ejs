@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3">Bitácora</h1>
+<div class="container my-3">
+    <div class="row">
+        <form action="/reception/log" method="post">
+            <button class="btn btn-success">Crear Registro Nuevo</button>
+        </form>
+    </div>
+</div>
+
+<% if(logs) {%>
+    <div class="container">
+        <% for(log of logs) {%>
+            <div class="row">
+                <div class="col-6">
+                    <a class="btn btn-primary" href="/reception/log/<%= log._id %>"><%= log.date.toLocaleDateString() %> </a>
+                </div>
+            </div>
+        <% } %>  
+    </div>
+<% } %>  

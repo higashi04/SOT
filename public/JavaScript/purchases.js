@@ -4,10 +4,8 @@ const qty = document.querySelector('.qty');
 const np = document.querySelector('.np')
 const importe = document.querySelector('.importe');
 const addToForm = document.querySelector('.addToForm');
-const total = document.querySelector('.total');
-const btn = document.querySelector('.calculus');
-const importeSum = [];
-const pzs = [];
+// const importeSum = [];
+// const pzs = [];
 
 function addItem() {
     const newDiv = document.createElement('div')
@@ -96,13 +94,13 @@ addToForm.addEventListener('click', ()=>{
     addQty();
     addImporte();
 })
-btn.addEventListener('click', ()=>{
-    const totals = []
-    for (i=0;i < pzs.length; i++){
-        totals.push(pzs[i] * importeSum[i])
-    }
-    const totalOne = totals.reduce(function (a, b) {
-        const preIva = a + b 
-        return preIva }, 0)
-    total.innerHTML = (totalOne * 1.16).toFixed(2)
-})
+// btn.addEventListener('click', ()=>{
+//     const totals = []
+//     for (i=0;i < pzs.length; i++){
+//         totals.push(pzs[i] * importeSum[i])
+//     }
+//     const totalOne = totals.reduce(function (a, b) {
+//         const preIva = a + b 
+//         return preIva }, 0)
+//     total.innerHTML = (totalOne * 1.16).toFixed(2)
+// })

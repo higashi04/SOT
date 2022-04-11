@@ -13,7 +13,8 @@
             <% if(currentUser.puesto === 'Ejecutivo de Mantenimiento y Almacen' || currentUser.isAdmin) {%>
               <a class="nav-link" href="/buses">Camiones</a>
             <% } %> 
-            <% if(currentUser.puesto === 'Recepcionista' || currentUser.isAdmin) { %> 
+            <% if(currentUser.puesto === 'Recepcionista' || currentUser.isAdmin) { %>
+              <a class="nav-link" href="/reception"> Recepción </a> 
               <a class="nav-link" href="/hr/attendance">Asistencia</a>
             <% } %>
             <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
