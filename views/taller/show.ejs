@@ -1,0 +1,49 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3">Consulta de Registros Mensuales</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h6 class="offset-md-4 my-3">
+                Crear Hoja Mensual
+            </h6>
+        </div>
+    </div>
+    <div class="row">
+        <form action="/taller/show" method="post">
+            <div class="col-12 form-floating">
+                <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingmonth" name="month">
+                    <option value="Enero">Enero</option>
+                    <option value="Febrero">Febrero</option>
+                    <option value="Marzo">Marzo</option>
+                    <option value="Abril">Abril</option>
+                    <option value="Mayo">Mayo</option>
+                    <option value="Junio">Junio</option>
+                    <option value="Julio">Julio</option>
+                    <option value="Agosto">Agosto</option>
+                    <option value="Septiembre">Septiembre</option>
+                    <option value="Octubre">Octubre</option>
+                    <option value="Noviembre">Noviembre</option>
+                    <option value="Diciembre">Diciembre</option>
+                  </select>
+                <label for="floatingmonth" class="form-label">Mes: </label>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <button class="btn btn-success">Crear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<% if (tallerMes !== null || undefined) {%> 
+    <div class="container">
+        <div class="row my-3">
+            <% for(mes of tallerMes) {%>
+                <div class="col-4">
+                    <a class="btn btn-dark" href="/taller/show/<%= mes._id %>"><%= mes.month %></a>
+                </div>
+            <% } %>  
+        </div>
+    </div>
+<% } %> 
