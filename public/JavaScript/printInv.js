@@ -10,9 +10,9 @@ const opt = {
     margin:       1,
     filename:     `Inventario_${date.innerHTML}.pdf`,
     image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2 },
+    html2canvas:  { scale: 5 },
     pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] },
-    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
   };
 
 downloadBtn.addEventListener('click', async() => {

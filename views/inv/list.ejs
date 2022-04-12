@@ -1,8 +1,6 @@
 <% layout('layouts/boilerplate') %> 
-<h1 class="offset-md-4 my-3"> Listado </h1>
-<% const increases = [] %>
-<% const decreases = [] %>  
-<div class="container rutas-table m-3">
+<h1 class="offset-md-4 my-3 data"> Listado </h1> 
+<div class="container rutas-table m-3 dataTwo">
     <div class="row rutas-head">
         <div class="col">
             Artículo
@@ -15,12 +13,6 @@
         </div>
         <div class="col">
             Cantidad
-        </div>
-        <div class="col">
-            Entradas
-        </div>
-        <div class="col">
-            Salidas
         </div>
     </div>
     <% inv.forEach((element, index) =>{%>
@@ -37,20 +29,14 @@
             <div class="col">
                 <%= element.cantidad %> 
             </div>
-            <div class="col">
-                <% if(element.increments[index] !== undefined) {%>
-                    <% increases.push(parseInt(element.increments[index].qty))%>
-                        <%  %> 
-                    <%= increases.reduce((a,b) =>{ return a + b}, 0) %>  
-                <% }else {%>machupichu<% } %>   
-            </div>
-            <div class="col">
-                <% if(element.decrements[index] !== undefined) {%>
-                    <% decreases.push(element.decrements[index].qty) %>
-                    <%= decreases.reduce((a,b) => { return a + b}, 0) %>  
-                <% } %>  
-            </div>
         </div>
     <%})%> 
 </div>
-<% console.log(increases) %> 
+<div class="container">
+    <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+</div>
+<span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+<span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+<script src="../../JavaScript/jspdf.min.js"></script>
+<script src="../../JavaScript/html2pdf.bundle.min.js"></script>
+<script src="../../JavaScript/printInv.js"></script>
