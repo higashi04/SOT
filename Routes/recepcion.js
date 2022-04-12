@@ -35,13 +35,23 @@ router.put('/log/:id', isLoggedIn, catchAsync(async(req,res)=>{
     if(req.user.puesto === 'Recepcionista' || req.user.isAdmin) {
         try{
             const log = await logSchema.findById(req.params.id)
-            // log.time.push(req.body.time)
-            // log.visitor.push(req.body.visitor)
-            // log.message.push(req.body.message)
-            // log.transfered.push(req.body.transfered)
-            // log.ar.push(req.body.ar)
+            const {time, visitor, message, transfered, ar} = req.body
+            time.forEach(element => {
+                log.time.push(element)
+            });
+            visitor.forEach(element => {
+                log.visitor.push(element)
+            })
+            message.forEach(element => {
+                log.message.push(element)
+            })
+            transfered.forEach(element => {
+                log.transfered.push(element)
+            })
+            ar.forEach(element => {
+                log.ar.push(element)
+            })
             await log.save()
-            console.log(log)
             req.flash('success', 'Se ha guardado el registro correctamente.')
             res.redirect(`/reception/log/${log._id}`)
         } catch(e) {
