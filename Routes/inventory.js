@@ -34,7 +34,6 @@ router.get('/newItem', isLoggedIn, (req, res)=>{
        res.redirect('/inv/show')
    }
 })
-//Ejecutivo de Almacen y Diesel
 router.post('/newItem', isLoggedIn, validaInv,catchAsync(async(req, res)=>{
     if(req.user.puesto === 'Ejecutivo de Almacen y Diesel') {
         try{

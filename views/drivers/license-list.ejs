@@ -1,0 +1,38 @@
+<% layout('layouts/boilerplate') %> 
+<h2 class="my-3">Listado de Choferes con Licencia Próxima a Vencer.</h2>
+<% const minsInDay = 1000 * 3600 * 24 %>  
+<% const today = new Date() %>
+
+
+<div class="container my-3 rutas-table">
+    <div class="row rutas-head">
+        <div class="col-3">
+            Nombre
+        </div>
+        <div class="col-3">
+            Licencia
+        </div>
+        <div class="col-3">
+            Días a Vencer
+        </div>
+        <div class="col-3">
+            Teléfono
+        </div>
+    </div>
+    <% choferes.forEach((chofer, index) =>{%>
+        <% if(chofer.license) %>
+        <div class="row rutas-row">
+            <div class="col-3">
+                <%= chofer.name %> 
+            </div>
+            <div class="col-3">
+                <%= chofer.license ? chofer.license.number : '' %>
+            </div>
+            <div class="col-3"></div> 
+            <div class="col-3">
+                <%= chofer.phone %> 
+            </div>
+        </div>
+         
+    <%})%> 
+</div>

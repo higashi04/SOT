@@ -219,4 +219,14 @@ router.get('/audit/:id', isLoggedIn, catchAsync(async(req, res) => {
         res.render('drivers/driverAuditShow', {audit: foundAudit})
     })
 }));
+
+router.get('/list', isLoggedIn, catchAsync(async(req, res) => {
+    await driver.find({}).populate({path: 'license'}).exec((err, foundDrivers) => {
+        if(err){
+            req.flash('error', 'Se produjo un error.')
+            res.redirect('/driver')
+        }
+        res.render('drivers/license-list', {choferes: foundDrivers})
+    })
+}))
 module.exports = router
