@@ -7,6 +7,7 @@ const {validaInv} = require('../middleware/validate');
 const User = require('../models/users');
 const Inv = require('../models/inventory');
 
+
 router.get('/', isLoggedIn, (req, res) =>{
     res.render('inv/home')
 })
@@ -111,6 +112,11 @@ router.post('/show/getMov', isLoggedIn, catchAsync(async(req, res) =>{
      let search = await Inv.find({"increments": {"fecha": {"$gte": gtDate}}}).exec()
      console.log('search results: \n' + search)
      res.send({payload: search})
+}))
+
+router.get('/list', isLoggedIn, catchAsync(async(req, res) => {
+    const inv = await Inv.find({}).exec()
+    res.render('inv/list', {inv})
 }))
 
 module.exports = router;
