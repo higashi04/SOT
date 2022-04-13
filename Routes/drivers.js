@@ -79,6 +79,7 @@ router.put('/show/:id/license', isLoggedIn, catchAsync(async(req, res) => {
         try {
             const chofer = await driver.findById(req.params.id)
             const newLicense = new license(req.body)
+            newLicense.driver = chofer
             await newLicense.save()
             chofer.license = newLicense
             await chofer.save()
@@ -221,12 +222,12 @@ router.get('/audit/:id', isLoggedIn, catchAsync(async(req, res) => {
 }));
 
 router.get('/list', isLoggedIn, catchAsync(async(req, res) => {
-    await driver.find({}).populate({path: 'license'}).exec((err, foundDrivers) => {
-        if(err){
-            req.flash('error', 'Se produjo un error.')
+    await license.find({}).populate({path: 'driver'}).exec((err, licenses) =>{
+        if(err) {
+            req.flash('error', 'Se produjo un error')
             res.redirect('/driver')
         }
-        res.render('drivers/license-list', {choferes: foundDrivers})
+        res.render('drivers/license-list', {licenses})
     })
 }))
 module.exports = router

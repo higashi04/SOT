@@ -1,12 +1,6 @@
 <% layout('layouts/boilerplate') %> 
 <h2 class="offset-md-4 my-3">Licencia</h2>
-<% const minsInDay = 1000 * 3600 * 24 %>  
-<% const today = new Date() %>
-<% const expDate = new Date(licenseShow.expirationDate) %> 
-<% const diff = licenseShow.expirationDate - licenseShow.startDate%>
-<% const days = Math.floor(diff/minsInDay) %> 
-<% const daysToExp = Math.ceil((expDate.getTime() - today.getTime())/minsInDay) %> 
-<div class="container">
+<div class="container my-3">
     <div class="row my-3">
         <div class="col-3">
             <span class="title">Número de Licencia: </span> <%= licenseShow.number %>
@@ -23,23 +17,23 @@
     </div>
     <div class="row my-3">
         <div class="col-3">
-            <span class="title"> Días a Vencer: </span> <%= days %> <% if (days < 1) {%> día <% } else {%> días <% } %>   
+            <span class="title"> Días a Vencer: </span> <%= licenseShow.days %> <% if (licenseShow.days < 1) {%> día <% } else {%> días <% } %>   
         </div>
         <div class="col-3">
-            <span class="title">Faltan <%= daysToExp %> <% if (daysToExp > 1) {%> días <% } else {%> día <% } %> </span>
+            <span class="title">Faltan <%= licenseShow.expires %> <% if (licenseShow.expires > 1) {%> días <% } else {%> día <% } %> </span>
         </div>
     </div>
 </div>
 <% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
-<div class="container my-3 offset-md-4">
-    <div>
+<div class="container my-3 ">
+    <div class="mx-3">
         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
             Actualizar Licencia
           </button>
         </p>
     <div class="collapse" id="collapse">
         <div class="container license-margin">
-            <div class="m-3 ">
+            <div class="mx-3">
                 <form action="/driver/show/license/<%= licenseShow._id %>?_method=PUT" method="post">
                     <div class="form-floating col-6 pb-2">
                         <input type="text" class="form-control form-control-lg" name="licenseType" id="floatingLicenseType" placeholder="Tipo de Licencia:" required>
@@ -62,6 +56,6 @@
             </div>
         </div>
     </div>
-</div>
+    </div>
 <% } %> 
 
