@@ -2,7 +2,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const DriverSchema = new Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true,
+        unique: [true, 'Ya se cuenta con un registro utilizando ese nombre.']
+    },
     phone: String,
     createdAt: 
     {
