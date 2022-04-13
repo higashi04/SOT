@@ -222,12 +222,17 @@ router.get('/audit/:id', isLoggedIn, catchAsync(async(req, res) => {
 }));
 
 router.get('/list', isLoggedIn, catchAsync(async(req, res) => {
-    await license.find({}).populate({path: 'driver'}).exec((err, licenses) =>{
-        if(err) {
-            req.flash('error', 'Se produjo un error')
-            res.redirect('/driver')
-        }
-        res.render('drivers/license-list', {licenses})
-    })
+    try{
+        await license.find({}).populate({path: 'driver'}).exec((err, licenses) =>{
+            if(err) {
+                req.flash('error', 'Se produjo un error')
+                res.redirect('/driver')
+            }
+            res.render('drivers/license-list', {licenses})
+        })
+    } catch(e){
+        req.flash('error', 'Se produjo un error.')
+        res.redirect('/driver')
+    }
 }))
 module.exports = router
