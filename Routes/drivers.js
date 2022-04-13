@@ -94,6 +94,24 @@ router.put('/show/:id/license', isLoggedIn, catchAsync(async(req, res) => {
         res.redirect('/driver/show')
     } 
 }));
+router.put('/show/:id/baja', isLoggedIn, catchAsync(async(req, res) => {
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+        try{
+            const chofer = await driver.findById(req.params.id)
+            chofer.fueDadoDeBaja = req.body.fueDadoDeBaja === 'true' ? true : false
+            chofer.baja = Date.now()
+            await chofer.save()
+            res.redirect(`/driver/show/${chofer._id}`)
+        }catch {
+            req.flash('error', 'Se produjo un error')
+            console.log(e)
+            res.redirect('/driver/show')
+        }
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/driver/show')
+    }
+}))
 router.get('/show/license/:id', isLoggedIn, catchAsync(async(req, res) => {
     const licenseShow = await license.findById(req.params.id)
     res.render('drivers/license', {licenseShow})

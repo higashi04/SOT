@@ -1,44 +1,68 @@
 <% layout('layouts/boilerplate') %> 
 <div class="container m-3">
     <div class="row">
-        <div class="col-md-8 offset-md-4 my-3">
-            <span class="title">Nombre: </span> <%= chofer.name %> 
+        <div class="col-8">
+            <div class="offset-md-4 my-3">
+                <span class="title">Nombre: </span> <%= chofer.name %> 
+            </div>
+            <div class="offset-md-4 my-3">
+                <span class="title">Teléfono: </span> <%= chofer.phone %> 
+            </div>
+            <div class="offset-md-4 my-3">
+                <span class="title">Fecha de Ingreso: </span> <%= chofer.alta.toLocaleDateString() %> 
+            </div>
+            <div class="offset-md-4 my-3">
+                <span class="title">Compañía: </span> <%= chofer.company %> 
+            </div>
+            <div class="offset-md-4 my-3">
+                <span class="title">Coordinador: </span> <%= chofer.coordinator %> 
+            </div>
+            <%if (chofer.license) { %>
+            <div class="offset-md-4 my-3">
+                <span class="title">Licencia: </span> <a class="btn btn-dark" href="/driver/show/license/<%=chofer.license._id%>"><%= chofer.license.number %></a>  
+            </div>
+            <% } %>
+            <% if (chofer.bus) {%>
+                <div class="offset-md-4 my-3">
+                    <span class="title">Unidad: </span> <%= chofer.bus.unidad %> 
+                </div>  
+            <% } %> 
+            <% if (chofer.checklist) {%>
+                <div class="offset-md-4 my-3">
+                    <span class="title">Chofer cuenta con su checklist.</span> 
+                </div>  
+            <% } %>  
         </div>
-        <div class="col-md-8 offset-md-4 my-3">
-            <span class="title">Teléfono: </span> <%= chofer.phone %> 
+        <% if (chofer.fueDadoDeBaja !== true && (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin)) {%>
+        <div class="col-4">
+            <div class="my-3">
+                <span class="title">¿Fue Dado de Baja?</span>
+            </div>
+            <div class="my-3">
+                <form action="/driver/show/<%= chofer._id %>/baja?_method=PUT" method="post">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="fueDadoDeBaja" name="fueDadoDeBaja" value="true">
+                        <label class="form-check-label title" for="fueDadoDeBaja">Marcar la Casilla si el chofer es baja.</label>
+                    </div>
+                      <button class="btn btn-success">Mandar</button>
+                </form>
+            </div>
         </div>
-        <div class="col-md-8 offset-md-4 my-3">
-            <span class="title">Fecha de Ingreso: </span> <%= chofer.alta.toLocaleDateString() %> 
-        </div>
-        <div class="col-md-8 offset-md-4 my-3">
-            <span class="title">Compañía: </span> <%= chofer.company %> 
-        </div>
-        <div class="col-md-8 offset-md-4 my-3">
-            <span class="title">Coordinador: </span> <%= chofer.coordinator %> 
-        </div>
-        <%if (chofer.license) { %>
-        <div class="col-md-8 offset-md-4 my-3">
-            <span class="title">Licencia: </span> <a class="btn btn-dark" href="/driver/show/license/<%=chofer.license._id%>"><%= chofer.license.number %></a>  
-        </div>
-        <% } %>
-        <% if (chofer.bus) {%>
-            <div class="col-md-8 offset-md-4 my-3">
-                <span class="title">Unidad: </span> <%= chofer.bus.unidad %> 
-            </div>  
-        <% } %> 
-        <% if (chofer.checklist) {%>
-            <div class="col-md-8 offset-md-4 my-3">
-                <span class="title">Chofer cuenta con su checklist.</span> 
-            </div>  
-        <% } %>  
     </div>
 </div>
-<% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%>
+<% } else if(chofer.fueDadoDeBaja) {%>
+    <div class="col-4">
+        <div class="my-3">
+            <h2>Chofer ha sido dado de Baja.</h2>
+        </div>
+    </div>
+<% } %> 
+<% if ( chofer.fueDadoDeBaja !== true && (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin)) {%>
 <div class="container my-3 mx-5 px-5 ">
     <div class="row">
         <div class="col">
             <h2 class="title offset-md-4">Asigna una unidad</h2>
-            <form action="/driver/show/<%=chofer._id%>?_method=PUT" method="post">
+            <form action="/driver/show/<%=chofer._id%>/baja?_method=PUT" method="post">
                 <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingUnit" name="unidad">
                     <% for (bus of buses) {%>
                         <option value="<%=bus._id%>"><%= bus.unidad %></option>
@@ -88,7 +112,7 @@
 </div> 
 <% } %> 
 <% if (!chofer.license && (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) ) {%>
-    <div class="container my-3 offset-md-4">
+    <div class="container my-3">
         <div>
             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
                 Agregar Licencia
@@ -123,6 +147,7 @@
 <% } %> 
 <% if (chofer.audits) {%>
     <div class="container">
+        <h4 class="offset-md-2">Auditorias</h4>
         <div class="row">
             <% for(audit of chofer.audits) {%>
                 <div class="col-4 my-3">

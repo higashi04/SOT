@@ -63,10 +63,7 @@ const DriverSchema = new Schema({
     esReingreso: {
         type: Boolean,
         default: false,
-        fecha: {
-            type: Date,
-            default: () => Date.now()
-        }
+        fecha: Date
     },
     audits: [
         {
