@@ -3,6 +3,7 @@ const router = express.Router();
 const isLoggedIn = require('../middleware/isLoggedin');
 const catchAsync = require('../AsyncErrors');
 const logSchema = require('../models/bitacora');
+const unhireable = require('../models/unhireable');
 
 router.get('/', isLoggedIn, (req, res) =>{
     res.render('reception/home')
@@ -69,6 +70,35 @@ router.put('/log/:id', isLoggedIn, catchAsync(async(req,res)=>{
     } else {
         req.flash('error', 'No tiene autorización para esto.')
         res.redirect('/reception/log')
+    }
+}))
+
+router.get('/irrecontratables', isLoggedIn, catchAsync(async(req, res) => {
+    const unhireLists = await unhireable.find({}).exec()
+    res.render('unhire/home', {unhireLists})
+}));
+router.get('/irrecontratables/new', isLoggedIn, (req, res) => {
+    if(req.user.puesto === 'Recepcionista' || req.user.isAdmin) {
+        res.render('unhire/new')
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/reception/irrecontratables')
+    }
+});
+router.post('/irrecontratables/new', isLoggedIn, catchAsync(async(req, res) => {
+    if(req.user.puesto === 'Recepcionista' || req.user.isAdmin) {
+        try{
+            const newUnhire = new unhireable(req.body)
+            await newUnhire.save()
+            req.flash('success', 'El nuevo registro ha sido guardado correctamente.')
+            res.redirect('/reception/irrecontratables')
+        } catch(e){
+            req.flash('error', 'Se produjo un error.')
+            res.redirect('/reception/irrecontratables')
+        }
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/reception/irrecontratables')
     }
 }))
 module.exports = router

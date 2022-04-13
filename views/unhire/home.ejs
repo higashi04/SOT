@@ -1,0 +1,51 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="my-3 offset-md-2"> No Recontratables </h1>
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-6">
+            <a class="btn btn-primary fontIncrease" href="/reception/irrecontratables/new">Registro Nuevo</a>
+        </div>
+    </div>
+</div>
+
+<% if(unhireLists[0] !== undefined) {%>
+    <div class="container my-3 rutas-table">
+        <div class="row rutas-head">
+            <div class="col">
+                Nombre
+            </div>
+            <div class="col">
+                Fecha de Alta
+            </div>
+            <div class="col">
+                Fecha de Baja
+            </div>
+            <div class="col">
+                Empresa
+            </div>
+            <div class="col">
+                Motivos
+            </div>
+        </div>
+        <% for(list of unhireLists) {%>
+            <div class="row rutas-row">
+                <div class="col">
+                    <%= list.name %> 
+                </div>
+                <div class="col">
+                    <%= list.upDate.toLocaleDateString() %> 
+                </div>
+                <div class="col">
+                    <%= list.downDate.toLocaleDateString() %> 
+                </div>
+                <div class="col">
+                    <%= list.company %> 
+                </div>
+                <div class="col">
+                    <%= list.reason %> 
+                </div>
+            </div>
+        <% } %>  
+    </div>
+<% } %>  
