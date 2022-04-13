@@ -18,20 +18,22 @@
     </div>
     <% for (license of licenses) {%>
         <% if (license.expires < 15) {%>
-            <div class="row rutas-row">
-                <div class="col-3">
-                    <%= license.driver.name %> 
+            <% if(license.driver.fueDadoDeBaja === false) {%>
+                <div class="row rutas-row">
+                    <div class="col-3">
+                        <%= license.driver.name %> 
+                    </div>
+                    <div class="col-3">
+                        <%= license.number %> 
+                    </div>
+                    <div class="col-3 ">
+                        <%= license.expires %> 
+                    </div>
+                    <div class="col-3">
+                        <%= license.driver.phone %> 
+                    </div>
                 </div>
-                <div class="col-3">
-                    <%= license.number %> 
-                </div>
-                <div class="col-3 ">
-                    <%= license.expires %> 
-                </div>
-                <div class="col-3">
-                    <%= license.driver.phone %> 
-                </div>
-            </div>
+            <% } %>  
         <% } %> 
     <% } %>  
 </div>

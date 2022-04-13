@@ -7,7 +7,7 @@
             <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingDriver" name="driver">
               <option value="Seleccione uno">Chofer:</option>
               <% for (chofer of choferes) {%> 
-              <option value='<%= chofer._id %>'><%= chofer.name %></option>
+              <% if(chofer.fueDadoDeBaja === false) {%> <option value='<%= chofer._id %>'><%= chofer.name %></option><% } %> 
               <% } %> 
             </select>
         </div>
@@ -30,7 +30,7 @@
             </div>
             <div class="form-check">
               <div class="row mb-3">
-                <label class="form-check-label col-4 me-5" for="dressCode">Codigo de vestimenta(Prohibido utilizar sandalias,pijamas,short).</label>
+                <label class="form-check-label col-4 me-5" for="dressCode">Codigo de vestimenta(Prohibido utilizar sandalias, pijamas, short).</label>
                 <input class="form-check-input col-4 me-5" type="radio" id="dressCode" name="dressCode" value="Sí">
                 <input class="form-check-input col-4 me-5" type="radio" id="dressCode" name="dressCode" value="No">
                 <input class="form-check-input col-4 me-5" type="radio" id="dressCode" name="dressCode" value="N/A">

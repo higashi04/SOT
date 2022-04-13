@@ -7,7 +7,7 @@
             <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingDriver" name="driver">
               <option value="Seleccione uno">Chofer:</option>
               <% for (chofer of choferes) {%> 
-              <option value='<%= chofer._id %>'><%= chofer.name %></option>
+                <% if(chofer.fueDadoDeBaja === false) {%> <option value='<%= chofer._id %>'><%= chofer.name %></option><% } %>
               <% } %> 
             </select>
         </div>

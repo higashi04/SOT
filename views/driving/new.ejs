@@ -8,7 +8,7 @@
             <div class="form-floating col-6 pb-2">
                 <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingDriver" name="driver">
                     <% for (driver of choferes) {%>
-                        <option value='<%= driver.name %>'><%= driver.name %></option>
+                        <% if(driver.fueDadoDeBaja === false) {%> <option value='<%= driver.name %>'><%= driver.name %></option><% } %>
                     <% } %>  
                 </select>
                 <label for="floatingDriver">Chofer:</label>

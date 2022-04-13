@@ -15,7 +15,7 @@
         <div class="form-floating col-6 pb-2">
             <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingName" name="name">
                 <% for (chofer of choferes) {%>
-                    <option value="<%= chofer.name %>"><%= chofer.name %></option>
+                    <% if(chofer.fueDadoDeBaja === false) {%> <option value='<%= chofer.name %>'><%= chofer.name %></option><% } %>
                 <% } %>
             </select>
             <label for="floatingName" class="form-label">Nombre: </label>

@@ -64,35 +64,37 @@
             <div class="col">Salida Dos</div>
         </div>
             <% for (driver of drivers) {%>
-                <div class="row attendance-list">
-                    <div class="col field"><%= driver.name %> </div>
-                    <div class="col field"> <%= !driver.bus ? '' : driver.bus.unidad %></div>
-                    <div class="col field"><%= driver.coordinator %></div>
-                    <div class="col field">           
-                        <select class="form-select form-select my-3" aria-label=".form-select" id="inOne" name="inOne">
-                            <option value="true">Sí</option>
-                            <option value="false">No</option>
-                        </select>
+                <% if (driver.fueDadoDeBaja === false) {%>
+                    <div class="row attendance-list">
+                        <div class="col field"><%= driver.name %> </div>
+                        <div class="col field"> <%= !driver.bus ? '' : driver.bus.unidad %></div>
+                        <div class="col field"><%= driver.coordinator %></div>
+                        <div class="col field">           
+                            <select class="form-select form-select my-3" aria-label=".form-select" id="inOne" name="inOne">
+                                <option value="true">Sí</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                        <div class="col field">
+                            <select class="form-select form-select my-3" aria-label=".form-select" id="outOne" name="outOne">
+                                <option value="true">Sí</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                        <div class="col field">
+                            <select class="form-select form-select my-3" aria-label=".form-select" id="inTwo" name="inTwo">
+                                <option value="true">Sí</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-select form-select my-3" aria-label=".form-select" id="outTwo" name="outTwo">
+                                <option value="true">Sí</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col field">
-                        <select class="form-select form-select my-3" aria-label=".form-select" id="outOne" name="outOne">
-                            <option value="true">Sí</option>
-                            <option value="false">No</option>
-                        </select>
-                    </div>
-                    <div class="col field">
-                        <select class="form-select form-select my-3" aria-label=".form-select" id="inTwo" name="inTwo">
-                            <option value="true">Sí</option>
-                            <option value="false">No</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <select class="form-select form-select my-3" aria-label=".form-select" id="outTwo" name="outTwo">
-                            <option value="true">Sí</option>
-                            <option value="false">No</option>
-                        </select>
-                    </div>
-                </div>
+                <% } %>  
             <% } %>
                 <button class="btn btn-success my-3">Guardar Cambios</button> 
              </form>
