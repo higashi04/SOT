@@ -31,7 +31,12 @@
                 <div class="offset-md-4 my-3">
                     <span class="title">Chofer cuenta con su checklist.</span> 
                 </div>  
-            <% } %>  
+            <% } %>
+            <% if (chofer.esReingreso) {%>
+                <div class="offset-md-4 my-3">
+                    <span class="title">Fecha de Reingreso:</span> <% chofer.fechaReingreso.toLocaleDateString() %> 
+                </div>
+            <% } %>    
         </div>
         <% if (chofer.fueDadoDeBaja !== true && (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin)) {%>
         <div class="col-4">
@@ -48,26 +53,28 @@
                 </form>
             </div>
         </div>
+        <% } else if(chofer.fueDadoDeBaja) {%>
+            <div class="col-4">
+                <div class="my-3">
+                    <h2>Chofer ha sido dado de Baja.</h2>
+                </div>
+            </div>
+        <% } %> 
     </div>
-</div>
-<% } else if(chofer.fueDadoDeBaja) {%>
-    <div class="col-4">
-        <div class="my-3">
-            <h2>Chofer ha sido dado de Baja.</h2>
+    <div class="row my-3">
+        <div class="col-8">
+            <a class="btn btn-primary" href="/driver/edit/<%= chofer._id %>">Editar Chofer</a>
         </div>
     </div>
-<% } %> 
+</div>
+
 <% if ( chofer.fueDadoDeBaja !== true && (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin)) {%>
 <div class="container my-3 mx-5 px-5 ">
     <div class="row">
         <div class="col">
             <h2 class="title offset-md-4">Asigna una unidad</h2>
             <form action="/driver/show/<%=chofer._id%>/baja?_method=PUT" method="post">
-                <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingUnit" name="unidad">
-                    <% for (bus of buses) {%>
-                        <option value="<%=bus._id%>"><%= bus.unidad %></option>
-                    <% } %> 
-                </select>
+
                 <button class="btn btn-success offset-md-4">Grabar</button>
             </form>
         </div>

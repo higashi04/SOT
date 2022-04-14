@@ -60,11 +60,6 @@ const DriverSchema = new Schema({
         type: Boolean,
         default: false,
     },
-    esReingreso: {
-        type: Boolean,
-        default: false,
-        fecha: Date
-    },
     audits: [
         {
             type: Schema.Types.ObjectId,

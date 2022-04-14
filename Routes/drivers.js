@@ -51,22 +51,36 @@ router.get('/show/:id', isLoggedIn, catchAsync(async(req, res)=>{
                 req.flash('error', 'Se produjo un error')
                 return res.redirect('/driver/show')
             }
-            const buses = await Bus.find({})
-            res.render('drivers/details', {chofer: foundData, buses})
+            res.render('drivers/details', {chofer: foundData})
         })
 }));
-router.put('/show/:id', isLoggedIn, catchAsync(async(req, res) =>{
+router.get('/edit/:id', isLoggedIn, catchAsync(async(req, res) => {
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+        try{
+            const chofer = await driver.findById(req.params.id).populate({path: 'bus'}).exec()
+            const buses = await Bus.find({})
+            res.render('drivers/edit', {chofer, buses})
+        }  catch(e) {
+            req.flash('error', 'Se produjo un error')
+            console.log(e)
+            res.redirect('/driver/')
+        }
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/driver/')
+    }
+
+}))
+router.put('/edit/:id', isLoggedIn, catchAsync(async(req, res) =>{
     if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
         try{
             const {id} = req.params
-            const addBus = await driver.findById(id)
-            addBus.bus = req.body.unidad
-            await addBus.save()
+            const editedDriver = await driver.findByIdAndUpdate(id, req.body)
+            await editedDriver.save()
             req.flash('success', 'Se asigna unidad con éxito')
             res.redirect(`/driver/show/${id}`)
         } catch(e) {
             req.flash('error', 'Se produjo un error')
-            console.log(e)
             res.redirect('/driver/show')
         }
     } else {
