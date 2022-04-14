@@ -1,0 +1,51 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="my-3 offset-md-2">Registro de Postulante</h1>
+
+<div class="container my-3">
+    <form action="/reclutamiento/new" method="post">
+        <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="name" id="name" placeholder="Nombre: " required>
+            <label for="name" class="form-label">Nombre:  </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+            <input type="date" class="form-control form-control-lg" name="date" id="date" placeholder="Fecha: " required>
+            <label for="date" class="form-label">Fecha:  </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+            <input type="phone" class="form-control form-control-lg" name="phone" id="phone" placeholder="Teléfono: " required>
+            <label for="phone" class="form-label">Teléfono:  </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+            <select class="form-select" id="answered" name="answered" required>
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+            </select>
+            <label for="answered" class="form-label">Contestó:  </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+            <select class="form-select" id="meetsReq" name="meetsReq">
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+            </select>
+            <label for="meetsReq" class="form-label">Cumple con los requisitos:  </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+            <select class="form-select" id="willInterview" name="willInterview">
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+            </select>
+            <label for="willInterview" class="form-label">Asistirá a Entrevista:  </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+            <input type="date" class="form-control form-control-lg" name="interviewDate" id="interviewDate" placeholder="Fecha: " required>
+            <label for="interviewDate" class="form-label">Fecha en que Asistirá:  </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+            <textarea class="form-control" placeholder="Comentarios: " name="comments" id="comments"></textarea>
+            <label for="comments">Comentarios</label>
+        </div>
+        <div class="col-6 pb-2">
+            <button class="btn btn-success">Guardar</button>
+        </div>  
+    </form>
+</div>

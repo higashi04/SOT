@@ -1,0 +1,47 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="my-3 offset-md-2">Registro de Interesados</h1>
+
+<div class="container rutas-table">
+    <div class="row rutas-head">
+        <div class="col">Número</div>
+        <div class="col">Fecha</div>
+        <div class="col">Nombre</div>
+        <div class="col">Teléfono</div>
+        <div class="col">¿Contestó?</div>
+        <div class="col">¿Cumple con los Requisitos?</div>
+        <div class="col">¿Asiste a Entrevista?</div>
+        <div class="col">Fecha de Entrevista</div>
+        <div class="col">Comentarios</div>
+    </div>
+    <% recruits.forEach((item, index) =>{%>
+        <div class="row rutas-row">
+            <div class="col">
+                <%= index + 1 %> 
+            </div>
+            <div class="col">
+                <%= item.date.toLocaleDateString() %> 
+            </div>
+            <div class="col">
+                <%= item.name %> 
+            </div>
+            <div class="col">
+                <%= item.phone %> 
+            </div>
+            <div class="col">
+                <%= item.answered ? 'Sí' : 'No' %> 
+            </div>
+            <div class="col">
+                <%= item.meetsReq ? 'Sí' : 'No' %> 
+            </div>
+            <div class="col">
+                <%= item.willInterview ? 'Sí' : 'No' %> 
+            </div>
+            <div class="col">
+                <%= item.interviewDate.toLocaleDateString()%> 
+            </div>
+            <div class="col">
+                <%= item.comments === '' ? 'N/A' : item.comments %> 
+            </div>
+        </div>
+    <%})%> 
+</div>

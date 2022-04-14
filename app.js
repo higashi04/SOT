@@ -27,6 +27,7 @@ const bajaRoutes = require('./Routes/bajas');
 const altasRoutes = require('./Routes/altas');
 const tallerRoutes = require('./Routes/taller');
 const recepcionRoutes = require('./Routes/recepcion');
+const recruitmentRoutes = require('./Routes/recruit');
 //models//
 const Users = require('./models/users')
 /////////
@@ -124,6 +125,7 @@ app.use('/bajas', bajaRoutes);
 app.use('/altas', altasRoutes);
 app.use('/taller', tallerRoutes);
 app.use('/reception', recepcionRoutes);
+app.use('/reclutamiento', recruitmentRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')
