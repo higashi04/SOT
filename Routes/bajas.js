@@ -82,7 +82,7 @@ router.post('/new', isLoggedIn, catchAsync(async(req, res) =>{
         try{
             const newBaja = new bajasSchema(req.body)
             newBaja.save()
-            newTicket()
+            newTicket(req.user, req.headers.host)
             req.flash('success', 'Registro guardado correctamente.')
             res.redirect('/bajas/new')
         }catch(e) {
