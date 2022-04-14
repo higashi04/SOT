@@ -13,18 +13,25 @@ const driverAudit = require('../models/driverAudit');
 router.get('/', isLoggedIn, (req, res) => {
     res.render('drivers/home')
 });
-router.get('/new', isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, catchAsync(async(req, res) => {
     if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
-        res.render('drivers/new')
+        try{
+            const buses = await Bus.find({})
+            res.render('drivers/new', {buses})
+        }catch(e){
+            req.flash('error', 'Se produjo un error.')
+            res.redirect('/driver')
+        }
     } else {
         req.flash('error', 'No tiene autorización para esto.')
         res.redirect('/driver')
     }
 
-});
+}));
 router.post('/new', isLoggedIn,catchAsync(async(req, res) =>{
     try{
         const chofer = new driver(req.body)
+        chofer.bus = req.body.bus
         await chofer.save()
         req.flash('success', 'Chofer guardado correctamente.')
         res.redirect('/driver/new')

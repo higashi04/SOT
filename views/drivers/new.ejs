@@ -35,10 +35,18 @@
                   <option value="TRANSPORTES VILLARREAL">TRANSPORTES VILLARREAL</option>
                 </select>
             </div>
-                <div class="form-floating col-6 pb-2">
-                  <input type="date" class="form-control form-control-lg" name="alta" id="floatingDate" placeholder="Alta:" required>
-                  <label for="floatingDate" class="form-label">Fecha de Ingreso: </label>
-                </div>    
+            <div class="form-floating col-6 pb-2">
+              <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingUnit" name="bus">
+                  <% for (bus of buses) {%>
+                      <option value="<%=bus._id%>"><%= bus.unidad %></option>
+                  <% } %> 
+              </select>
+              <label for="bus">Asigne una Unidad: </label>
+            </div>
+            <div class="form-floating col-6 pb-2">
+              <input type="date" class="form-control form-control-lg" name="alta" id="floatingDate" placeholder="Alta:" required>
+              <label for="floatingDate" class="form-label">Fecha de Ingreso: </label>
+            </div>    
             <div class="form-check form-switch">
               <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchPreviousHire" name="esReingreso" value="true">
               <label class="form-check-label" for="flexSwitchPreviousHire">¿Es Reingreso?</label>
