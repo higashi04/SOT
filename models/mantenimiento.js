@@ -6,7 +6,6 @@ const MaintSchema = new Schema({
     kms: String,
     startDate: Date,
     promisedDate: Date,
-    realEndDate: Date,
     notificationDate: {
         type: Date,
         default: () => Date.now(),
@@ -24,7 +23,11 @@ const MaintSchema = new Schema({
     workDone: String,
     materials: String,
     completeDateRegister: Date,
-    serial: String
+    serial: String,
+    unit: {
+        type: Schema.Types.ObjectId,
+        ref: 'bus'
+    }
 });
 
 module.exports = mongoose.model('Maint', MaintSchema);

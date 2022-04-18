@@ -74,10 +74,12 @@ router.put('/show/:id/mtto', isLoggedIn, catchAsync(async(req, res)=>{
         try{
             const unit = await Bus.findById(req.params.id)
             const mant = new mtto(req.body)
+            mant.unit = unit._id
             mant.serial = serial()
             await mant.save()
             unit.mantenimiento.push(mant)
-            unit.save()
+            await unit.save()
+            console.log(mant)
             req.flash('success', 'Se registra correctamente el mantenimiento a la unidad.')
             res.redirect(`/buses/show/${unit._id}`);
         }catch(e){

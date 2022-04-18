@@ -82,7 +82,7 @@ router.get('/repairs/show/:id', isLoggedIn, catchAsync(async(req, res) => {
 }))
 
 router.get('/:id', isLoggedIn, catchAsync(async(req, res)=>{
-    await mtto.findById(req.params.id).exec((err, foundMtto) => {
+    await mtto.findById(req.params.id).populate({path: 'unit'}).exec((err, foundMtto) => {
         if (err) {
             req.flash('error', 'Se produjo un error.')
             res.redirect('/')

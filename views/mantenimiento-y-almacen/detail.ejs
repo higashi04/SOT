@@ -1,71 +1,166 @@
 <% layout('layouts/boilerplate') %> 
 
 <div class="container m-3" id="data">
-    <h1 class="m-5">Orden de Trabajo</h1>
-    <div class="row my-2">
-        <div class="col-3">
-            <span class="title">Plan:</span> <%= orden.plan %>
+    <div class="container">
+        <div class="row my-3 text-muted header">
+           <div class="col-4">
+              TV-PRO-009
+           </div>
+           <div class="col-4">
+              EMISION 06-04-22  
+           </div>
+           <div class="col-4">
+              REVISION 06-04-22
+           </div>
         </div>
-        <div class="col-3">
-            <span class="title">Kilometraje:</span> <%= orden.kms %> kms
-        </div>
-        <div class="col-3">
-            <span class="title">Fecha de Inicio: </span><%= orden.startDate.toLocaleDateString() %>
-        </div>
-        <div class="col-3">
-            <span class="title">Fecha Promesa: </span><%= orden.promisedDate.toLocaleDateString() %> 
-        </div>  
-    </div>
-    <div class="row my-2">
-        <div class="col-3">
-            <span class="title">Fecha Real de Termino: </span><%= orden.realEndDate.toLocaleDateString() %> 
-        </div>
-        <div class="col-3">
-            <span class="title">Fecha de Captura: </span><%= orden.notificationDate.toLocaleDateString() %> 
-        </div>
-        <div class="col-3">
-            <span class="title">Planta: </span><%= orden.planta %> 
-        </div>
-        <div class="col-3">
-            <span class="title">Tipo de Trabajo: </span><%= orden.workType %> 
-        </div>
-    </div>
-    <div class="row my-2">
-        <div class="col-3">
-            <span class="title">Supervisor: </span><%= orden.supervisor %> 
-        </div>
-        <div class="col-3">
-            <span class="title">Plan de Trabajo: </span><%= orden.workPlan %> 
-        </div>
-        <div class="col-3">
-            <span class="title">Estado: </span>
-            <% if (orden.status === false) { %>
-               sin completar  
-            <% } else {%>
-                completado
-            <% } %> 
-        </div>
-        <% if (orden.status) {%>
-            <div class="col-3">
-                <span class="title">Fecha que se registra el termino: </span> <%= orden.completeDateRegister.toLocaleDateString() %> 
-            </div> 
-        <% } %> 
-    </div>
-    <div class="container my-5">
         <div class="row">
+            <div class="col-4">
+                <img class="logo-form" src="../../assets/272707556_231916139148938_3564323865832014711_n-removebg-small.png" alt="">
+            </div>
+            <div class="col-4">
+                <h1 class="text-decoration-underline">Transporte Villarreal</h1>
+            </div>
+            <div class="col-4 fs-4">
+                Sistema Integral de Mantenimiento
+            </div>
+        </div>
+        <div class="row my-3">
             <div class="col-6">
-                <span class="title">Trabajo Realizado: </span>
-                <p><%= orden.workDone %></p>
+                <span class="title">Plan:</span> <%= orden.plan %> 
             </div>
             <div class="col-6">
-                <span class="title">Material consumido: </span>
-                <p><%= orden.materials %> </p>
+                <span class="title">MarcaTC: </span> <%= orden.unit.brandTC %> 
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-6">
+                <span class="title">Unidad: </span> <%= orden.unit.unidad %> 
+            </div>
+            <div class="col-6">
+                <span class="title">Modelo: </span> <%= orden.unit.modelTC %> 
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-6">
+                <span class="title">Ubicación: </span> <%= orden.unit.ubicacion %> 
+            </div>
+            <div class="col-6"></div>
+        </div>
+        <div class="row my-3">
+            <div class="col-6">
+                <span class="title">Kilometraje: </span> <%= orden.kms %> 
+            </div>
+            <div class="col-6">
+                <span class="title">Serie:</span> <%= orden.unit.serie %> 
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-6"></div>
+            <div class="col-6">
+                <span class="title">AñoTC: </span> <%= orden.unit.yearTC %> 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="container form-data">
+                    <div class="row">
+                        <div class="col-6">Inicio Programado: </div>
+                        <div class="col-6"> <%= orden.startDate.toLocaleDateString() %>  </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">Fin Programado</div>
+                        <div class="col-6"><%= orden.promisedDate.toLocaleDateString() %> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="container form-data">
+                    <div class="row">
+                        <div class="col-3">Planta</div>
+                        <div class="col-3"><%= orden.planta %> </div>
+                        <div class="col-3">
+                            Tipo de Trabajo
+                        </div>
+                        <div class="col-3">
+                            <%= orden.workType %> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            Plan de Trabajo
+                        </div>
+                        <div class="col-3">
+                            <%= orden.workPlan %> 
+                        </div>
+                        <div class="col-3">
+                            Taller Asignado
+                        </div>
+                        <div class="col-3">
+                            <%= orden.workshop %> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            Supervisor
+                        </div>
+                        <div class="col-6">
+                            <%= orden.supervisor %> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mb-5">
+            <div class="row my-3">
+                <h4 class="rutas-head center">Trabajos Realizados</h4>
+                <hr>
+            </div>
+            <div class="row my-3">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">Descripción</div>
+                        <div class="col-6">Mecánico</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3">Fecha de Inicio</div>
+                        <div class="col-3">Hora</div>
+                        <div class="col-3">Fecha Final</div>
+                        <div class="col-3">Hora</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-6">
+                <hr>
+                Jefe de Taller
+            </div>
+            <div class="col-6">
+                <hr>
+                Operador que Solicita
             </div>
         </div>
     </div>
 </div>
 
-
+<div class="row my-2">
+    <div class="col-3">
+        <span class="title">Estado: </span>
+        <% if (orden.status === false) { %>
+           sin completar  
+        <% } else {%>
+            completado
+        <% } %> 
+    </div>
+    <% if (orden.status) {%>
+        <div class="col-3">
+            <span class="title">Fecha que se registra el termino: </span> <%= orden.completeDateRegister.toLocaleDateString() %> 
+        </div> 
+    <% } %> 
+</div>
 <% if (!orden.status && (currentUser.puesto === 'Ejecutivo de Mantenimiento y Almacen' || currentUser.isAdmin)) {%>
 <div class="container m-3">
     <form action="/mtto/<%=orden._id%>?_method=PUT" method="post">
@@ -84,8 +179,8 @@
 </div>
 <span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
 <span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
-<span hidden id="currentOrder"><%= orden._id %></span>
+<span hidden id="currentOrder"><%= orden.serial %></span>
 <script src="../../JavaScript/jspdf.min.js"></script>
 <script src="../../JavaScript/html2pdf.bundle.min.js"></script>
-<script src="../../JavaScript/purchaseOderPdf.js"></script>
+<script src="../../JavaScript/mttoPDF.js"></script>
 
