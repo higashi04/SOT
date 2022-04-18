@@ -1,6 +1,7 @@
 <% layout('layouts/boilerplate') %> 
-<h1 class="m-3">Modificar Chofer</h1>
-
+<% const companyArr = ['OES', 'MEDLINE', 'BPI', 'AISTERMI', 'TRANSPORTES VILLARREAL'] %> 
+<% const coordinatorArr = ['Elizardo Brewster Rubio', 'Jose Antonio Hernandez Garcia', 'David Benavides Chavez', 'Jesus Nava', 'Jessica Alaniz'] %> 
+<h1 class="m-3">Modificar Chofer</h1> 
 <div class="mb-3 container">
     <div class="row">
         <div class="col-md-12 offset-md-2 my-3">
@@ -16,29 +17,29 @@
             </div>
             <div class="form-floating col-6 pb-2">
                 <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingCoordinator" name="coordinator">
-                    <option value='Elizardo Brewster Rubio'>Elizardo Brewster Rubio</option>
-                    <option value="Jose Antonio Hernandez Garcia">Jose Antonio Hernandez Garcia</option>
-                    <option value="David Benavides Chavez">David Benavides Chavez</option>
-                    <option value="Jesus Nava">Jesus Nava</option>
-                    <option value="Jessica Alaniz">Jessica Alaniz</option>
+                    <option value='Elizardo Brewster Rubio' <%= chofer.coordinator === coordinatorArr[0] ? 'selected' : '' %>>Elizardo Brewster Rubio</option>
+                    <option value="Jose Antonio Hernandez Garcia" <%= chofer.coordinator === coordinatorArr[1] ? 'selected' : '' %>>Jose Antonio Hernandez Garcia</option>
+                    <option value="David Benavides Chavez" <%= chofer.coordinator === coordinatorArr[2] ? 'selected' : '' %>>David Benavides Chavez</option>
+                    <option value="Jesus Nava" <%= chofer.coordinator === coordinatorArr[3] ? 'selected' : '' %>>Jesus Nava</option>
+                    <option value="Jessica Alaniz" <%= chofer.coordinator === coordinatorArr[4] ? 'selected' : '' %>>Jessica Alaniz</option>
                 </select>
                 <label for="coordinator">Coordinador:</label>
             </div>
             <div class="form-floating col-6 pb-2">
                 <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingCompany" name="company">
-                  <option value='OES'>OES</option>
-                  <option value="MEDLINE">MEDLINE</option>
-                  <option value="BPI">BPI</option>
-                  <option value="AISTERMI">AISTERMI</option>
-                  <option value="TRANSPORTES VILLARREAL">TRANSPORTES VILLARREAL</option>
+                  <option value='OES' <%= chofer.company === companyArr[0] ? 'selected' : '' %> >OES</option>
+                  <option value="MEDLINE" <%= chofer.company === companyArr[1] ? 'selected' : '' %>>MEDLINE</option>
+                  <option value="BPI" <%= chofer.company === companyArr[2] ? 'selected' : '' %>>BPI</option>
+                  <option value="AISTERMI" <%= chofer.company === companyArr[3] ? 'selected' : '' %>>AISTERMI</option>
+                  <option value="TRANSPORTES VILLARREAL" <%= chofer.company === companyArr[4] ? 'selected' : '' %>>TRANSPORTES VILLARREAL</option>
                 </select>
                 <label for="company">Empresa: </label>
             </div>
             <div class="form-floating col-6 pb-2">
                 <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingUnit" name="bus">
-                    <% for (bus of buses) {%>
-                        <option value="<%=bus._id%>"><%= bus.unidad %></option>
-                    <% } %> 
+                    <% buses.forEach((item, index) => {%> 
+                        <option value="<%= item._id %>" <%= item.unidad === chofer.bus.unidad ? 'selected' : '' %> > <%= item.unidad %> </option>
+                    <%}) %> 
                 </select>
                 <label for="bus">Asigne una Unidad: </label>
             </div>

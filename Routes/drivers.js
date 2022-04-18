@@ -84,7 +84,7 @@ router.put('/edit/:id', isLoggedIn, catchAsync(async(req, res) =>{
             const {id} = req.params
             const editedDriver = await driver.findByIdAndUpdate(id, req.body)
             await editedDriver.save()
-            req.flash('success', 'Se asigna unidad con éxito')
+            req.flash('success', 'Se guardan los cambios correctamente.')
             res.redirect(`/driver/show/${id}`)
         } catch(e) {
             req.flash('error', 'Se produjo un error')
