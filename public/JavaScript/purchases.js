@@ -4,8 +4,12 @@ const qty = document.querySelector('.qty');
 const np = document.querySelector('.np')
 const importe = document.querySelector('.importe');
 const addToForm = document.querySelector('.addToForm');
-// const importeSum = [];
-// const pzs = [];
+const removeBtn = document.getElementById('remove');
+
+const formIDs = []
+const qtyIDs = []
+const npIDs = []
+const importeIDs = []
 
 function addItem() {
     const newDiv = document.createElement('div')
@@ -13,7 +17,7 @@ function addItem() {
     const newLabel = document.createElement('label')
     const id = Math.floor(Math.random() * 100) + 1
     newLine.type = 'text'
-    newLine.id = id
+    newDiv.id = id
     newDiv.setAttribute('class', 'form-floating pb-2');
     newDiv.appendChild(newLine)
     newDiv.appendChild(newLabel)
@@ -23,6 +27,7 @@ function addItem() {
     newLabel.innerText = 'Descripción'
     newLabel.htmlFor = 'objeto'
     newLabel.id = id
+    formIDs.push(id)
     form.appendChild(newDiv)
 }
 function addQty() {
@@ -36,15 +41,13 @@ function addQty() {
     newDiv.appendChild(newLabel)
     newLine.className= 'form-control form-control-lg'
     newLine.placeholder= 'Cantidad'
-    newLine.id= id
+    newDiv.id= id
     newLine.name = 'cantidad'
     newLabel.innerText = 'Cantidad'
     newLabel.id = id
     newLabel.htmlFor = 'cantidad'
+    qtyIDs.push(id)
     qty.appendChild(newDiv)
-    newLine.addEventListener('change', ()=>{ 
-        pzs.push(parseInt(newLine.value))
-    }, { once: true }) 
 }
 
 function addPartNumber() {
@@ -58,11 +61,12 @@ function addPartNumber() {
     newDiv.appendChild(newLabel)
     newLine.className= 'form-control form-control-lg'
     newLine.placeholder= 'Número de parte'
-    newLine.id= id
+    newDiv.id= id
     newLine.name = 'partNumber'
     newLabel.innerText = 'Número de parte'
     newLabel.id = id
     newLabel.htmlFor = 'partNumber'
+    npIDs.push(id)
     np.appendChild(newDiv) 
 }
 
@@ -72,7 +76,7 @@ function addImporte() {
     const newLabel = document.createElement('label')
     const id = Math.floor(Math.random() * 100) + 1
     newLineImp.type= 'number'
-    newLineImp.id = id
+    newDiv.id = id
     newDiv.setAttribute('class', 'form-floating pb-2');
     newDiv.appendChild(newLineImp)
     newDiv.appendChild(newLabel)
@@ -82,10 +86,8 @@ function addImporte() {
     newLabel.innerText = 'Importe'
     newLabel.id = id
     newLabel.htmlFor = 'importe'
+    importeIDs.push(id)
     importe.appendChild(newDiv)
-    newLineImp.addEventListener('change', ()=>{
-        importeSum.push(parseInt(newLineImp.value))
-    }, { once: true })
 }
 
 addToForm.addEventListener('click', ()=>{
@@ -94,13 +96,27 @@ addToForm.addEventListener('click', ()=>{
     addQty();
     addImporte();
 })
-// btn.addEventListener('click', ()=>{
-//     const totals = []
-//     for (i=0;i < pzs.length; i++){
-//         totals.push(pzs[i] * importeSum[i])
-//     }
-//     const totalOne = totals.reduce(function (a, b) {
-//         const preIva = a + b 
-//         return preIva }, 0)
-//     total.innerHTML = (totalOne * 1.16).toFixed(2)
-// })
+
+const removeItems = () => {
+   const formToRemove = document.getElementById(formIDs[formIDs.length - 1])
+   const qtyToRemove = document.getElementById(qtyIDs[qtyIDs.length - 1])
+   const npToRemove = document.getElementById(npIDs[npIDs.length - 1])
+   const importeToRemove = document.getElementById(importeIDs[importeIDs.length - 1])
+   if(formIDs[0] !== undefined) {
+       form.removeChild(formToRemove)
+       formIDs.pop()
+       qty.removeChild(qtyToRemove)
+       qtyIDs.pop()
+       np.removeChild(npToRemove)
+       npIDs.pop()
+       importe.removeChild(importeToRemove)
+       importeIDs.pop() 
+    } else {
+        alert('No hay filas para eliminar.')
+    }
+}
+
+
+removeBtn.addEventListener('click', ()=> {
+    removeItems()
+})
