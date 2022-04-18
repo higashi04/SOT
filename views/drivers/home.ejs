@@ -16,5 +16,13 @@
         <% } %> 
         <a class="btn btn-primary col-3 m-3" href="/driverAttendance">Asistencia de Choferes</a>
         <a class="btn btn-primary col-3 m-3" href="/trips">Recorridos Diarios</a>
+        <% if (currentUser.isAdmin || currentUser.puesto === 'Supervisor de Coordinadores') {%> 
+            <div class="col-6">
+                <a class="btn btn-primary m-3 fontIncrease" href="/buses/audit">Nuevo Checklist de Unidad</a>
+            </div>
+            <% } %>
+            <div class="col-6">
+                <a class="btn btn-primary m-3 fontIncrease" href="/buses/audit/show">Consulta Checklists de Unidad</a>
+            </div> 
     </div>
 </div>
