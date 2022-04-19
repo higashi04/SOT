@@ -19,6 +19,17 @@
         <input type="number" class="form-control form-control-lg" name="cantidad" id="floatingNum" placeholder="Cantidad: " required>
         <label for="floatingNum" class="form-label">Cantidad: </label>
       </div>
+      <div class="form-floating col-6 pb-2">
+        <input type="number" class="form-control form-control-lg" name="price" id="floatingPrice" placeholder="Precio:  " required>
+        <label for="floatingPrice" class="form-label">Precio:  </label>
+      </div>
+      <div class="form-floating col-6 pb-2">
+        <select class="form-select" id="floatingSelect" name="type">
+          <option value="Refacción">Refacción</option>
+          <option value="Herramienta">Herramienta</option>
+        </select>
+        <label for="floatingSelect">Tipo de Activo</label>
+      </div>
       <button class="btn btn-success m-3">Mandar</button>
     </form>
   </div>

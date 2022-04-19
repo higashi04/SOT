@@ -11,6 +11,7 @@
                 <%}%>
         </h2>
         <h3> Estante: <%= item.estante %>  </h3>
+        <h3> Tipo de Activo: <%= item.type %>  </h3>
     </div>
     <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
     <div class="container row">

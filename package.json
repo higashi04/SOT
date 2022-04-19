@@ -11,7 +11,7 @@
   "author": "Cesar Higashi",
   "license": "ISC",
   "dependencies": {
-    "async": "^3.2.3",
+    "async": ">=2.6.4",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.6.0",
     "dotenv": "^16.0.0",

@@ -28,7 +28,9 @@ module.exports.InvSchema = joi.object({
         nombre: joi.string().required().escapeHTML(),
         partNumber: joi.string().required().escapeHTML(),
         cantidad: joi.number().required().min(0),
-        estante: joi.string().required().escapeHTML()
+        estante: joi.string().required().escapeHTML(),
+        price: joi.number().required().min(0),
+        type: joi.string().required()
 });
 
 // module.exports.CompraSchema = joi.object({

@@ -23,6 +23,11 @@ const InvSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    price: Number,
+    type: {
+        type: String,
+        enum: ['Refacción', 'Herramienta']
+    },
     increments: [
         {
             qty: Number,

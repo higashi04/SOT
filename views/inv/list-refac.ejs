@@ -1,4 +1,6 @@
-<% layout('layouts/boilerplate') %> 
+<% layout('layouts/boilerplate') %>
+<% const qty = [] %>
+<% const cash = [] %>  
 <h1 class="offset-md-4 my-3 data"> Listado </h1> 
 <div class="container rutas-table m-3 dataTwo">
     <div class="row rutas-head">
@@ -14,8 +16,13 @@
         <div class="col">
             Cantidad
         </div>
+        <div class="col">
+            Precio
+        </div>
     </div>
     <% inv.forEach((element, index) =>{%>
+        <% qty.push(element.cantidad) %>
+        <% cash.push(element.price) %>  
         <div class="row rutas-row">
             <div class="col">
                 <%= element.nombre %>
@@ -29,8 +36,21 @@
             <div class="col">
                 <%= element.cantidad %> 
             </div>
+            <div class="col">
+                $<%= (element.price).toFixed(2) %> 
+            </div>
         </div>
-    <%})%> 
+    <%})%>
+    <div class="row rutas-row">
+        <div class="col-6">
+            Total en dinero:
+        </div>
+        <div class="col-6">
+            <% const qtyTotal = qty.reduce((a,b) => { return a + b}, 0) %>
+            <% const cashTotal = cash.reduce((a,b) => { return a + b}, 0 ) %>  
+            $<%= (cashTotal * qtyTotal).toFixed(2) %> 
+        </div>
+    </div> 
 </div>
 <div class="container">
     <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>

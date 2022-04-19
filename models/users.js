@@ -37,5 +37,11 @@ const UserSchema = new Schema({
     resetPasswordExpires: Date
 });
 
+UserSchema.virtual('fullname').get(function(){
+    const fullname = `${this.firstName} ${this.lastName}`
+    return fullname
+})
+
+
 UserSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('User', UserSchema);

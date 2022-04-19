@@ -5,6 +5,8 @@ const catchAsync = require('../AsyncErrors');
 const {validaInv} = require('../middleware/validate');
 /////models/////
 const Inv = require('../models/inventory');
+const incrementsSchema = require('../models/increments');
+const decrementsSchema = require('../models/decrements');
 
 
 router.get('/', isLoggedIn, (req, res) =>{
@@ -84,6 +86,12 @@ router.put('/show/:id', isLoggedIn, catchAsync(async(req, res)=>{
                 item.cantidad = parseInt(req.body.cantidad) + item.cantidad
                 const updateData = {author: req.user, qty: qty}
                 item.increments.push(updateData)
+                const newIncrease = new incrementsSchema()
+                newIncrease.item = item._id
+                newIncrease.author = req.user.fullname
+                newIncrease.qty = parseInt(req.body.cantidad)
+                newIncrease.date = Date.now()
+                await newIncrease.save()
                 await item.save()
                 res.redirect(`/inv/show/${item._id}`)
             } else {
@@ -110,8 +118,14 @@ router.put('/show/:id/remove', isLoggedIn, catchAsync(async(req, res)=>{
                 const updateData = {author: req.user, qty: qty}
                 item.decrements.push(updateData)
                 if(item.cantidad >= 0) {  
-                await item.save()
-                res.redirect(`/inv/show/${item._id}`)
+                    const newDecrease = new decrementsSchema()
+                    newDecrease.qty = parseInt(req.body.cantidad)
+                    newDecrease.author = req.user.fullname
+                    newDecrease.item = item._id
+                    newDecrease.date = Date.now()
+                    await newDecrease.save()
+                    await item.save()
+                    res.redirect(`/inv/show/${item._id}`)
                 } else {
                     req.flash('error', 'Revise la cantidad')
                     res.redirect('/inv/show')
@@ -130,10 +144,44 @@ router.put('/show/:id/remove', isLoggedIn, catchAsync(async(req, res)=>{
     }
 }));
 
-router.get('/list', isLoggedIn, catchAsync(async(req, res) => {
-    const inv = await Inv.find({}).exec()
-    res.render('inv/list', {inv})
+router.get('/refacciones', isLoggedIn, catchAsync(async(req, res) => {
+    try {
+        const inv = await Inv.find({type: 'Refacción'}).exec()
+        res.render('inv/list-refac', {inv})
+    } catch(e) {
+        req.flash('error', 'Se produjo un error.')
+        res.redirect('/inv')
+    }
 }))
 
+router.get('/herramientas', isLoggedIn, catchAsync(async(req, res) => {
+    try{
+        const inv = await Inv.find({type: 'Herramienta'}).exec()
+        res.render('inv/list-refac', {inv})
+    } catch(e) {
+        req.flash('error', 'Se produjo un error.')
+        res.redirect('/inv')
+    }
+}))
+
+router.get('/entradas', isLoggedIn, catchAsync(async(req, res) => {
+    try {
+        const entries = await incrementsSchema.find({}).populate({path: 'item'}).exec()
+        res.render('inv/list-entry', {entries})
+    } catch(e) {
+        req.flash('error', 'Se produjo un error.')
+        res.redirect('/inv')
+    }
+}))
+
+router.get('/salidas', isLoggedIn, catchAsync(async(req, res) => {
+    try {
+        const exits = await decrementsSchema.find({}).populate({path: 'item'}).exec()
+        res.render('inv/list-exit', {exits})
+    } catch(e) {
+        req.flash('error', 'Se produjo un error.')
+        res.redirect('/inv')
+    }
+}))
 module.exports = router;
 
