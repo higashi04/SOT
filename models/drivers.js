@@ -46,8 +46,6 @@ const DriverSchema = new Schema({
             'Rodolfo Coronado'
         ]
     },
-    alta: Date,
-    baja: Date,
     license: {
         type: Schema.Types.ObjectId,
         ref: 'license'

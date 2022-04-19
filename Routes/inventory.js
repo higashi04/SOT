@@ -35,7 +35,7 @@ router.get('/newItem', isLoggedIn, (req, res)=>{
    }
 })
 router.post('/newItem', isLoggedIn, validaInv,catchAsync(async(req, res)=>{
-    if(req.user.puesto === 'Ejecutivo de Almacen y Diesel') {
+    if(req.user.puesto === 'Ejecutivo de Almacen y Diesel' || req.user.isAdmin) {
         try{
             const inv = new Inv(req.body)
             const qty = req.body.cantidad
