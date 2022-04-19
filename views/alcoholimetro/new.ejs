@@ -1,0 +1,20 @@
+<% layout('layouts/boilerplate') %> 
+
+
+<div class="container">
+    <form action="/alcoholimetro/new" method="post">
+        <div class="row">
+            <div id="date"></div>
+            <div id="driver"></div>
+            <div id="agree"></div>
+            <div id="result"></div>
+            <div id="comments"></div>
+            <div id="performed"></div>
+        </div>
+    </form>
+</div>
+
+
+<% for (driver of drivers) {%>
+    <%= driver.company %> 
+<% } %>  

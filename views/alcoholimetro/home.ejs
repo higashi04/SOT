@@ -1,0 +1,24 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3"> Pruebas de Alcoholimetro </h1>
+
+<div class="container m-5">
+    <div class="row">
+        <% if(currentUser.isAdmin || currentUser.puesto === 'Supervisor de Coordinadores') {%>
+            <div class="col">
+                <a class="btn btn-primary" href="/alcoholimetro/medline">Choferes de Medline</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" href="/alcoholimetro/OES">Choferes de OES</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" href="/alcoholimetro/aistermi">Choferes de AISTERMI</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" href="/alcoholimetro/bpi">Choferes de BPI</a>
+            </div>
+            <div class="col">
+                <a class="btn btn-primary" href="/alcoholimetro/tvillarreal">Choferes de Transportes Villarreal</a>
+            </div>
+        <% } %>  
+    </div>
+</div>
