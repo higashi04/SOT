@@ -32,7 +32,7 @@
         </div>
         <div class="ms-auto navbar-nav">
           <% if(!currentUser) {%> 
-          <a href="/login" class="btn btn-success">Iniciar Sesión</a>
+          
           <% } else { %> 
             <span class="user mx-3"><a href="/users/<%=currentUser._id%>" class="nav-link"> <%=currentUser.username%> está en sesión</a></span>
           <a href="/logout" class="btn btn-danger">Terminar Sesión</a>

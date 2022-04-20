@@ -1,0 +1,63 @@
+<% layout('layouts/boilerplate')%>
+<h1 class="offset-md-5 my-3">Nuevo Registro</h1>
+
+<form action="/diesel/new" method="post">
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-6 form-floating my-2">
+                <input type="text" name="vale" class="form-control" placeholder="Vale: ">
+                <label for="vale">Vale: </label>
+            </div>
+            <div class="col-6 form-floating my-2">
+                <input type="date" name="date" class="form-control">
+                <label for="date">Fecha</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-floating my-2">
+                <input type="text" name="tipo" class="form-control" placeholder="Tipo:">
+                <label for="tipo">Tipo: </label>
+            </div>
+            <div class="col-6 form-floating my-2">
+                <input type="number" class="form-control" name="lts" placeholder="Litros: ">
+                <label for="lts">Litros: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-floating my-2">
+                <input type="number" class="form-control" name="costo" placeholder="Costo: ">
+                <label for="costo">Costo: </label>
+            </div>
+            <div class="col-6 form-floating my-2">
+                <select name="unidad" class="form-select">
+                    <% for(bus of buses) {%>
+                        <option value="<%= bus.unidad %>"><%= bus.unidad %></option>
+                    <% } %>
+                </select>
+                <label for="unidad">Unidad</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-floating my-2">
+                <input type="text" class="form-control" name="chofer" placeholder="Operador: ">
+                <label for="chofer">Operador: </label>
+            </div>
+            <div class="col-6 form-floating my-2">
+                <input type="number" class="form-control" name="kms" placeholder="Kilometros: ">
+                <label for="kms">Kilometros: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-floating my-2">
+                <input type="text" class="form-control" name="autoriza" placeholder="Autorizó: ">
+                <label for="autoriza">Autorizó: </label>
+            </div>
+            <div class="col-6 form-floating my-2">
+                <button class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+        <div class="col-6 form-floating my-2"></div>
+    </div>
+</form>
+
+ 

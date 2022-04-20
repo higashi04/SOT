@@ -29,6 +29,7 @@ const tallerRoutes = require('./Routes/taller');
 const recepcionRoutes = require('./Routes/recepcion');
 const recruitmentRoutes = require('./Routes/recruit');
 const alcoholimetroRoutes = require('./Routes/alcoholimetro');
+const dielselRoutes = require('./Routes/diesel');
 //models//
 const Users = require('./models/users')
 /////////
@@ -85,7 +86,7 @@ passport.serializeUser(Users.serializeUser()); //store user in session
 passport.deserializeUser(Users.deserializeUser());//remove user from session
 
 app.use((req, res, next) =>{
-    if(!['/login','/logout','/register', '/'].includes(req.originalUrl)) {
+    if(!['/logout','/register', '/'].includes(req.originalUrl)) {
         req.session.returnTo = req.originalUrl
     }
     res.locals.currentUser = req.user;
@@ -128,6 +129,7 @@ app.use('/taller', tallerRoutes);
 app.use('/reception', recepcionRoutes);
 app.use('/reclutamiento', recruitmentRoutes);
 app.use('/alcoholimetro', alcoholimetroRoutes);
+app.use('/diesel', dielselRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')
