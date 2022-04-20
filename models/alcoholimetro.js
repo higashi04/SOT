@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 const alcoholimetroSchema = new Schema({
     date: [Date],
     driver:[ {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'driver',
         required: true
     }],
     agree: [{
@@ -17,6 +18,7 @@ const alcoholimetroSchema = new Schema({
     }],
     comments: [String],
     performedBy: [String],
+    company: String,
     serial: String
 })
 

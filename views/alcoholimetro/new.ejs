@@ -1,20 +1,41 @@
 <% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-2 my-3">Registro de Pruebas de <%= drivers[0].company %> </h1>
 
-
-<div class="container">
-    <form action="/alcoholimetro/new" method="post">
+<div class="container m-5">
+    <form action="/alcoholimetro/<%= drivers[0].company === 'TRANSPORTES VILLARREAL' ? 'tvillarreal' : drivers[0].company %>/new" method="post">
         <div class="row">
-            <div id="date"></div>
-            <div id="driver"></div>
-            <div id="agree"></div>
-            <div id="result"></div>
-            <div id="comments"></div>
-            <div id="performed"></div>
+            <div class="col" id="date"></div>
+            <div class="col" id="driver"></div>
+            <div class="col" id="agree"></div>
+            <div class="col" id="result"></div>
+            <div class="col" id="comments"></div>
+            <div class="col" id="performed"></div>
         </div>
+        <button class="btn btn-success">Guardar</button>
     </form>
 </div>
 
-
-<% for (driver of drivers) {%>
-    <%= driver.company %> 
-<% } %>  
+<div class="container m-5">
+  <div class="row">
+    <div class="col-6">
+      <button class="btn btn-success mb-3" id="addToForm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg> 
+        Agregar filas
+      </button>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-danger mb-3" id="removeBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+          </svg> 
+        Eliminar filas
+      </button>
+    </div>
+  </div>
+</div>
+<span hidden id="company"> <%= drivers[0].company %> </span>  
+<script src="../../../JavaScript/alcoholimetro.js"></script>
