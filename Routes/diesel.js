@@ -33,6 +33,7 @@ router.post('/new', isLoggedIn, catchAsync(async(req, res) => {
             res.redirect('/diesel')
         } catch(e) {
             req.flash('error', 'Se produjo un error.')
+            console.log(e)
             res.redirect('/diesel')
         }
     } else {
@@ -40,4 +41,15 @@ router.post('/new', isLoggedIn, catchAsync(async(req, res) => {
         res.redirect('/diesel')
     }
 }))
+
+router.get('/show', isLoggedIn, catchAsync(async(req, res) => {
+    const lists = await dieselSchema.find({}).exec()
+    res.render('diesel/show', {lists})
+}))
+
+router.post('/getDate', isLoggedIn, catchAsync(async(req, res) => {
+    let payload = req.body.payload.trim()
+    let search = await dieselSchema.find({date: {$regex: new RegExp('^'+payload+'.*', 'i')}}).exec();
+    res.send({payload: search})
+}));
 module.exports = router

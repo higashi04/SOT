@@ -106,6 +106,7 @@ const addResult = () =>{
     yesOpt.innerText = 'Positivo'
     noOpt.value = 'Negativo'
     noOpt.innerText = 'Negativo'
+    noOpt.setAttribute('selected', 'true')
     label.htmlFor = 'result'
     label.innerText = 'Resultado'
     resultIDS.push(id)
