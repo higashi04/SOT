@@ -86,7 +86,7 @@ passport.serializeUser(Users.serializeUser()); //store user in session
 passport.deserializeUser(Users.deserializeUser());//remove user from session
 
 app.use((req, res, next) =>{
-    if(!['/logout','/register', '/'].includes(req.originalUrl)) {
+    if(!['/login','/logout','/register', '/'].includes(req.originalUrl)) {
         req.session.returnTo = req.originalUrl
     }
     res.locals.currentUser = req.user;
