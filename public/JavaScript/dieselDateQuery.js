@@ -83,6 +83,17 @@ const searchResults = () => {
       })
        totalsSpent()
        totalConsumed()
+       const average = document.createElement('div')
+       const colOne = document.createElement('div')
+       average.className = 'row rutas-row'
+       colOne.className = 'col-6'
+       colOne.innerText = `Promedio Gasto por Unidad:  $${(parseInt(cashTotal.reduce((a,b) => {return a + b },0)) / parseInt(payload.length)).toFixed(2)}`
+       average.appendChild(colOne)
+       const colTwo = document.createElement('div')
+       colTwo.className = 'col-6'
+       colTwo.innerText = `Promedio de Litros Consumidos por Unidad: ${(parseInt(ltsTotal.reduce((a,b) => {return a + b },0)) / parseInt(payload.length)).toFixed(2)}`
+       average.appendChild(colTwo)
+       totales.appendChild(average)
     })
     }
 }
@@ -96,6 +107,7 @@ const totalsSpent = () => {
     div.innerText = `Gasto Total:  $ ${totalCash.toFixed(2)}`
     totalCashRow.appendChild(div)
     totales.appendChild(totalCashRow)
+    return totalCash
 }
 
 const totalConsumed = () => {
@@ -107,7 +119,7 @@ const totalConsumed = () => {
     div.innerText = `Litros Consumidos: ${totalLts}`
     totalLtsRow.appendChild(div)
     totales.appendChild(totalLtsRow)
-
+    return totalLts
 }
 
 searchBtn.addEventListener('click', (e) => {
