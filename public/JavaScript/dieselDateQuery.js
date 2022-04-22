@@ -73,7 +73,7 @@ const searchResults = () => {
         row.appendChild(kms)
         const rendimiento = document.createElement('div')
         rendimiento.className = 'col'
-        rendimiento.innerText = 'pendiente'
+        rendimiento.innerText = (parseInt(item.kms) / parseInt(item.lts)).toFixed(2)
         row.appendChild(rendimiento)
         const autoriza = document.createElement('div')
         autoriza.className = 'col'
