@@ -5,6 +5,7 @@ const totales = document.getElementById('totales')
 
 const cashTotal = []
 const ltsTotal = []
+const rendAve = []
 
 const searchResults = () => {
     let match = searchBar.value.match(/^[a-zA-Z0-9_.-]*$/);
@@ -25,6 +26,7 @@ const searchResults = () => {
       totales.innerHTML = ''
       cashTotal.splice(0, cashTotal.length)
       ltsTotal.splice(0, ltsTotal.length)
+      rendAve.splice(0,rendAve.length)
       if(payload.length < 1) {
         searchResults.innerHTML = '<p>No hubo resultados</p>'
         return
@@ -73,7 +75,9 @@ const searchResults = () => {
         row.appendChild(kms)
         const rendimiento = document.createElement('div')
         rendimiento.className = 'col'
-        rendimiento.innerText = (parseInt(item.kms) / parseInt(item.lts)).toFixed(2)
+        const rend = (parseInt(item.kms) / parseInt(item.lts)).toFixed(2)
+        rendimiento.innerText = rend + ' kms/lt'
+        rendAve.push(rend)
         row.appendChild(rendimiento)
         const autoriza = document.createElement('div')
         autoriza.className = 'col'
@@ -86,13 +90,17 @@ const searchResults = () => {
        const average = document.createElement('div')
        const colOne = document.createElement('div')
        average.className = 'row rutas-row'
-       colOne.className = 'col-6'
+       colOne.className = 'col-4'
        colOne.innerText = `Promedio Gasto por Unidad:  $${(parseInt(cashTotal.reduce((a,b) => {return a + b },0)) / parseInt(payload.length)).toFixed(2)}`
        average.appendChild(colOne)
        const colTwo = document.createElement('div')
-       colTwo.className = 'col-6'
+       colTwo.className = 'col-4'
        colTwo.innerText = `Promedio de Litros Consumidos por Unidad: ${(parseInt(ltsTotal.reduce((a,b) => {return a + b },0)) / parseInt(payload.length)).toFixed(2)}`
        average.appendChild(colTwo)
+       const colThree = document.createElement('div')
+       colThree.className = 'col-4'
+       colThree.innerText = `Rendimiento Promedio: ${parseInt(rendAve.reduce((a,b) => { return a + b})) / parseInt(payload.length) } kms/lt`
+       average.appendChild(colThree)
        totales.appendChild(average)
     })
     }
