@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const Schema = mongoose.Schema;
 
 const CompraSchema = new Schema({
@@ -29,5 +30,5 @@ const CompraSchema = new Schema({
         immutable: true
     }
 })
-
+CompraSchema.plugin(AutoIncrement, {inc_field: 'serialNum'})
 module.exports = mongoose.model('Compra', CompraSchema);

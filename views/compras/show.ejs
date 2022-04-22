@@ -7,7 +7,7 @@
             <% for (purchase of compra) {%>
                 <div class="col-6 order my-2">
                     <a class="btn btn-dark" href="/compras/show/<%=purchase._id%>">
-                        <%= purchase.serial %>
+                        <%= purchase.serial !== undefined ? purchase.serial : `Compra_${purchase.serialNum}` %>
                     </a> 
                         por <%= purchase.author.firstName %> <%= purchase.author.lastName %> con fecha de <%= purchase.date.toLocaleDateString() %> 
                 </div>

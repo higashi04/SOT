@@ -5,7 +5,6 @@ const catchAsync = require('../AsyncErrors');
 
 const driversSchema = require('../models/drivers');
 const alcoholimetroSchema = require('../models/alcoholimetro');
-const e = require('connect-flash');
 
 const serialMaker = () => {
     let prefix = ''

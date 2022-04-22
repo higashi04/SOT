@@ -1,5 +1,5 @@
-const { string } = require('joi');
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const Schema = mongoose.Schema;
 
 const RefacSchema = new Schema({
@@ -34,7 +34,7 @@ const RefacSchema = new Schema({
         type: String,
         required: true
     },
-    comments: String,
+    comments: String
 })
-
+RefacSchema.plugin(AutoIncrement, {inc_field: 'serial'})
 module.exports = mongoose.model('Refacc', RefacSchema);
