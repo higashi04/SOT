@@ -8,7 +8,7 @@
                     <% if(ticket.isSolved !== true) {%>
                         <a class="btn <%= ticket.severity === 'bajo' ? 'btn-info' : ticket.severity === 'medio' ? 'btn-warning' : 'btn-danger' %>" 
                             href="/tickets/show/<%=ticket._id%>">
-                            <%= ticket.serial %> 
+                            <%= ticket.serial === undefined ? `ticket_${ticket.serie1}` : ticket.serial %> 
                         </a>
                     <% } %> 
                 </div>
@@ -18,14 +18,17 @@
 <div class="container my-5">
     <h3 class="offset-md-4">Tickets Cerrados</h3>
     <div class="row m-3">
+    <% if(currentUser.isAdmin) {%>
+        <% const reversed = tickets.reverse() %> 
+    <% } %>
     <% for (ticket of tickets) {%>
-            <div class="col-3 my-3">
-                <% if(ticket.isSolved === true) {%>
-                    <a class="btn btn-dark" 
-                        href="/tickets/show/<%=ticket._id%>">
-                        <%= ticket.serial %> 
-                    </a>
-                <% } %> 
-            </div>
+        <div class="col-3 my-3">
+            <% if(ticket.isSolved === true) {%>
+                <a class="btn btn-dark" 
+                    href="/tickets/show/<%=ticket._id%>">
+                    <%= ticket.serial === undefined ? `ticket_${ticket.serie1}` : ticket.serial %> 
+                </a>
+            <% } %> 
+        </div>
     <% } %>  
 </div>

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const Schema = mongoose.Schema
 
 const driverAuditSchema = new Schema({
@@ -8,7 +9,7 @@ const driverAuditSchema = new Schema({
         required: true
     },
     date: {
-        type: Date,
+        type: String,
         required: true
     },
     unit: {
@@ -91,4 +92,5 @@ const driverAuditSchema = new Schema({
     comments: String
 })
 
+driverAuditSchema.plugin(AutoIncrement, {inc_field: 'serie'})
 module.exports = mongoose.model('audit', driverAuditSchema)

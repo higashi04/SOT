@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const Schema = mongoose.Schema;
 
 const ticketSchema = new Schema({
@@ -31,5 +32,5 @@ const ticketSchema = new Schema({
     },
     serial: String
 })
-
+ticketSchema.plugin(AutoIncrement, {inc_field: 'serie1'})
 module.exports = mongoose.model('ticket', ticketSchema)

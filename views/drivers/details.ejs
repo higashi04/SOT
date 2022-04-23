@@ -146,7 +146,7 @@
         <div class="row">
             <% for(audit of chofer.audits) {%>
                 <div class="col-4 my-3">
-                    <a class="btn btn-dark" href="/driver/audit/<%=audit._id%>"><%= audit.date.toLocaleDateString() %> </a>
+                    <a class="btn btn-dark" href="/driver/audit/<%=audit._id%>">Auditoria_<%= audit.serie %> </a>
                 </div>
             <% } %>  
         </div>

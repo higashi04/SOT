@@ -6,29 +6,6 @@ const catchAsync = require('../AsyncErrors');
 const ticketSchema = require('../models/ticketSchema');
 const User = require('../models/users');
 
-const serialMaker = () => {
-    let prefix = ''
-    var seq = 0
-    return {
-        set_prefix: p =>{
-            prefix = String(p)
-        },
-        set_seq: s =>{
-            seq = s + Math.floor(Math.random() * 999)
-        },
-        gensym: () => {
-            const result = prefix + seq
-            return result
-        }
-    }
-}
-const serial = () => {
-    const seqer = serialMaker()
-    seqer.set_prefix('issue')
-    seqer.set_seq(1000);
-    const unique = seqer.gensym();
-    return unique
-}
 
 const mail = async(headers, data, user, ticket) => {
     const admin = await User.findOne({puesto: 'Programador'})
@@ -86,7 +63,6 @@ router.post('/new', isLoggedIn, catchAsync(async(req, res) =>{
     console.log(req.body)
     const newTicket = new ticketSchema(req.body)
     newTicket.user = req.user._id
-    newTicket.serial = serial()
     await newTicket.save()
     mail(req.headers.host, newTicket._id, req.user.username, newTicket.serial)
     req.flash('success', `Se genera el ticket ${newTicket.serial}. Guarde este número para su seguimiento.`)
@@ -94,7 +70,8 @@ router.post('/new', isLoggedIn, catchAsync(async(req, res) =>{
 }));
 router.get('/show', isLoggedIn, catchAsync(async(req,res) => {
     if (req.user.isAdmin) {
-        const tickets = await ticketSchema.find().exec()
+        const ticket = await ticketSchema.find().exec()
+        const tickets = ticket.splice(ticket.length - 10, 10)
         res.render('tickets/show', {tickets})
     } else {
         const tickets = await ticketSchema.find({user: req.user._id}).exec()

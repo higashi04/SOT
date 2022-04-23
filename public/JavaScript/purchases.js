@@ -24,6 +24,7 @@ function addItem() {
     newLine.className= 'form-control form-control-lg'
     newLine.placeholder= 'Descripción'
     newLine.name = 'objeto'
+    newLine.setAttribute('required', 'true')
     newLabel.innerText = 'Descripción'
     newLabel.htmlFor = 'objeto'
     newLabel.id = id
@@ -43,6 +44,7 @@ function addQty() {
     newLine.placeholder= 'Cantidad'
     newDiv.id= id
     newLine.name = 'cantidad'
+    newLine.setAttribute('required', 'true')
     newLabel.innerText = 'Cantidad'
     newLabel.id = id
     newLabel.htmlFor = 'cantidad'
@@ -83,6 +85,7 @@ function addImporte() {
     newLineImp.className= 'form-control form-control-lg num'
     newLineImp.placeholder= 'Importe'
     newLineImp.name = 'importe'
+    newLineImp.setAttribute('required', 'true')
     newLabel.innerText = 'Importe'
     newLabel.id = id
     newLabel.htmlFor = 'importe'
