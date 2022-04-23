@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 const Schema = mongoose.Schema;
 
 const unitChecklist = new Schema({
@@ -69,5 +70,5 @@ const unitChecklist = new Schema({
     comments: String,
     inspectedBy: String
 })
-
+unitChecklist.plugin(AutoIncrement, {inc_field: 'serie2'})
 module.exports = mongoose.model('unitChecklist', unitChecklist)

@@ -107,14 +107,14 @@ router.post('/audit', isLoggedIn, catchAsync(async(req, res) =>{
         const audit = new unitChecklist(req.body)
         audit.save()
         req.flash('success', 'Se graba la auditoria correctamente.')
-        res.redirect('/buses')
+        res.redirect('/driver')
     } catch(e) {
         req.flash('error', 'Se produjo un error al intentar el registro.')
-        res.redirect('/buses')
+        res.redirect('/driver')
     }
 } else {
     req.flash('error', 'No tiene autorización para esto.')
-    res.redirect('/buses')
+    res.redirect('/driver')
 }
 }));
 
