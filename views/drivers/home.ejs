@@ -2,25 +2,51 @@
 
 <div class="container my-3">
     <div class="row">
-        <% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
-        <a class="btn btn-primary col-3 m-3" href="/driver/new">Registrar chofer</a>
-        <% } %> 
-        <a class="btn btn-primary col-3 m-3" href="/driver/show"> Buscar Choferes</a>
-        <a class="btn btn-primary col-3 m-3" href="/driver/list">Expiración de Licencias</a>
-        <% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
-        <a class="btn btn-primary col-3 m-3" href="/driver/test">Registrar Prueba de Manejo</a>
-        <% } %> 
-        <a class="btn btn-primary col-3 m-3" href="/driver/test/show/">Consultar Pruebas de Manejo</a>
-        <% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
-            <a class="btn btn-primary col-3 m-3" href="/driver/audit">Registrar Auditoria a Choferes Y/O Coordinadores</a>
-        <% } %> 
-        <a class="btn btn-primary col-3 m-3" href="/driverAttendance">Asistencia de Choferes</a>
-        <a class="btn btn-primary col-3 m-3" href="/trips">Recorridos Diarios</a>
-        <% if (currentUser.isAdmin || currentUser.puesto === 'Supervisor de Coordinadores') {%> 
-            <a class="btn btn-primary col-3 m-3" href="/buses/audit">Nuevo Checklist de Unidad</a>    
-        <% } %>
-        <a class="btn btn-primary col-3 m-3" href="/buses/audit/show">Consulta Checklists de Unidad</a>
-        <a class="btn btn-primary col-3 m-3" href="/alcoholimetro">Pruebas de Alcoholimetro</a>
+        <div class="col-3 my-3 ">
+            <% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
+                <a class="btn btn-primary smallText" href="/driver/new">Registrar chofer</a>
+            <% } %> 
+        </div>
+        <div class="col-3 my-3 ">
+            <a class="btn btn-primary smallText" href="/driver/show"> Buscar Choferes</a>
+        </div>
+        <div class="col-3 my-3 ">
+            <a class="btn btn-primary smallText" href="/driver/list">Expiración de Licencias</a>
+        </div>
+        <div class="col-3 my-3 ">
+            <% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
+                <a class="btn btn-primary smallText" href="/driver/test">Registrar Prueba de Manejo</a>
+            <% } %> 
+        </div> 
+
+    </div>
+    <div class="row">
+        <div class="col-3 my-3 ">
+            <a class="btn btn-primary smallText" href="/driver/test/show/">Consultar Pruebas de Manejo</a>
+        </div>
+        <div class="col-3 my-3 ">
+            <% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
+                <a class="btn btn-primary smallText" href="/driver/audit">Registrar Auditoria a Choferes Y/O Coordinadores</a>
+            <% } %>
+        </div>
+        <div class="col-3 my-3 ">
+            <a class="btn btn-primary smallText" href="/driverAttendance">Asistencia de Choferes</a>
+        </div>
+        <div class="col-3 my-3 ">
+            <a class="btn btn-primary smallText" href="/trips">Recorridos Diarios</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3 my-3 ">
+            <% if (currentUser.isAdmin || currentUser.puesto === 'Supervisor de Coordinadores') {%> 
+                <a class="btn btn-primary smallText" href="/buses/audit">Nuevo Checklist de Unidad</a>    
+            <% } %>
+        </div>
+        <div class="col-3 my-3 ">
+            <a class="btn btn-primary smallText" href="/buses/audit/show">Consulta Checklists de Unidad</a>
+        </div>
+        <div class="col-3 my-3 ">
+            <a class="btn btn-primary smallText" href="/alcoholimetro">Pruebas de Alcoholimetro</a>
         </div>
     </div>
 </div>

@@ -18,19 +18,20 @@
                         <option value="<%= bus.unidad %>"><%= bus.unidad %></option>
                     <% } %>  
                 </select>
+            </div>
             <div class="form-floating col-6 pb-2">
                 <input type="date" class="form-control form-control-lg" name="date" id="date" placeholder="Fecha:" required>
                 <label for="date" class="form-label">Fecha: </label>
             </div>
             <div class="title">
                 <div class="row mb-3">
-                    <span class="col-4 me-5">Características</span>
-                    <span class="col-4 me-5">Sí / No /   N/A</span>
+                    <span class="smallText col-4 me-5">Características</span>
+                    <span class="smallText col-4 me-5">Sí / No /   N/A</span>
                 </div>
             </div>
             <div class="form-check">
               <div class="row mb-3">
-                <label class="form-check-label col-4 me-5" for="dressCode">Codigo de vestimenta(Prohibido utilizar sandalias, pijamas, short).</label>
+                <label class="smallText form-check-label col-4 me-5" for="dressCode">Codigo de vestimenta(Prohibido utilizar sandalias, pijamas, short).</label>
                 <input class="form-check-input col-4 me-5" type="radio" id="dressCode" name="dressCode" value="Sí">
                 <input class="form-check-input col-4 me-5" type="radio" id="dressCode" name="dressCode" value="No">
                 <input class="form-check-input col-4 me-5" type="radio" id="dressCode" name="dressCode" value="N/A">
@@ -38,7 +39,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="parking">Unidad estacionada adecuadamente.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="parking">Unidad estacionada adecuadamente.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="parking" name="parking" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="parking" name="parking" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="parking" name="parking" value="N/A">
@@ -46,7 +47,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="noCommerce">Coordinadores y/o Choferes deberan  abstenerse de la venta ambulante.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="noCommerce">Coordinadores y/o Choferes deberan  abstenerse de la venta ambulante.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="noCommerce" name="noCommerce" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="noCommerce" name="noCommerce" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="noCommerce" name="noCommerce" value="N/A">
@@ -54,7 +55,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="currentDriverLicense">Licencia de Manejo Vigente.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="currentDriverLicense">Licencia de Manejo Vigente.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="currentDriverLicense" name="currentDriverLicense" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="currentDriverLicense" name="currentDriverLicense" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="currentDriverLicense" name="currentDriverLicense" value="N/A">
@@ -62,7 +63,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="unitId">La unidad está identificada con la ruta.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="unitId">La unidad está identificada con la ruta.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="unitId" name="unitId" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="unitId" name="unitId" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="unitId" name="unitId" value="N/A">
@@ -70,7 +71,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="formFtv012">Llenado de Registro F-TV012.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="formFtv012">Llenado de Registro F-TV012.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="formFtv012" name="formFtv012" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="formFtv012" name="formFtv012" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="formFtv012" name="formFtv012" value="N/A">
@@ -78,7 +79,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="formFtv006">Llenado de Registro F-TV006.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="formFtv006">Llenado de Registro F-TV006.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="formFtv006" name="formFtv006" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="formFtv006" name="formFtv006" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="formFtv006" name="formFtv006" value="N/A">
@@ -86,7 +87,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="safetyVest">Chaleco de Seguridad.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="safetyVest">Chaleco de Seguridad.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="safetyVest" name="safetyVest" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="safetyVest" name="safetyVest" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="safetyVest" name="safetyVest" value="N/A">
@@ -94,7 +95,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="credential">Gafete.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="credential">Gafete.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="credential" name="credential" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="credential" name="credential" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="credential" name="credential" value="N/A">
@@ -102,7 +103,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="faceMask">Cubrebocas.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="faceMask">Cubrebocas.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="faceMask" name="faceMask" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="faceMask" name="faceMask" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="faceMask" name="faceMask" value="N/A">
@@ -110,7 +111,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="gel">Gel.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="gel">Gel.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="gel" name="gel" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="gel" name="gel" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="gel" name="gel" value="N/A">
@@ -118,7 +119,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="extinguisher">Extintor.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="extinguisher">Extintor.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="extinguisher" name="extinguisher" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="extinguisher" name="extinguisher" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="extinguisher" name="extinguisher" value="N/A">
@@ -126,7 +127,7 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="firstAidKit">Botiquin.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="firstAidKit">Botiquin.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="firstAidKit" name="firstAidKit" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="firstAidKit" name="firstAidKit" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="firstAidKit" name="firstAidKit" value="N/A">
@@ -134,45 +135,45 @@
             </div>
             <div class="form-check">
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="gps">GPS.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="gps">GPS.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="gps" name="gps" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="gps" name="gps" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="gps" name="gps" value="N/A">
                 </div>
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="hydraulicJack">Gato Hidráulico.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="hydraulicJack">Gato Hidráulico.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="hydraulicJack" name="hydraulicJack" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="hydraulicJack" name="hydraulicJack" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="hydraulicJack" name="hydraulicJack" value="N/A">
                 </div>
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="wrench">Cruceta (Llave de Tuercas).</label>
+                  <label class="smallText form-check-label col-4 me-5" for="wrench">Cruceta (Llave de Tuercas).</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="wrench" name="wrench" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="wrench" name="wrench" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="wrench" name="wrench" value="N/A">
                 </div>
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="spareTire">Llanta de Refacción.</label>
+                  <label class="smallText form-check-label col-4 me-5" for="spareTire">Llanta de Refacción.</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="spareTire" name="spareTire" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="spareTire" name="spareTire" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="spareTire" name="spareTire" value="N/A">
                 </div>
                 <div class="row mb-3">
-                  <label class="form-check-label col-4 me-5" for="safetyTriangle">Triangulos de Seguridad (Reflejantes).</label>
+                  <label class="smallText form-check-label col-4 me-5" for="safetyTriangle">Triangulos de Seguridad (Reflejantes).</label>
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="safetyTriangle" name="safetyTriangle" value="Sí">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="safetyTriangle" name="safetyTriangle" value="No">
                   <input class="form-check-input col-4 me-5" type="radio" role="switch" id="safetyTriangle" name="safetyTriangle" value="N/A">
                 </div>
             </div>
             <div class="row">
-                <div class="form-floating col pb-2">
+                <div class="form-floating col-6 pb-2">
                     <textarea type="text" class="form-control form-control-lg" name="comments" id="floatingComments" placeholder="Comentarios:"></textarea>
                     <label for="floatingComments" class="form-label">Comentarios: </label>
                 </div>
-            </div>
-            <div class="form-floating col-6 pb-2">
-                <input type="text" class="form-control form-control-lg" name="auditedBy" id="auditedBy" placeholder="Inspeccionado por:" required>
-                <label for="auditedBy" class="form-label">Auditado por: </label>
+                <div class="form-floating col-6 pb-2">
+                  <input type="text" class="form-control form-control-lg" name="auditedBy" id="auditedBy" placeholder="Inspeccionado por:" required>
+                  <label for="auditedBy" class="form-label">Auditado por: </label>
+              </div>
             </div>
         <button class="btn btn-success m-3">Mandar</button>
       </form>
