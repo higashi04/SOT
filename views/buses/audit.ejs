@@ -18,6 +18,7 @@
                         <option value="<%= bus.unidad %>"><%= bus.unidad %></option>
                     <% } %>  
                 </select>
+            </div>
             <div class="form-floating col-6 pb-2">
                 <input type="date" class="form-control form-control-lg" name="date" id="date" placeholder="Fecha:" required>
                 <label for="date" class="form-label">Fecha: </label>
@@ -141,14 +142,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-floating col pb-2">
+                <div class="form-floating col-6 pb-2">
                     <textarea type="text" class="form-control form-control-lg" name="comments" id="floatingComments" placeholder="Comentarios:"></textarea>
                     <label for="floatingComments" class="form-label">Comentarios: </label>
                 </div>
-            </div>
-            <div class="form-floating col-6 pb-2">
-                <input type="text" class="form-control form-control-lg" name="inspectedBy" id="inspectedBy" placeholder="Inspeccionado por:" required>
-                <label for="inspectedBy" class="form-label">Inspeccionado por: </label>
+                <div class="form-floating col-6 pb-2">
+                  <input type="text" class="form-control form-control-lg" name="inspectedBy" id="inspectedBy" placeholder="Inspeccionado por:" required>
+                  <label for="inspectedBy" class="form-label">Inspeccionado por: </label>
+              </div>
             </div>
         <button class="btn btn-success m-3">Mandar</button>
       </form>

@@ -64,7 +64,7 @@ router.post('/new', isLoggedIn, catchAsync(async(req, res) =>{
     const newTicket = new ticketSchema(req.body)
     newTicket.user = req.user._id
     await newTicket.save()
-    mail(req.headers.host, newTicket._id, req.user.username, newTicket.serial)
+    mail(req.headers.host, newTicket._id, req.user.username, newTicket.serie1)
     req.flash('success', `Se genera el ticket ${newTicket.serial}. Guarde este número para su seguimiento.`)
     res.redirect('/tickets')
 }));
@@ -96,8 +96,8 @@ router.put('/show/:id', isLoggedIn, catchAsync(async(req, res) =>{
         }
         ticket.sysAdminComments.push(req.body.sysAdminComments)
         await ticket.save()
-        mailSolution(req.headers.host, ticket._id, ticket.serial, ticket.user)
-        req.flash('success', `Se actualiza el contenido del ticket ${ticket.serial}`)
+        mailSolution(req.headers.host, ticket._id, ticket.serie1, ticket.user)
+        req.flash('success', `Se actualiza el contenido del ticket ${ticket.serie1}`)
         res.redirect(`/tickets/show/${ticket._id}`)
     } catch(e) {
         console.log(e)
