@@ -18,7 +18,7 @@
        <img src="../../assets/272707556_231916139148938_3564323865832014711_n-removebg-small.png" alt="">
       </div>
       <div class="col-6"> 
-         <h2>Folio: <%= order.serial %></h2>
+         <h2>Folio: <%= order.serial !== undefined ? order.serial : `Compra_${order.serialNum}` %></h2>
       </div>
   </div>
   <div class="row my-3">
