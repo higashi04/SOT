@@ -29,6 +29,7 @@ const recepcionRoutes = require('./Routes/recepcion');
 const recruitmentRoutes = require('./Routes/recruit');
 const alcoholimetroRoutes = require('./Routes/alcoholimetro');
 const dielselRoutes = require('./Routes/diesel');
+const gafeteChoferRoutes = require('./Routes/gafetes')
 //models//
 const Users = require('./models/users')
 /////////
@@ -46,7 +47,28 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'));
 app.use(methodOverride('_method'));
-app.use(helmet());
+app.use(
+    helmet({
+      contentSecurityPolicy: false,
+      crossOriginEmbedderPolicy: false,
+    })
+  );
+app.use(
+    helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: [],
+        workerSrc: ["'self'", "blob:"],
+        childSrc: ["blob:"],
+        objectSrc: [],
+        imgSrc: [
+            "'self'",
+            "blob:",
+            "data:",
+            "https://res.cloudinary.com/transportes-villarreal/"
+            ]
+        }
+    })
+);
 //cookies//
 
 const store = MongoStore.create({
@@ -69,7 +91,7 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        //secure: true,
+        secure: true,
         expires: Date.now() + 1000 * 60 * 60*24,
         maxAge: 1000 * 60 * 60*24
     }
@@ -128,6 +150,7 @@ app.use('/reception', recepcionRoutes);
 app.use('/reclutamiento', recruitmentRoutes);
 app.use('/alcoholimetro', alcoholimetroRoutes);
 app.use('/diesel', dielselRoutes);
+app.use('/gafete', gafeteChoferRoutes)
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')

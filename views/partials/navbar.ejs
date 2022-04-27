@@ -27,8 +27,11 @@
               <a href="/routes" class="nav-link"> Rutas Fijas </a>
               <a href="/driving" class="nav-link"> Rutas Diarias </a>
             <% } %>
+            <% if(currentUser.puesto === 'Analista de Procesos' || currentUser.isAdmin) {%>
+              <a href="/gafete" class="nav-link">Gafetes</a>
+            <% } %> 
               <a class="btn btn-dark" href="/tickets">Soporte Técnico</a>
-          <% } %>    
+          <% } %>   
         </div>
         <div class="ms-auto navbar-nav">
           <% if(!currentUser) {%> 

@@ -35,6 +35,11 @@ const mail = async(headers, data) => {
           });
 }
 
+
+const valeNotification = () => {
+    
+}
+
 router.get('/', isLoggedIn, (req, res) =>{
     res.render('mantenimiento-y-almacen/home')
 });

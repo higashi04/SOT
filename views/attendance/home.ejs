@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <h1 class="my-3 offset-md-2"> Registro de Asistencia Administrativos</h1>
-<% if (currentUser.puesto === 'Recepcionista' || currentUser.isAdmin) {%> 
+<% if (currentUser.puesto === 'Recepcionista' || currentUser === 'Analista de Procesos' || currentUser.isAdmin) {%> 
 <div class="container my-3">
     <div class="row">
         <div class="col-6 m-3">

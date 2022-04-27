@@ -27,6 +27,7 @@ router.post('/orden/new', isLoggedIn, catchAsync(async(req, res) => {
             res.redirect('/compras/orden')
         } catch(e) {
             req.flash('error', 'Se produjo un error.')
+            console.log(e)
             res.redirect('/compras')
         }
     } else {

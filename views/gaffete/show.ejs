@@ -1,0 +1,12 @@
+<% layout('layouts/boilerplate')%>
+<h1 class="offset-md-3 my-3">Consulta de Gafetes</h1>
+
+<div class="container mt-5">
+    <div class="row">
+        <% for (gafete of gafetes) {%>
+            <div class="col-3">
+                <a class="btn btn-dark" href="/gafete/show/<%= gafete._id%>"><%= gafete.chofer.name %></a>
+            </div>
+        <% } %>    
+    </div>
+</div>
