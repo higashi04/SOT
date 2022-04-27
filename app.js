@@ -56,7 +56,7 @@ app.use(
 app.use(
     helmet.contentSecurityPolicy({
     directives: {
-        defaultSrc: [],
+        // defaultSrc: [],
         workerSrc: ["'self'", "blob:"],
         childSrc: ["blob:"],
         objectSrc: [],

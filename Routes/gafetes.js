@@ -14,18 +14,33 @@ router.get('/', isLoggedIn,(req, res) => {
 })
 
 router.get('/new', isLoggedIn, catchAsync(async(req, res) => {
-    const drivers = await driverSchema.find({}).exec()
-    res.render('gaffete/new', {drivers})
+    if(req.user.puesto === 'Analista de Procesos') {
+        const drivers = await driverSchema.find({}).exec()
+        res.render('gaffete/new', {drivers})
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/gafete')
+    }
 }))
 
 router.post('/new', isLoggedIn, upload.single('photo') ,catchAsync(async(req, res) => {
-    const newGafete = new gafeteChoferSchema(req.body)
-    newGafete.photo.url = req.file.path
-    newGafete.photo.filename = req.file.filename
-    await newGafete.save()
-    console.log(newGafete)
-    req.flash('success', 'Se genera gafete nuevo.')
-    res.redirect('/gafete/new')
+    if(req.user.puesto === 'Analista de Procesos') {
+        try {
+            const newGafete = new gafeteChoferSchema(req.body)
+            newGafete.photo.url = req.file.path
+            newGafete.photo.filename = req.file.filename
+            await newGafete.save()
+            console.log(newGafete)
+            req.flash('success', 'Se genera gafete nuevo.')
+            res.redirect(`/gafete/show/${newGafete._id}`)
+        } catch(e) {
+            req.flash('error', 'Se produjo un error.')
+            res.redirect('/gafete')
+        }
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/gafete')
+    }
 }))
 
 router.get('/show', isLoggedIn, catchAsync(async(req, res) => {

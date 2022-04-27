@@ -15,7 +15,7 @@
             <div class="col"><%= element.item.partNumber %> </div>
             <div class="col"><%= element.item.nombre %> </div>
             <div class="col"><%= element.qty %> </div>
-            <div class="col">$<%= (element.item.price * element.qty).toFixed(2) %> </div>
+            <div class="col">$<%= (element.item.price).toFixed(2) %> </div>
             <div class="col"><%= element.date.toLocaleDateString() %> </div>
         </div>
     <%})%>
