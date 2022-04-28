@@ -7,7 +7,7 @@
             <div class="col-6 form-floating">
                 <select class="form-select form-select-sm mb-3"  id="chofer" name="chofer">
                     <% for (driver of drivers) {%>
-                        <option value="<%= driver._id %>"><%= driver.name %></option>
+                        <% if(driver.fueDadoDeBaja !== true) {%> <option value="<%= driver._id %>"><%= driver.name %></option> <% } %> 
                     <% } %>  
                 </select>
                 <label for="chofer">Chofer</label>
