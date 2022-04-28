@@ -55,7 +55,7 @@ const companyCounter = () => {
         }
     })
 }
-infrigement.forEach(i => console.log(i.innerText))
+
 const ingrigCounter = () => {
     infrigement.forEach((item) => {
        switch (item.innerText) {

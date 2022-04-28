@@ -4,9 +4,13 @@ const Schema = mongoose.Schema;
 
 const unitChecklist = new Schema({
     unit: {
-        type: String
+        type: String,
+        required: true
     },
-    date: Date,
+    date: {
+        type: Date,
+        required: true
+    },
     driver: {
         type: Schema.Types.ObjectId,
         ref: 'driver'
