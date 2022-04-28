@@ -1,0 +1,116 @@
+<% layout('layouts/boilerplate') %>   
+<h1 class="offset-md-4 my-3">Registro de Acciones Disciplinarias</h1>
+<div class="container my-5 rutas-table">
+    <div class="row rutas-head">
+        <div class="col">Fecha</div>
+        <div class="col">Nombre</div>
+        <div class="col">Puesto</div>
+        <div class="col">Coordinador</div>
+        <div class="col">Empresa</div>
+        <div class="col">Motivo de Acción Disciplinaria</div>
+        <div class="col">Tipo de Violación</div>
+    </div>
+    <% for (item of registers) {%>
+        <div class="row rutas-row">
+            <div class="col">
+                <%= item.date %> 
+            </div>
+            <div class="col">
+                <%= item.driver.name %> 
+            </div>
+            <div class="col">
+                <%= item.position %> 
+            </div>
+            <div class="col">
+                <%= item.driver.coordinator %> 
+            </div>
+            <div class="col company">
+                <%= item.driver.company %> 
+            </div>
+            <div class="col">
+                <%= item.reason %> 
+            </div>
+            <div class="col infrigement">
+                <%= item.infrigementType %> 
+            </div>
+        </div>
+    <% } %>  
+</div> 
+
+<div class="container my-3 rutas-table">
+    <div class="row rutas-head">
+        <div class="col-6">Tipo De Violación</div>
+        <div class="col-6">Número</div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">
+            Daño intencional a material / equipo
+        </div>
+        <div class="col-6" id="1"></div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">
+            Desempeño Laboral
+        </div>
+        <div class="col-6" id="2"></div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">
+            Violación de las reglas de seguridad
+        </div>
+        <div class="col-6" id="3"></div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">
+            Violación de las políticas o procedimientos de la compañía
+        </div>
+        <div class="col-6" id="4"></div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">
+            Asistencia
+        </div>
+        <div class="col-6" id="5"></div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">
+            Calidad de trabajo insatisfactoria
+        </div>
+        <div class="col-6" id="6"></div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">
+            Descuido
+        </div>
+        <div class="col-6" id="7"></div>
+    </div>
+</div>
+<div class="container my-5 rutas-table">
+    <div class="row rutas-head">
+        <div class="col-6">
+            Compañía
+        </div>
+        <div class="col-6">Número</div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">OES</div>
+        <div class="col-6" id="oes"></div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">Medline</div>
+        <div class="col-6" id="medline"></div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">BPI</div>
+        <div class="col-6" id="bpi"></div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">AISTERMI</div>
+        <div class="col-6" id="aistermi"></div>
+    </div>
+    <div class="row rutas-row">
+        <div class="col-6">Transportes Villarreal</div>
+        <div class="col-6" id="tvilla"></div>
+    </div>
+</div>
+<script src="../../../../JavaScript/discCounter.js"></script>

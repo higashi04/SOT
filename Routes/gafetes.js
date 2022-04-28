@@ -14,7 +14,7 @@ router.get('/', isLoggedIn,(req, res) => {
 })
 
 router.get('/new', isLoggedIn, catchAsync(async(req, res) => {
-    if(req.user.puesto === 'Analista de Procesos') {
+    if(req.user.puesto === 'Analista de Procesos' || req.user.isAdmin) {
         const drivers = await driverSchema.find({}).exec()
         res.render('gaffete/new', {drivers})
     } else {
@@ -24,7 +24,7 @@ router.get('/new', isLoggedIn, catchAsync(async(req, res) => {
 }))
 
 router.post('/new', isLoggedIn, upload.single('photo') ,catchAsync(async(req, res) => {
-    if(req.user.puesto === 'Analista de Procesos') {
+    if(req.user.puesto === 'Analista de Procesos' || req.user.isAdmin) {
         try {
             const newGafete = new gafeteChoferSchema(req.body)
             newGafete.photo.url = req.file.path

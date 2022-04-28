@@ -5,7 +5,7 @@ const logrosSchema = new Schema({
     company: String,
     routesNotMade: Number,
     complaints: String,
-    date: Date
+    date: String
 })
 
 module.exports = mongoose.model('logros', logrosSchema)

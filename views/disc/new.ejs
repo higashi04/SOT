@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3">Registro de Acción Disciplinaria</h1>
+
+<div class="container my-5">
+    <form action="/disc/new" method="post">
+        <div class="col-8 mb-3 form-floating">
+            <select class="form-select mb-3" name="driver" id="driver">
+                <% for(driver of choferes) {%>
+                    <% if(driver.fueDadoDeBaja !== true) {%> <option value="<%= driver._id %>"><%= driver.name %></option> <% } %> 
+                <% } %>  
+            </select>
+            <label for="driver">Chofer:</label>
+        </div>
+        <div class="col-8 mb-3 form-floating">
+            <textarea class="form-control" placeholder="Razón:" id="floatingTextarea2" style="height: 100px" name="reason"></textarea>
+            <label for="floatingTextarea2">Razón:</label>
+        </div>
+        <div class="col-8 mb-3 form-floating">
+            <input type="date" class="form-control" name="date" id="date">
+            <label for="date">Fecha:</label>
+        </div>
+        <div class="col-8 mb-3 form-floating">
+            <select class="form-select mb-3" name="position" id="position">
+                <option value="Chofer">Chofer</option>
+                <option value="Coordinador">Coordinador</option>
+            </select>
+            <label for="position">Puesto</label>
+        </div>
+        <div class="col-8 mb-3 form-floating">
+            <select class="form-select mb-3" name="infrigementType" id="infrigementType">
+                <option value="Daño intencional a material / equipo">Daño intencional a material / equipo</option>
+                <option value="Desempeño Laboral">Desempeño Laboral</option>
+                <option value="Violación de las reglas de seguridad">Violación de las reglas de seguridad</option>
+                <option value="Violación de las políticas o procedimientos de la compañía">Violación de las políticas o procedimientos de la compañía</option>
+                <option value="Asistencia">Asistencia</option>
+                <option value="Calidad de trabajo insatisfactoria">Calidad de trabajo insatisfactoria</option>
+                <option value="Descuido">Descuido</option>
+            </select>
+            <label for="infrigementType">Tipo de Violación</label>
+        </div>
+        <div class="col-8 mb-3">
+            <button class="btn btn-success">Guardar</button>
+        </div>
+    </form>
+</div>

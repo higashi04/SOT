@@ -31,6 +31,7 @@ const alcoholimetroRoutes = require('./Routes/alcoholimetro');
 const dielselRoutes = require('./Routes/diesel');
 const gafeteChoferRoutes = require('./Routes/gafetes')
 const logrosRoutes = require('./Routes/logros');
+const discplinaRoutes = require('./Routes/disciplina')
 //models//
 const Users = require('./models/users')
 /////////
@@ -153,6 +154,7 @@ app.use('/alcoholimetro', alcoholimetroRoutes);
 app.use('/diesel', dielselRoutes);
 app.use('/gafete', gafeteChoferRoutes);
 app.use('/logros', logrosRoutes);
+app.use('/disc', discplinaRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')
