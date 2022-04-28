@@ -44,7 +44,8 @@ router.get('/show', isLoggedIn, catchAsync(async(req,res)=>{
             req.flash('error', 'Se produjo un error')
             return res.redirect('/');
         }
-        res.render('compras/show', {compra: foundCompra.slice(foundCompra.length-10, 10)})
+        const foo = foundCompra.slice(-10)
+        res.render('compras/show', {compra: foo})
     }) 
 }))
 

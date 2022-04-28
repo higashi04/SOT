@@ -28,7 +28,7 @@ searchBar.addEventListener('change',  function(e) {
         const anchor = document.createElement('a')
         anchor.className = 'btn btn-dark'
         anchor.href = `/compras/show/${item._id}`
-        anchor.innerText = `Compra_${item.serial === undefined ? item.serialNum : item.serial}`
+        anchor.innerText = item.serial === undefined ? `Compra_${item.serialNum}` : item.serial
         newDiv.appendChild(anchor)
         searchResults.appendChild(newDiv)
       })
