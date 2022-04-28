@@ -44,7 +44,7 @@ router.get('/show', isLoggedIn, catchAsync(async(req,res)=>{
             req.flash('error', 'Se produjo un error')
             return res.redirect('/');
         }
-        res.render('compras/show', {compra: foundCompra})
+        res.render('compras/show', {compra: foundCompra.slice(foundCompra.length-10, 10)})
     }) 
 }))
 
@@ -61,6 +61,12 @@ router.get('/show/:id', isLoggedIn, catchAsync(async(req, res) =>{
         req.flash('error', 'Se produjo un error.')
         res.redirect('/compras/show')
     }
+}))
+
+router.post('/getOrder', catchAsync(async(req, res) =>{
+    let payload = req.body.payload.trim()
+    let search = await Compra.find({nombre: {$regex: new RegExp('^'+payload+'.*', 'i')}}).exec()
+    res.send({payload: search})
 }))
 
 module.exports = router;

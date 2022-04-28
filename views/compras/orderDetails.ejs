@@ -78,9 +78,9 @@
 <div class="container">
    <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
 </div>
-<span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+<span hidden id="currentUser"><%= currentUser.fullname %> </span>
 <span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
-<span hidden id="currentOrder"><%= order.serial %></span>
+<span hidden id="currentOrder"><%= order.serial === undefined ? `Compra_${order.serialNum}` : order.serial %></span>
 <script src="../../JavaScript/jspdf.min.js"></script>
 <script src="../../JavaScript/html2pdf.bundle.min.js"></script>
 <script src="../../JavaScript/purchaseOderPdf.js"></script>
