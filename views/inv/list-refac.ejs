@@ -44,7 +44,7 @@
             Total en dinero:
         </div>
         <div class="col-6">
-            <%= subTotal.reduce((a,b) => { return a + b}, 0) %> 
+            $<%=(subTotal.reduce((a,b) => { return a + b}, 0)).toFixed(2) %> 
         </div>
     </div> 
 </div>
