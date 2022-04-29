@@ -243,6 +243,7 @@ router.put('/audit', isLoggedIn, catchAsync(async(req, res) => {
             res.redirect('/driver')
         } catch(e) {
             req.flash('error', 'Se produjo un error')
+            console.log(e)
             res.redirect('/driver')
         }
     } else {
