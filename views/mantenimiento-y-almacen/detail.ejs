@@ -44,7 +44,9 @@
             <div class="col-6">
                 <span class="title">Ubicación: </span> <%= orden.unit.ubicacion %> 
             </div>
-            <div class="col-6"></div>
+            <div class="col-6">
+                <span class="title">AñoTC: </span> <%= orden.unit.yearTC %> 
+            </div>
         </div>
         <div class="row my-3">
             <div class="col-6">
@@ -54,62 +56,29 @@
                 <span class="title">Serie:</span> <%= orden.unit.serie %> 
             </div>
         </div>
-        <div class="row my-3">
-            <div class="col-6"></div>
-            <div class="col-6">
-                <span class="title">AñoTC: </span> <%= orden.unit.yearTC %> 
-            </div>
-        </div>
-
         <div class="row">
-            <div class="col-6">
-                <div class="container form-data">
-                    <div class="row">
-                        <div class="col-6">Inicio Programado: </div>
-                        <div class="col-6"> <%= orden.startDate.toLocaleDateString() %>  </div>
+                <div class="container form-data rutas-table">
+                    <div class="row rutas-head">
+                        <div class="col field">Inicio Programado: </div>
+                        <div class="col field">Fin Programado</div>
+                        <div class="col field">Planta</div>
+                        <div class="col field">Tipo de Trabajo</div>
+                        <div class="col field">Plan de Trabajo</div>
+                        <div class="col field">Taller Asignado</div>
+                        <div class="col"> Supervisor</div>
                     </div>
-                    <div class="row">
-                        <div class="col-6">Fin Programado</div>
-                        <div class="col-6"><%= orden.promisedDate.toLocaleDateString() %> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="container form-data">
-                    <div class="row">
-                        <div class="col-3">Planta</div>
-                        <div class="col-3"><%= orden.planta %> </div>
-                        <div class="col-3">
-                            Tipo de Trabajo
-                        </div>
-                        <div class="col-3">
-                            <%= orden.workType %> 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            Plan de Trabajo
-                        </div>
-                        <div class="col-3">
-                            <%= orden.workPlan %> 
-                        </div>
-                        <div class="col-3">
-                            Taller Asignado
-                        </div>
-                        <div class="col-3">
-                            <%= orden.workshop %> 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            Supervisor
-                        </div>
-                        <div class="col-6">
-                            <%= orden.supervisor %> 
-                        </div>
+                    <div class="row rutas-row">
+                        <div class="col field"> <%= orden.startDate.toLocaleDateString() %>  </div>
+                        <div class="col field"><%= orden.promisedDate.toLocaleDateString() %> </div>
+                        <div class="col field"><%= orden.planta %> </div>
+                        <div class="col field"><%= orden.workType %></div>
+                        <div class="col field"><%= orden.workPlan %></div>
+                        <div class="col field"><%= orden.workshop %></div>
+                        <div class="col"><%= orden.supervisor %></div>
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="container mb-5">
             <div class="row my-3">
@@ -133,6 +102,11 @@
                 </div>
             </div>
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         <div class="row mt-5">
             <div class="col-6">
                 <hr>
@@ -174,7 +148,7 @@
 <% } else {%>
 
 <% } %>  
-<div class="container">
+<div class="container mb-5">
     <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
 </div>
 <span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>

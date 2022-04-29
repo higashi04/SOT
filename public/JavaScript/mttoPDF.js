@@ -6,10 +6,10 @@ const order = document.querySelector('#currentOrder');
 
 
 const opt = {
-    margin:       1,
+    margin:       0,
     filename:     `${order.innerHTML}.pdf`,
     image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2.5 },
+    html2canvas:  { scale: 1 },
     pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] },
     jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
   };
