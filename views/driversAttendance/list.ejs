@@ -1,102 +1,66 @@
-<% layout('layouts/boilerplate') %> 
-<h1 class="my-3 offset-md-2 data"> <%= list.kind %>  </h1>
-<% if (list.monday && list.tuesday && list.wednesday && list.thursday && list.friday && list.saturday  && list.sunday) {%>  
-    <div class="container dataTwo">
-        <div class="row attendance-head">
-            <div class="col field">Nombre</div>
-            <div class="col field">Coordinador</div>
-            <div class="col field">Lunes</div>
-            <div class="col field">Martes</div>
-            <div class="col field">Miércoles</div>
-            <div class="col field">Jueves</div>
-            <div class="col field">Viernes</div>
-            <div class="col field">Sábado</div>
-            <div class="col">Domingo</div>
+<% layout('layouts/boilerplate') %>
+<h1 class="offset-md-4 my-5">Mes de <%= list.mes %> </h1>
+<h4>Fecha de Creación: <%= list.date.toLocaleDateString() %> </h4>
+<form action="/driverAttendance/<%= list._id %>?_method=PUT" method="post">
+    <div class="container rutas-table my-5">
+        <div class="row rutas-head">
+            <div class="col">Unidad</div>
+            <div class="col">Grupo</div>
+            <div class="col">Nombre</div>
+            <div class="col">Tipo de Unidad</div>
+            <div class="col">Coordinador</div>
+            <div class="col">Empresa</div>
+            <div class="col">Asistencia</div>
+            <div class="col">Faltas</div>
+            <div class="col">Retardos</div>
+            <div class="col">Faltas Justificadas</div>
         </div>
-        <% list.monday.driver.forEach((item, index) => {%>
-           <div class="row attendance-list"> 
-            <div class="col field innerCellText text-wrap"><%= list.monday.driver[index].name %> </div>
-            <div class="col field"><%= list.monday.driver[index].coordinator %> </div>
-            <div class="col field"><%= list.monday.inOne[index] && list.monday.inTwo[index] && list.monday.outOne[index] && list.monday.outTwo[index] ? 'Asistencia' : 'Falta' %></div>
-            <div class="col field"><%= list.tuesday.inOne[index] && list.tuesday.inTwo[index] && list.tuesday.outOne[index] && list.tuesday.outTwo[index] ? 'Asistencia' : 'Falta' %> </div>
-            <div class="col field"><%= list.wednesday.inOne[index] && list.wednesday.inTwo[index] && list.wednesday.outOne[index] && list.wednesday.outTwo[index] ? 'Asistencia' : 'Falta' %></div>
-            <div class="col field"><%= list.thursday.inOne[index] && list.thursday.inTwo[index] && list.thursday.outOne[index] && list.thursday.outTwo[index] ? 'Asistencia' : 'Falta' %></div>
-            <div class="col field"><%= list.friday.inOne[index] && list.friday.inTwo[index] && list.friday.outOne[index] && list.friday.outTwo[index] ? 'Asistencia' : 'Falta' %> </div>
-            <div class="col field"><%= list.saturday.inOne[index] && list.saturday.inTwo[index] && list.saturday.outOne[index] && list.saturday.outTwo[index] ? 'Asistencia' : 'Falta' %></div>
-            <div class="col "><%= list.sunday.inOne[index] && list.sunday.inTwo[index] && list.sunday.outOne[index] && list.sunday.outTwo[index] ? 'Asistencia' : 'Falta' %></div>
-           </div>
-         <% }) %> 
-    </div>
-    <div class="container offset-md-4 my-3">
-        <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
-    </div>
-    <span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
-    <span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
-    <span hidden id="name"><%= list.kind %> <%= list.date.toLocaleDateString() %> </span>
-    <script src="../../../JavaScript/jspdf.min.js"></script>
-    <script src="../../../JavaScript/html2pdf.bundle.min.js"></script>
-    <script src="../../../JavaScript/attendancePDF.js"></script>
-        
-<% } else {%> 
-    <div class="container">
-        <div class="row attendance-head">
-            <form action="/driverAttendance/<%=list._id%>?_method=PUT" method="post">
-            <div class="col-6 mt-3">
-                <label for="day">Selecione el día:</label>
-                <select class="form-select form-select mb-3" aria-label=".form-select" id="attendance" name="day">
-                    <% if (!list.monday) {%><option value="Lunes">Lunes</option><% } %>
-                    <% if (!list.tuesday) {%><option value="Martes">Martes</option><% } %>
-                    <% if (!list.wednesday) {%><option value="Miércoles">Miércoles</option><% } %>
-                    <% if (!list.thursday) {%><option value="Jueves">Jueves</option><% } %>
-                    <% if (!list.friday) {%><option value="Viernes">Viernes</option><% } %>
-                    <% if (!list.saturday) {%><option value="Sábado">Sábado</option><% } %>
-                    <% if (!list.sunday) {%><option value="Domingo">Domingo</option><% } %>
-                </select>
-            </div>
-        </div>
-        <div class="row attendance-list">
-            <div class="col field">Nombre</div>
-            <div class="col field">Unidad</div>
-            <div class="col field">Coordinador</div>
-            <div class="col field">Entrada Uno</div>
-            <div class="col field">Salida Uno</div>
-            <div class="col field">Entrada Dos</div>
-            <div class="col">Salida Dos</div>
-        </div>
-            <% for (driver of drivers) {%>
-                <% if (driver.fueDadoDeBaja === false) {%>
-                    <div class="row attendance-list">
-                        <div class="col field"><%= driver.name %> </div>
-                        <div class="col field"> <%= !driver.bus ? '' : driver.bus.unidad %></div>
-                        <div class="col field"><%= driver.coordinator %></div>
-                        <div class="col field">           
-                            <select class="form-select form-select my-3" aria-label=".form-select" id="inOne" name="inOne">
-                                <option value="true">Sí</option>
-                                <option value="false">No</option>
-                            </select>
-                        </div>
-                        <div class="col field">
-                            <select class="form-select form-select my-3" aria-label=".form-select" id="outOne" name="outOne">
-                                <option value="true">Sí</option>
-                                <option value="false">No</option>
-                            </select>
-                        </div>
-                        <div class="col field">
-                            <select class="form-select form-select my-3" aria-label=".form-select" id="inTwo" name="inTwo">
-                                <option value="true">Sí</option>
-                                <option value="false">No</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select class="form-select form-select my-3" aria-label=".form-select" id="outTwo" name="outTwo">
-                                <option value="true">Sí</option>
-                                <option value="false">No</option>
-                            </select>
-                        </div>
+        <% for(driver of drivers) {%>
+            <% if(driver.fueDadoDeBaja !== true) {%>
+                <div class="row rutas-row">
+                    <div class="col">
+                        <%= driver.bus.unidad %> 
                     </div>
-                <% } %>  
-            <% } %>
-                <button class="btn btn-success my-3">Guardar Cambios</button> 
-             </form>
+                    <div class="col">
+                        V2 
+                    </div>
+                    <div class="col">
+                        <%= driver.name %> 
+                    </div>
+                    <div class="col">
+                        <%= driver.bus.tipo %> 
+                    </div>
+                    <div class="col">
+                        <%= driver.coordinator %> 
+                    </div>
+                    <div class="col">
+                        <%= driver.company %> 
+                    </div>
+                    <div class="col form-floating">
+                        <input type="number" class="form-control" name="asistencias">
+                        <label for="asistencias">Asistencia: </label>
+                    </div>
+                    <div class="col form-floating">
+                        <input type="number" class="form-control" name="faltas">
+                        <label for="faltas">Faltas: </label>
+                    </div>
+                    <div class="col form-floating">
+                        <input type="number" class="form-control" name="retardos">
+                        <label for="retardos">Retardos: </label>
+                    </div>
+                    <div class="col form-floating">
+                        <input type="number" class="form-control" name="justificado">
+                        <label for="justificado">FJ: </label>
+                    </div>
+                </div>
+            <% } %>  
+        <% } %>
     </div>
-<% } %> 
+    <div class="row my-5">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <button class="btn btn-success">Guardar</button>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</form>
