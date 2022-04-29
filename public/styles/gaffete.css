@@ -22,11 +22,11 @@
     width: 120px;
     margin-top: 15px;
 }
-h2 {
+#gafete-name {
     font-size: 15px;
     margin: 5px 0;
 }
-h3 {
+.gafete-h3 {
     font-size: 12px;
     margin: 2.5px 0;
     font-weight: 300;
