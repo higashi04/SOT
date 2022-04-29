@@ -120,13 +120,13 @@ app.use((req, res, next) =>{
 });
 //'mongodb://localhost:27017/trasn-vill'
 //mongoStuff//
-// if (process.env.NODE_ENV !== "production") {
-//     mongoose.connect('mongodb://localhost:27017/trasn-vill')
-//     console.log('local db')
-// } else {
+if (process.env.NODE_ENV !== "production") {
+    mongoose.connect('mongodb://localhost:27017/trasn-vill')
+    console.log('local db')
+} else {
     mongoose.connect(dbUrl)
     console.log('mongo atlas')
-// }
+}
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'console error:'));
 db.once('open', ()=> {

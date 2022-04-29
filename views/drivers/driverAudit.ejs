@@ -5,19 +5,19 @@
     <form action ="/driver/audit?_method=PUT" method="POST" novalidate>
         <div class="form-floating col-6 pb-2">
             <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingDriver" name="driver">
-              <option value="Seleccione uno">Chofer:</option>
               <% for (chofer of choferes) {%> 
               <% if(chofer.fueDadoDeBaja === false) {%> <option value='<%= chofer._id %>'><%= chofer.name %></option><% } %> 
               <% } %> 
             </select>
+            <label for="floatingDriver">Chofer:</label>
         </div>
             <div class="form-floating col-6 pb-2">
                 <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingBus" name="unit">
-                    <option value="Seleccione uno">Unidad:</option>
                     <% for (bus of buses) {%>
                         <option value="<%= bus.unidad %>"><%= bus.unidad %></option>
                     <% } %>  
                 </select>
+                <label for="floatingBus">Unidad:</label>
             </div>
             <div class="form-floating col-6 pb-2">
                 <input type="date" class="form-control form-control-lg" name="date" id="date" placeholder="Fecha:" required>

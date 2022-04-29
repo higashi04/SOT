@@ -2,22 +2,22 @@
 <h1 class="offset-md-4 my-3">Checklist de Unidad</h1>
 
 <div class="container">
-    <form action ="/buses/audit" method="POST" novalidate>
+    <form action ="/buses/audit" method="POST">
         <div class="form-floating col-6 pb-2">
             <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingDriver" name="driver">
-              <option value="Seleccione uno">Chofer:</option>
               <% for (chofer of choferes) {%> 
               <option value='<%= chofer._id %>'><%= chofer.name %></option>
               <% } %> 
             </select>
+            <label for="floatingDriver">Chofer: </label>
         </div>
             <div class="form-floating col-6 pb-2">
                 <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingBus" name="unit">
-                    <option value="Seleccione uno">Unidad:</option>
                     <% for (bus of units) {%>
                         <option value="<%= bus.unidad %>"><%= bus.unidad %></option>
                     <% } %>  
                 </select>
+                <label for="floatingBus">Unidad:</label>
             </div>
             <div class="form-floating col-6 pb-2">
                 <input type="date" class="form-control form-control-lg" name="date" id="date" placeholder="Fecha:" required>
