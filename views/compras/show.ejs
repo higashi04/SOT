@@ -9,7 +9,7 @@
                     <a class="btn btn-dark" href="/compras/show/<%=purchase._id%>">
                         <%= purchase.serial !== undefined ? purchase.serial : `Compra_${purchase.serialNum}` %>
                     </a> 
-                        por <%= purchase.author.firstName %> <%= purchase.author.lastName %> con fecha de <%= purchase.date.toLocaleDateString() %> 
+                        por <%= purchase.author ? purchase.author.fullname : 'Baja'%>  con fecha de <%= purchase.date.toLocaleDateString() %> 
                 </div>
             <% } %>  
         </div> 
