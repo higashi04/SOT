@@ -240,7 +240,7 @@ router.put('/audit', isLoggedIn, catchAsync(async(req, res) => {
             chofer.audits.push(newAudit)
             await chofer.save()
             req.flash('success', 'La auditoria ha sido guardada correctamente.')
-            res.redirect('/driver')
+            res.redirect(`/driver/audit/${newAudit._id}`)
         } catch(e) {
             req.flash('error', 'Se produjo un error')
             console.log(e)

@@ -43,7 +43,7 @@ const DriverSchema = new Schema({
             'Jessica Alaniz',
             'David Benavides Chavez',
             'Jesus Nava',
-            'Rodolfo Coronado'
+            'Raymundo Zamora Garcia'
         ]
     },
     license: {
