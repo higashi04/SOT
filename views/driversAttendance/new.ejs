@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %>
-<h1 class="offset-md-4 my-5">Mes de <%= list.mes %> </h1>
+<h1 class="offset-md-4 my-5">Mes de <%= list.mes %> </h1>   
 <h4>Fecha de Creación: <%= list.date.toLocaleDateString() %> </h4>
 <div class="container m-5">
     <div class="row">
@@ -25,12 +25,9 @@
             <div class="col">Coordinador</div>
             <div class="col">Empresa</div>
             <div class="col">Valor</div>
-            <div class="col">1</div>
-            <div class="col">0</div>
-            <div class="col">T</div>
-            <div class="col">J</div>
+
         </div>
-        <% for(driver of drivers) {%>
+        <% drivers.forEach((driver, index) => { %>
             <% if(driver.fueDadoDeBaja !== true) {%>
                 <div class="row rutas-row">
                     <div class="col">
@@ -60,13 +57,9 @@
                         </select>
                         <label for="asistencias">Valor: </label>
                     </div>
-                    <div class="col"><%=  list.day   %> </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
                 </div>
             <% } %>  
-        <% } %>
+        <% }) %>
     </div>
     <div class="row my-5">
         <div class="col-4"></div>

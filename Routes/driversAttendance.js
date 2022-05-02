@@ -27,9 +27,13 @@ router.post('/', isLoggedIn, catchAsync(async(req,res) => {
         res.redirect('/driverAttendance')
     }
 }));
+router.get('/show/:id', isLoggedIn, catchAsync(async(req, res) => {
+    const list = await driverWeek.findById(req.params.id).populate({path: 'day', populate:{path: 'driver', populate: {path: 'bus'}}}).exec()        
+    res.render('driversAttendance/show', {list})
+}))
 router.get('/:id', isLoggedIn, catchAsync(async(req, res)=>{
     const list = await driverWeek.findById(req.params.id).populate({path: 'day'}).exec()
-    const drivers = await driver.find({}).populate({path: 'bus'}).exec()
+    const drivers = await driver.find({fueDadoDeBaja: false}).populate({path: 'bus'}).exec()
     res.render('driversAttendance/new', {list, drivers})
 }))
 router.put('/:id', isLoggedIn, catchAsync(async(req,res) =>{
@@ -37,20 +41,23 @@ router.put('/:id', isLoggedIn, catchAsync(async(req,res) =>{
         const month = await driverWeek.findById(req.params.id)
         const drivers = await driver.find({fueDadoDeBaja: false})
         const list = new driverDaily()
-        drivers.forEach( async(i, index) => {
-            list.driver.push(i._id) 
-            switch (req.body.asistencias[index]) {
+        drivers.forEach( async(i,index) => {
+            list.driver.push(i._id)
+        })
+        list.attendance = req.body.asistencias
+        req.body.asistencias.forEach(item => {
+            switch (item) {
                 case '1':
-                    list.asistencias.push(req.body.asistencias[index])
+                   list.asistencias ++
                     break;
                 case '0':
-                    list.asistencias.push(req.body.asistencias[index])
+                   list.faltas ++
                     break;
                 case 'T':
-                    list.asistencias.push(req.body.asistencias[index])
+                   list.retardos ++
                     break;
                 case 'J':
-                    list.asistencias.push(req.body.asistencias[index])
+                   list.justificado ++
                     break;
                 default:
                     break;
@@ -60,10 +67,12 @@ router.put('/:id', isLoggedIn, catchAsync(async(req,res) =>{
         month.day.push(list._id)
         await month.save()  
         await list.save()
+        console.log(list)
         req.flash('success', 'Se guarda el registro.')
-        res.redirect(`/driverAttendance/${month._id}`)
+        res.redirect(`/driverAttendance/show/${month._id}`)
     } catch(e) {
         console.log(e)
+        req.flash('error', 'Se produjo un error.')
         res.redirect('/driverAttendance')
     }
 }))

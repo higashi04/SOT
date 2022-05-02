@@ -2,14 +2,27 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const driverDailySchema = new Schema({
-    asistencias: [String],
-    faltas: [String],
-    retardos: [String],
-    justificado: [String],
     driver: [{
         type: Schema.Types.ObjectId,
-        ref: 'driver'
+        ref: 'driver',
     }],
+    attendance: [String],
+    asistencias: {
+        type: Number,
+        default: 0
+    },
+    faltas: {
+        type: Number,
+        default: 0
+    },
+    retardos: {
+        type: Number,
+        default: 0
+    },
+    justificado: {
+        type: Number,
+        default: 0
+    },
     list: {
         type: Schema.Types.ObjectId,
         ref: 'week'
