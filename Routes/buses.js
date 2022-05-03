@@ -79,7 +79,6 @@ router.put('/show/:id/mtto', isLoggedIn, catchAsync(async(req, res)=>{
             await mant.save()
             unit.mantenimiento.push(mant)
             await unit.save()
-            console.log(mant)
             req.flash('success', 'Se registra correctamente el mantenimiento a la unidad.')
             res.redirect(`/buses/show/${unit._id}`);
         }catch(e){
