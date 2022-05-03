@@ -28,8 +28,8 @@ router.post('/', isLoggedIn, catchAsync(async(req,res) => {
     }
 }));
 router.get('/show/:id', isLoggedIn, catchAsync(async(req, res) => {
-    const list = await driverWeek.findById(req.params.id).populate({path: 'day', populate:{path: 'driver', populate: {path: 'bus'}}}).exec()        
-    res.render('driversAttendance/show', {list})
+    const lists = await driverWeek.findById(req.params.id).populate({path: 'day', populate:{path: 'driver', populate: {path: 'bus'}}}).exec()        
+    res.render('driversAttendance/show', {lists})
 }))
 router.get('/:id', isLoggedIn, catchAsync(async(req, res)=>{
     const list = await driverWeek.findById(req.params.id).populate({path: 'day'}).exec()
@@ -41,7 +41,7 @@ router.put('/:id', isLoggedIn, catchAsync(async(req,res) =>{
         const month = await driverWeek.findById(req.params.id)
         const drivers = await driver.find({fueDadoDeBaja: false})
         const list = new driverDaily()
-        drivers.forEach( async(i,index) => {
+        drivers.forEach( i => {
             list.driver.push(i._id)
         })
         list.attendance = req.body.asistencias
@@ -67,7 +67,6 @@ router.put('/:id', isLoggedIn, catchAsync(async(req,res) =>{
         month.day.push(list._id)
         await month.save()  
         await list.save()
-        console.log(list)
         req.flash('success', 'Se guarda el registro.')
         res.redirect(`/driverAttendance/show/${month._id}`)
     } catch(e) {

@@ -26,6 +26,10 @@ const driverDailySchema = new Schema({
     list: {
         type: Schema.Types.ObjectId,
         ref: 'week'
+    },
+    date: {
+        type: Date,
+        default: () => Date.now()
     }
 })
 
