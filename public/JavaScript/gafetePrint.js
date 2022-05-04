@@ -1,5 +1,5 @@
 const data = document.querySelector('#data');
-const chofer = document.getElementById('name')
+const chofer = document.getElementById('gafete-name')
 const downloadBtn = document.querySelector('#downloadBtn');
 const img = document.getElementById('img')
 

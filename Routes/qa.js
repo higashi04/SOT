@@ -6,3 +6,6 @@ router.get('/', (req, res)=>{
     res.render('QA/home')
 })
 module.exports = router
+router.post('/qa', (req, res)=>{
+    res.send(console.log('hello there'))
+})
