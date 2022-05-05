@@ -1,0 +1,26 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3"> Ticket generado el <%= ticket.fecha.toLocaleDateString() %>  </h1>
+
+<div class="container">
+    <div class="row my-3">
+        <div class="col-4"><span class="title">Unidad: </span> <%= ticket.unit.unidad %> </div>
+        <div class="col-4"><span class="title">Orden: </span> <%= ticket.orden %> </div>
+    </div>
+    <div class="row my-3">
+        <% ticket.partNumber.forEach((item, index) =>{%>
+            <div class="col-4"><span class="title">Número de Parte: </span> <%= ticket.partNumber[index] %> </div>
+            <div class="col-4"><span class="title">Artículo: </span> <%= ticket.objeto[index] %> </div>
+            <div class="col-4"><span class="title">Cantidad: </span> <%= ticket.cantidad[index] %> <%= ticket.cantidad[index] > 1 ? 'piezas' : 'pieza' %> </div>
+        <% })%> 
+    </div>
+    <% if (ticket.comments) { %>
+        <div class="row my-5">
+            <div class="col">
+                <span class="title">Comentarios:</span>
+                <div>
+                    <%= ticket.comments %> 
+                </div>
+            </div>
+        </div>
+    <% } %>
+</div>

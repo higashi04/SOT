@@ -1,0 +1,11 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3">Consultar Pruebas de Manejo</h1>
+<div class="container">
+    <div class="row">
+        <% for(test of drivingTests) {%>
+            <div class="col-6 m-3">
+                <a class="btn btn-dark" href="/driver/test/show/<%= test._id %>"><%= test.driver.name %>, realizada el <%= test.testDate.toLocaleDateString() %> </a>
+            </div>
+        <% } %>  
+    </div>
+</div>

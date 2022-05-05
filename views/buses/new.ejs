@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate') %> 
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6 my-3">
+        <h4 class="my-3">Registre el camión nuevo</h4>
+        <form action ="/buses/new" method="POST" novalidate>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="unidad" id="floatingUnidad" placeholder="Unidad:" required>
+            <label for="floatingUnidad" class="form-label">Unidad: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="tipo" id="floatingType" placeholder="Tipo de Vehículo:" required>
+            <label for="floatingType" class="form-label">Tipo de Vehículo: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="modelTC" id="floatingModel" placeholder="Modelo TC:" required>
+            <label for="floatingModel" class="form-label">Modelo TC: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="brandTC" id="floatingBrand" placeholder="Marca TC:" required>
+            <label for="floatingBrand" class="form-label">Marca TC: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="serie" id="floatingSerie" placeholder="Serie: " required>
+            <label for="floatingSerie" class="form-label">Serie: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="yearTC" autoComplete="off" id="floatingYear" placeholder="Año TC:" required>
+            <label for="floatingYear" class="form-label">Año TC: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="ubicacion" id="floatingUbicacion" placeholder="Ubicación:" required>
+            <label for="floatingUbicacion" class="form-label">Ubicación: </label>
+          </div>
+          <button class="btn btn-success m-3">Mandar</button>
+        </form>
+      </div>
+      <div class="col-3"></div>
+</div>

@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4"> Bajas de Personal </h1>
+
+<div class="container rutas-table">
+    <div class="row rutas-head">
+        <div class="col-2 title">Nombre</div>
+        <div class="col title">Dirección</div>
+        <div class="col-3 title">CURP</div>
+        <div class="col-2 title">RFC</div>
+        <div class="col title">Fecha de Alta</div>
+        <div class="col title">Fecha de Baja</div>
+        <div class="col-2 title">Observaciones</div>
+    </div>
+    <% for (baja of bajas) {%>
+        <div class="row rutas-row">
+            <div class="col-2">
+                <%= baja.name %> 
+            </div>
+            <div class="col">
+                <%= baja.adress %> 
+            </div>
+            <div class="col-3">
+                <%= baja.curp %> 
+            </div>
+            <div class="col-2">
+                <%= baja.rfc %> 
+            </div>
+            <div class="col">
+                <%= baja.upDate %> 
+            </div>
+            <div class="col">
+                <%= baja.downDate %> 
+            </div>
+            <div class="col-2">
+                <%= baja.comments %> 
+            </div>
+        </div>
+    <% } %>  
+</div>

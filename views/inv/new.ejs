@@ -1,0 +1,35 @@
+<% layout('layouts/boilerplate') %> 
+<h1>Registro</h1>
+
+<div class="mb-3 container">
+    <form action ="/inv/newItem" method="POST" novalidate>
+      <div class="form-floating col-6 pb-2">
+        <input type="text" class="form-control form-control-lg" name="nombre" id="floatingNombre" placeholder="Nombre:" required>
+        <label for="floatingNombre" class="form-label">Nombre: </label>
+      </div>
+      <div class="form-floating col-6 pb-2">
+        <input type="text" class="form-control form-control-lg" name="partNumber" id="floatingNumPart" placeholder="Número de Parte:" required>
+        <label for="floatingNumPart" class="form-label">Número de Parte: </label>
+      </div>
+      <div class="form-floating col-6 pb-2">
+        <input type="text" class="form-control form-control-lg" name="estante" id="floatingEstante" placeholder="Estante:" required>
+        <label for="floatingEstante" class="form-label">Estante: </label>
+      </div>
+      <div class="form-floating col-6 pb-2">
+        <input type="number" class="form-control form-control-lg" name="cantidad" id="floatingNum" placeholder="Cantidad: " required>
+        <label for="floatingNum" class="form-label">Cantidad: </label>
+      </div>
+      <div class="form-floating col-6 pb-2">
+        <input type="number" class="form-control form-control-lg" name="price" id="floatingPrice" placeholder="Precio:  " required>
+        <label for="floatingPrice" class="form-label">Precio:  </label>
+      </div>
+      <div class="form-floating col-6 pb-2">
+        <select class="form-select" id="floatingSelect" name="type">
+          <option value="Refacción">Refacción</option>
+          <option value="Herramienta">Herramienta</option>
+        </select>
+        <label for="floatingSelect">Tipo de Activo</label>
+      </div>
+      <button class="btn btn-success m-3">Mandar</button>
+    </form>
+  </div>

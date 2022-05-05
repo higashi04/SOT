@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="my-3 offset-md-2"> Registro de la Asistencia de los Choferes</h1>
+<% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
+<div class="container my-3">
+    <div class="row">
+        <form action="/driverAttendance" method="POST">
+            <div class="col-6 m-3 form-floating">
+                <select class="form-select mb-3" aria-label=".form-select" id="mess" name="mes">
+                    <option value="Enero">Enero</option>
+                    <option value="Febrero">Febrero</option>
+                    <option value="Marzo">Marzo</option>
+                    <option value="Abril">Abril</option>
+                    <option value="Mayo">Mayo</option>
+                    <option value="Junio">Junio</option>
+                    <option value="Julio">Julio</option>
+                    <option value="Agosto">Agosto</option>
+                    <option value="Septiembre">Septiembre</option>
+                    <option value="Octubre">Octubre</option>
+                    <option value="Noviembre">Noviembre</option>
+                    <option value="Diciembre">Diciembre</option>
+                </select>
+                <label for="mess">Escoja un mes:</label>
+                <button class="btn btn-success">Generar Listado Nuevo</button>
+            </div>
+        </form>
+    </div>
+</div>
+<% } %>  
+<div class="container my-3">
+    <h3 class="offset-md-4">Registro de Asistencia</h3>
+    <div class="row">
+        <% if(lists) {%> 
+            <% for(list of lists) {%>
+                <div class="col-3 mb-3"> <a class="btn btn-dark" href="/driverAttendance/<%= list._id %>"><%= list.mes %> </a> </div>
+            <% } %> 
+        <% } %>  
+    </div>
+</div>
+<div class="container my-3">
+    <h3 class="offset-md-4">Consultas</h3>
+    <% if(lists) {%> 
+        <% for(list of lists) {%>
+            <div class="col-3 mb-3"> <a class="btn btn-dark" href="/driverAttendance/show/<%= list._id %>"><%= list.mes %> </a> </div>
+        <% } %> 
+    <% } %>
+</div>

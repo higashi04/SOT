@@ -1,0 +1,14 @@
+.attendance-head{
+    border: 1px solid black; 
+    padding-right: -10px;
+}
+.attendance-list{
+    border: 1px solid black;
+}
+.field{
+    border-right: 1px solid black;
+    padding-right: 10px;
+}
+.inCellText {
+    width: 6rem;
+}

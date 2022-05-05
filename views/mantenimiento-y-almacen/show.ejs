@@ -1,0 +1,9 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3">Vales</h1>
+<div class="row m-3">
+    <% for (ticket of refactions) {%>
+        <div class="col-4">
+            <a class="btn btn-primary col-4 m-3" href="/mtto/repairs/show/<%=ticket._id%>">Vale_<%= ticket.serial %></a>
+        </div>
+    <% } %>  
+</div>

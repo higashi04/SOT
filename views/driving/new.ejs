@@ -1,0 +1,76 @@
+<% layout('layouts/boilerplate') %> 
+
+<h1 class="offset-md-4 mt-3">Rutas por Chofer</h1>
+
+<div class="container">
+    <form action="/driving/new" method="post">
+        <div class="row">
+            <div class="form-floating col-6 pb-2">
+                <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingDriver" name="driver">
+                    <% for (driver of choferes) {%>
+                        <% if(driver.fueDadoDeBaja === false) {%> <option value='<%= driver.name %>'><%= driver.name %></option><% } %>
+                    <% } %>  
+                </select>
+                <label for="floatingDriver">Chofer:</label>
+            </div>
+            <div class="form-floating col-6 pb-2">
+                <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingBus" name="bus">
+                    <% for (unit of bus) {%>
+                        <option value='<%= unit.unidad %>'><%= unit.unidad %></option>
+                    <% } %>  
+                </select>
+                <label for="floatingBus">Unidad:</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 pb-2">Ruta</div>
+            <div class="col pb-2">Servicio</div>
+            <div class="col pb-2">Turno</div>
+            <div class="col pb-1">Pasajeros</div>
+            <div class="col pb-2">KM Inicial</div>
+            <div class="col pb-2">KM Final</div>
+            <div class="col pb-2">Hora Inicial</div>
+            <div class="col pb-2">Hora Final</div>
+            <div class="col-2 pb-2">Fecha</div>
+            <div class="col pb-2">Combustible</div>
+        </div>
+        <div class="row">
+            <div class="col-2 form-floating pb-2" id="ruta"></div>
+            <div class="col form-floating pb-2" id="servicio"></div>
+            <div class="col form-floating pb-2" id="turno"></div>
+            <div class="col form-floating pb-2" id="pasajeros"></div>
+            <div class="col form-floating pb-2" id="kmInicial"></div>
+            <div class="col form-floating pb-2" id="kmFinal"></div>
+            <div class="col form-floating pb-2" id="startTime"></div>
+            <div class="col form-floating pb-2" id="endTime"></div>
+            <div class="col-2 form-floating pb-2 ms-2" id="fecha"></div>
+            <div class="col form-floating pb-2" id="fuel"></div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container m-5">
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-success addToForm mx-3" id="eventBtn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg> Agregar filas</button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-danger mx-3" id="remove">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                </svg>
+                Eliminar filas
+              </button>
+        </div>
+    </div>
+</div>
+<script src="../../JavaScript/newDriverRoutes.js"></script>

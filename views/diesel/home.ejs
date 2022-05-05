@@ -1,0 +1,16 @@
+<% layout('layouts/boilerplate')%>
+<h1 class="offset-md-4 my-3">Diesel</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
+                <a class="btn btn-primary" href="/diesel/new">Crear Registro</a>
+            <% } %> 
+        </div>
+        <div class="col-6">
+            <a class="btn btn-primary" href="/diesel/show">Consulta</a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,32 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3">Registro de <%= company %> </h1>
+
+<div class="container my-5">
+    <form action="/logros/new/<%= company %>" method="post">
+        <div class="form-floating mb-3">
+            <input class="form-control type="text" name="routesNotMade" id="routesNotMade" placeholder="Rutas Sin Realizar:">
+            <label for="routesNotMade">Rutas Sin Realizar:</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select class="form-select" name="driver" id="driver">
+                <% for(driver of choferes) {%>
+                    <% if(driver.fueDadoDeBaja !== true ) {%>
+                        <option value="<%= driver.name %>"><%= driver.name %></option>
+                    <% } %>  
+                <% } %>  
+            </select>
+            <label for="driver">Chofer:</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" name="date" id="date">
+            <label for="date">Fecha</label>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" name="comments" id="comments"></textarea>
+            <label for="comments">Observaciones:</label>
+        </div>
+        <div>
+            <button class="btn btn-success">Guardar</button>
+        </div>
+    </form>
+</div>

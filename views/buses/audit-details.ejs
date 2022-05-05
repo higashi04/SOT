@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="offset-md-4 my-3">Checklist de Unidad</h1>
+
+<div class="container m-5">
+    <div class="row">
+        <div class="col-3 mb-3"><span class="title">Unidad Auditada: </span></div>
+        <div class="col-3 mb-3"><%= audit.unit %></div>
+        <div class="col-3 mb-3"><span class="title">Fecha de la Auditoria: </span></div>
+        <div class="col-3 mb-3"><%= audit.date.toLocaleDateString() %></div>
+        <div class="col-3 mb-3"><span class="title">Espejos Laterales: </span></div>
+        <div class="col-3 mb-3"><%= audit.sideMirrors %></div>
+        <div class="col-3 mb-3"><span class="title">Parabrisas: </span></div>
+        <div class="col-3 mb-3"><%= audit.windshield %></div>
+        <div class="col-3 mb-3"><span class="title">Limpia Parabrisas: </span></div>
+        <div class="col-3 mb-3"><%= audit.wipers %></div>
+        <div class="col-3 mb-3"><span class="title">Nivel de Combustible: </span></div>
+        <div class="col-3 mb-3"><%= audit.fuel %></div>
+        <div class="col-3 mb-3"><span class="title">Cinturón de Seguridad: </span></div>
+        <div class="col-3 mb-3"><%= audit.seatbelt %></div>
+        <div class="col-3 mb-3"><span class="title">Limpieza Interior: </span></div>
+        <div class="col-3 mb-3"><%= audit.insideCleaness %></div>
+        <div class="col-3 mb-3"><span class="title">Limpieza Exterior: </span></div>
+        <div class="col-3 mb-3"><%= audit.outsideCleaness %></div>
+        <div class="col-3 mb-3"><span class="title">Asientos: </span></div>
+        <div class="col-3 mb-3"><%= audit.seats %></div>
+        <div class="col-3 mb-3"><span class="title">Ventanas: </span></div>
+        <div class="col-3 mb-3"><%= audit.windows %></div>
+        <div class="col-3 mb-3"><span class="title">Claxon: </span></div>
+        <div class="col-3 mb-3"><%= audit.horn %></div>
+        <div class="col-3 mb-3"><span class="title">Condición de las Puertas: </span></div>
+        <div class="col-3 mb-3"><%= audit.doors %></div>
+        <div class="col-3 mb-3"><span class="title">Llantas Delanteras: </span></div>
+        <div class="col-3 mb-3"><%= audit.frontWheels %></div>
+        <div class="col-3 mb-3"><span class="title">Llantas Traseras: </span></div>
+        <div class="col-3 mb-3"><%= audit.backWheels%></div>
+    </div>
+</div>
+
+<div class="container m-5">
+    <div class="row">
+        <div class="col-6"><span class="title">Chofer: </span></div>
+        <div class="col-6"><%= audit.driver.name %> </div>
+        <div class="col-6"><span class="title">Inspeccionado por: </span></div>
+        <div class="col-6"><%= audit.inspectedBy %> </div>
+        <div class="col-12"><span class="title">Comentarios:</span></div>
+        <div class="col-12"><%= audit.comments %> </div>
+    </div>
+</div>

@@ -1,0 +1,172 @@
+<% layout('layouts/boilerplate') %> 
+<div class="container my-3">
+    <div class="d-flex">
+      
+    </div>
+    <% if (!currentUser) { %>
+      <h1 class="m-3">Inicio de Sesión</h1>
+      <div class="mb-3 container">
+        <form action ="/login" method="POST" novalidate>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="username" id="floatingUsername" placeholder="Usuario:" required>
+            <label for="floatingUsername" class="form-label">Usuario: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="password" class="form-control form-control-lg" name="password" id="floatingPassword" placeholder="Contraseña:" required>
+            <label for="floatingPassword" class="form-label">Contraseña: </label>
+            <span class="pass-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" id="eye-toggle" viewBox="0 0 16 16">
+                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+              </svg>
+            </span>
+          </div>
+          <button class="btn btn-success m-3">Iniciar Sesión</button>
+          </form>
+          <a href="/forgot" class="btn btn-warning">Olvidé mi contraseña</a>
+      </div>
+      <script src="../../JavaScript/passwordToggle.js"></script>
+    <% } else {%> 
+      <div class="container">
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Almacén y Diesel</h5>
+                        <p class="card-text">
+                          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                              opciones
+                          </button>
+                        </p>
+                      <div class="collapse" id="collapse">
+                        <div class="card card-body">
+                          <a class="btn btn-primary" href="/inv/">Almacén </a>
+                          <hr>
+                          <a class="btn btn-primary" href="/diesel/">Diesel </a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Mantenimiento Correctivo y Preventivo</h5>
+                        <p class="card-text">
+                          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapseExample">
+                              opciones
+                            </button>
+                          </p>
+                          <div class="collapse" id="collapse1">
+                            <div class="card card-body">
+                                <a class="btn btn-primary" href="/mtto"> Entrar </a>
+                            </div>
+                          </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Administración de Personal</h5>
+                        <p class="card-text">
+                          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapseExample">
+                              opciones
+                          </button>
+                        </p>
+                        <div class="collapse my-3" id="collapse2">
+                            <div class="card card-body">
+                                <a href="/hr" class="btn btn-primary"> Entrar </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Calidad</h5>
+                            <p class="card-text">
+                              <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseqa" aria-expanded="false" aria-controls="collapseExample">
+                                  opciones
+                              </button>
+                            </p>
+                              <div class="collapse my-3" id="collapseqa">
+                                <div class="card card-body">
+                                    <a href="/qa" class="btn btn-primary"> Entrar </a>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+              <div class="row">
+                  <div class="col-md-8">
+                      <div class="card-body">
+                          <h5 class="card-title">Compras</h5>
+                          <p class="card-text">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCompras" aria-expanded="false" aria-controls="collapseExample">
+                                opciones
+                              </button>
+                            </p>
+                            <div class="collapse my-3" id="collapseCompras">
+                              <div class="card card-body">
+                                  <a href="/compras" class="btn btn-primary"> Entrar </a>
+                              </div>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+          </div>
+          <div class="card mb-3">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Operaciones</h5>
+                        <p class="card-text">
+                          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOperaciones" aria-expanded="false" aria-controls="collapseExample">
+                              opciones
+                          </button>
+                        </p>
+                        <div class="collapse my-3" id="collapseOperaciones">
+                            <div class="card card-body">
+                              <a href="/routes" class="btn btn-primary"> Rutas Fijas </a>
+                                <hr>
+                              <a href="/driving" class="btn btn-primary"> Rutas por Chofer </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="card mb-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Recepción</h5>
+                        <p class="card-text">
+                          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                              opciones
+                          </button>
+                        </p>
+                      <div class="collapse" id="collapse">
+                        <div class="card card-body">
+                          <a class="btn btn-primary" href="/reception"> Recepción </a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    <% } %>  
+    
+</div>

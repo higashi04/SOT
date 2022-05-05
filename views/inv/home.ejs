@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3"> Almacen </h1>
+<div class="container my-3">
+    <div class="row">
+        <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
+            <div class="col-3 fontIncrease">
+                <a class="btn btn-primary m-3" href="/inv/newItem">Nuevo</a>
+            </div>
+          <% } %>
+          <div class="col-3 fontIncrease">
+              <a class="btn btn-primary m-3" href="/inv/show"> Consultar </a>
+          </div>
+          <div class="col-3 fontIncrease">
+              <a class="btn btn-primary m-3" href="/inv/refacciones"> Listado de Refacciones </a>
+          </div>
+          <div class="col-3 fontIncrease">
+              <a class="btn btn-primary m-3" href="/inv/herramientas"> Listado de Herramientas </a>
+          </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-6">
+            <a class="btn btn-primary m-3" href="/inv/entradas"> Listado de Entradas </a>
+        </div>
+        <div class="col-6">
+            <a class="btn btn-primary m-3" href="/inv/salidas"> Listado de Salidas </a>
+        </div>
+    </div>
+</div>

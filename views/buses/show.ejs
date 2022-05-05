@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate') %> 
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 my-3">
+            <h1>Lista de Camiones</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h3>Camiones</h3>
+            <% for( unit of bus) { %>
+                <div class="col-3 my-3">
+                    <% if (unit.tipo.toLowerCase() === 'camion') {%>
+                        <a href="/buses/show/<%=unit._id%>" class="btn btn-dark"><%= unit.unidad %></a>  
+                    <% } %> 
+                </div>
+            <% } %> 
+        </div>
+        <div class="col-4">
+            <h3>Urbans</h3>
+            <% for(unit of bus) {%>
+                <div class="col-3 my-3">
+                    <% if(unit.tipo.toLowerCase() === 'urban') {%>
+                        <a href="/buses/show/<%=unit._id%>" class="btn btn-dark"><%= unit.unidad %></a> 
+                    <% } %>  
+                </div>
+            <% } %>  
+        </div>
+        <div class="col-4">
+            <h3>Transits</h3>
+            <% for(unit of bus) {%>
+                <div class="col-3 my-3">
+                    <% if(unit.tipo.toLowerCase() === 'transit') {%>
+                        <a href="/buses/show/<%=unit._id%>" class="btn btn-dark"><%= unit.unidad %></a> 
+                    <% } %>  
+                </div>
+            <% } %>  
+        </div>
+    </div>
+</div>

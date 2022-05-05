@@ -1,0 +1,43 @@
+.id-card-holder {
+    width: 269px;
+    padding: 4px;
+    margin: 0 auto;
+    background-color: #1f1f1f;
+    border-radius: 5px;
+    position: relative;
+}
+
+.id-card {
+    height: 440px;
+    background-color: #fff;
+    text-align: center;
+    width: 260px;
+}
+
+
+.header {
+    background-color: #4382B7;
+}
+.photo img {
+    width: 120px;
+    margin-top: 15px;
+}
+#gafete-name {
+    font-size: 15px;
+    margin: 5px 0;
+}
+.gafete-h3 {
+    font-size: 12px;
+    margin: 2.5px 0;
+    font-weight: 300;
+}
+.oes-med{
+    width: 25%
+}
+
+.bpi {
+    width: 65%;
+}
+.ais {
+    width: 50%;
+}

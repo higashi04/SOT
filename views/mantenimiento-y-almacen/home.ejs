@@ -1,0 +1,20 @@
+<% layout('layouts/boilerplate') %> 
+
+<div class="container my-3">
+    <div class="row my-3">
+        <div class="col-4">
+            <a class="btn btn-primary my-3" href="/buses">Camiones</a>
+        </div>
+        <div class="col-4">
+            <% if(currentUser.puesto === 'Ejecutivo de Mantenimiento y Almacen' || currentUser.isAdmin) {%>
+                <a class="btn btn-primary my-3" href="/mtto/repairs">Nuevo Vale de Refacciones</a>
+            <%}%>  
+        </div>
+        <div class="col-4">
+            <a class="btn btn-primary my-3" href="/mtto/repairs/show">Consulta de Vales de Refacciones</a>
+        </div>
+        <div class="col-4">
+            <a class="btn btn-primary my-3" href="/taller/show">Unidades en Taller</a>           
+        </div>
+    </div>
+</div>

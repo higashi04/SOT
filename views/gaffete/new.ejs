@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate')%>
+<h1 class="offset-md-3 mt-5">Creación de Gafete</h1>
+
+<form action="/gafete/new" method="post" enctype="multipart/form-data">
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-6 form-floating">
+                <select class="form-select form-select-sm mb-3"  id="chofer" name="chofer">
+                    <% for (driver of drivers) {%>
+                        <% if(driver.fueDadoDeBaja !== true) {%> <option value="<%= driver._id %>"><%= driver.name %></option> <% } %> 
+                    <% } %>  
+                </select>
+                <label for="chofer">Chofer</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 pb-2">
+                <label for="photo">Foto:</label>
+                <input type="file" class="form-control" id="photo" name="photo">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-success">Crear</button>
+            </div>
+        </div>
+    </div>
+</form>

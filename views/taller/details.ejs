@@ -1,0 +1,110 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-3 my-3 data">Entradas a taller del mes de <%= mes.month %> </h1>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <% if(currentUser.puesto === 'Ejecutivo de Mantenimiento y Almacen' || currentUser.isAdmin) {%>
+            <button class="btn btn-primary offset-md-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                Crear Registro Nuevo
+            </button>
+            <% } %> 
+        </div>
+        <div class="col-4">
+            <button class="btn btn-primary offset-md-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse">
+                Ver Registros Mensuales
+            </button>
+        </div>
+    </div>
+</div>
+<% if(currentUser.puesto === 'Ejecutivo de Mantenimiento y Almacen' || currentUser.isAdmin) {%>
+<div class="container collapse m-3" id="collapse">
+    <form action="/taller/show/<%= mes._id %>?_method=PUT" method="post">
+        <div class="row">
+            <div class="col-12 form-floating">
+                <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingunit" name="unit">
+                    <% for(unit of units) {%>
+                        <option value="<%= unit.unidad %>"><%= unit.unidad %></option>
+                    <% } %>  
+                  </select>
+                <label for="floatingunit" class="form-label">Unidad que entra a taller: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-12 pb-2">
+                <input type="text" class="form-control form-control-lg" name="reason" id="floatingreason" placeholder="Motivo:"  required>
+                <label for="floatingreason" class="form-label">Motivo: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-12 pb-2">
+                <input type="date" class="form-control form-control-lg" name="date" id="date" required>
+                <label for="date" class="form-label">Fecha:</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-floating col-12 pb-2">
+                <textarea type="text" class="form-control form-control-lg" name="comments" id="floatingcomments" placeholder="Observaciones:" required></textarea>
+                <label for="floatingcomments" class="form-label">Observaciones: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
+<% } %> 
+<% if(mes.tallerSchema[0] !== undefined) {%>
+    <div class="container collapse rutas-table m-3 dataTwo" id="collapse2">
+        <div class="row rutas-head">
+            <div class="col-2">
+                Unidad
+            </div>
+            <div class="col-2">
+                Fecha
+            </div>
+            <div class="col-3">
+                Motivo
+            </div>
+            <div class="col-2">
+                Estado
+            </div>
+            <div class="col-2">
+                Observaciones
+            </div>
+        </div>
+        <% mes.tallerSchema.forEach((item) =>{%>
+            <div class="row rutas-row">
+                <div class="col-2">
+                   <% if(item.isSolved !== true && (currentUser.puesto === 'Ejecutivo de Mantenimiento y Almacen' || currentUser.isAdmin)) {%>  
+                        <a class="nav-link" href="/taller/solved/<%=item._id%>"><%= item.unit %></a>
+                    <% } else { %>
+                        <%= item.unit %>
+                    <% } %> 
+                </div>
+                <div class="col-2">
+                    <%= item.date.toLocaleDateString() %> 
+                </div>
+                <div class="col-3">
+                    <%= item.reason %> 
+                </div>
+                <div class="col-2">
+                    <%= item.isSolved ? 'Resuelto' : 'Pendiente' %> 
+                </div>
+                <div class="col-2">
+                    <%= item.comments %> 
+                </div>
+            </div>
+        <%}) %> 
+    </div>
+    <div class="container collapse" id="collapse2">
+        <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+     </div>
+<span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+<span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+<span hidden id="name"><%= mes.month %></span>
+<script src="../../JavaScript/jspdf.min.js"></script>
+<script src="../../JavaScript/html2pdf.bundle.min.js"></script>
+<script src="../../JavaScript/printTaller.js"></script>
+<% } %>  

@@ -1,0 +1,71 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="offset-md-4 my-5">Mes de <%= list.mes %> </h1>   
+<h4>Fecha de Creación: <%= list.date.toLocaleDateString() %> </h4>
+<div class="container m-5">
+    <div class="row">
+        <div class="col-3">Asistencia</div>
+        <div class="col-3">Falta</div>
+        <div class="col-3">Retardo</div>
+        <div class="col-3">Falta Justificada</div>
+    </div>
+    <div class="row">
+        <div class="col-3">1</div>
+        <div class="col-3">0</div>
+        <div class="col-3">T</div>
+        <div class="col-3">J</div>
+    </div>
+</div>
+<form action="/driverAttendance/<%= list._id %>?_method=PUT" method="post">
+    <div class="container rutas-table my-5">
+        <div class="row rutas-head">
+            <div class="col">Unidad</div>
+            <div class="col">Grupo</div>
+            <div class="col">Nombre</div>
+            <div class="col">Tipo de Unidad</div>
+            <div class="col">Coordinador</div>
+            <div class="col">Empresa</div>
+            <div class="col">Valor</div>
+
+        </div>
+        <% drivers.forEach((driver, index) => { %>
+            <% if(driver.fueDadoDeBaja !== true) {%>
+                <div class="row rutas-row">
+                    <div class="col">
+                        <%= driver.bus.unidad %> 
+                    </div>
+                    <div class="col">
+                        V2 
+                    </div>
+                    <div class="col">
+                        <%= driver.name %> 
+                    </div>
+                    <div class="col">
+                        <%= driver.bus.tipo %> 
+                    </div>
+                    <div class="col">
+                        <%= driver.coordinator %> 
+                    </div>
+                    <div class="col">
+                        <%= driver.company %> 
+                    </div>
+                    <div class="col form-floating">
+                        <select class="form-select" name="asistencias" id="asistencias">
+                            <option value="1">1</option>
+                            <option value="0">0</option>
+                            <option value="T">T</option>
+                            <option value="J">J</option>
+                        </select>
+                        <label for="asistencias">Valor: </label>
+                    </div>
+                </div>
+            <% } %>  
+        <% }) %>
+    </div>
+    <div class="row my-5">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <button class="btn btn-success">Guardar</button>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</form>

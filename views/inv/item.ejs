@@ -1,0 +1,122 @@
+<% layout('layouts/boilerplate') %> 
+<div class="container mt-3">
+    <div class="col-6  data">
+        <h1 id="name"><%= item.nombre %></h1>
+        <h2>  
+            <span class="qty"><%= item.cantidad %></span> 
+                <% if (item.cantidad > 1) { %> 
+                    piezas
+                <% } else {%> 
+                    pieza 
+                <%}%>
+        </h2>
+        <h3> Estante: <%= item.estante %>  </h3>
+        <h3> Tipo de Activo: <%= item.type %>  </h3>
+    </div>
+    <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
+    <div class="container row">
+        <div class="col-6">
+            <button class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseAdd" aria-expanded="false" aria-controls="collapse">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg> Añadir</button>
+              <div class="collapse" id="collapseAdd">
+                <div class="mt-3">
+                    <form action="/inv/show/<%=item._id%>?_method=PUT" method="post">
+                        <div class="form-floating col-6 pb-2">
+                            <input type="number" class="form-control form-control-lg qtyNew" name="cantidad" id="floatingNum" placeholder="Cantidad: " required>
+                            <label for="floatingNum" class="form-label">Cantidad: </label>
+                        </div>
+                        <button class="btn btn-success">Actualizar</button>
+                    </form>
+                </div>
+              </div>
+        </div>
+          <div class="col-6">
+            <button class="btn btn-danger" data-bs-toggle="collapse" data-bs-target="#collapseSubstract" aria-expanded="false" aria-controls="collapse">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-dash-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+              </svg> Sustraer</button>
+              <div class="collapse" id="collapseSubstract">
+                <div>
+                    <div class="mt-3">
+                        <form action="/inv/show/<%=item._id%>/remove?_method=PUT" method="post">
+                            <div class="form-floating col-6 pb-2">
+                                <input type="number" class="form-control form-control-lg qtyNew" name="cantidad" id="floatingNum" placeholder="Cantidad: " required>
+                                <label for="floatingNum" class="form-label">Cantidad: </label>
+                            </div>
+                            <button class="btn btn-success">Actualizar</button>
+                        </form>
+                    </div>
+                </div>
+              </div>
+          </div>
+    </div>
+    <% } %> 
+    <div class="m-3">
+        <h2>Capturado por <% if (item.author) { %>
+            <%= item.author.firstName %> <%= item.author.lastName %>
+        <% } else {%> usuario dado de baja <% } %></h2>
+    </div>
+    <div class="container" hidden>
+        <div class="row">
+                    <label for="searchDateGreaterThan">Buscar desde:</label>
+                    <input type="date" class="m-3" name="searchDateGreaterThan" id="searchDateGreaterThan">
+                    <label for="searchDateLowerThan">Hasta:</label>
+                    <input type="date" class="m-3" name="searchDateLowerThan" id="searchDateLowerThan">
+                    <button class="btn btn-info" id="eventBtn" onclick="getDate(dateGt)">Filtrar</button>
+        </div>
+      </div>
+    <div class="my-3 row dataTwo"> 
+        <section id="searchResults"></section>
+        <div class="col-6">
+            <% if (!item.increments) return %>
+                    <% item.increments.forEach((item, index, arr)=>{%>
+                        <h2> Movimiento <%= index+1 %> </h2>
+                        <h4> <%= item.fecha.toLocaleString() %></h4>
+                        <h4> Se  <% if (item.qty > 1) { %> 
+                         agregan
+                     <% } else {%> 
+                         agrega 
+                     <%}%> <%= item.qty %>  <% if (item.qty > 1) { %> 
+                         piezas
+                     <% } else {%> 
+                         pieza 
+                     <%}%> por <% if (item.author) { %>
+                         <%= item.author.firstName %> <%= item.author.lastName %>
+                     <% } else {%> usuario dado de baja <% } %> </h4>
+                     <%  }) %> 
+        </div>
+        <div class="col-6">
+            <% if(!item.decrements) return%>
+                <% item.decrements.forEach((item, index, arr)=>{%>
+                    <h2> Movimiento <%= index+1 %> </h2>
+                    <h4><%= item.fecha.toLocaleString() %></h4>
+                    <h4> Se  <% if (item.qty > 1) { %> 
+                     eliminan
+                 <% } else {%> 
+                     elimina 
+                 <%}%> <%= item.qty %>  <% if (item.qty > 1) { %> 
+                     piezas
+                 <% } else {%> 
+                     pieza 
+                 <%}%> por <% if (item.author) { %>
+                    <%= item.author.firstName %> <%= item.author.lastName %>
+                <% } else {%> usuario dado de baja <% } %></h4>
+                 <%  }) %>     
+        </div>
+    </div>
+</div>  
+<div class="container">
+    <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+    <button class="btn btn-info my-3" id="downloadExcel">Descarga Excel</button>
+</div>
+<span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+<span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+<script src="../../JavaScript/jspdf.min.js"></script>
+<script src="../../JavaScript/html2pdf.bundle.min.js"></script>
+<script src="../../JavaScript/item-pdf.js"></script>
+<script src="../../JavaScript/xlsx.full.min.js"></script>
+<script src="../../JavaScript/FileSaver.min.js"></script>

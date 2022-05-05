@@ -1,0 +1,30 @@
+<% layout('layouts/boilerplate')%>
+<h1 class="offset-md-3 my-3">Consumo de Diesel</h1>
+
+<div class="container">
+    <div class="row">
+      <input type="text" class="m-3" name="searchBar" id="searchBar">
+    </div>
+    <button class="btn btn-success" id="searchBtn">Buscar</button>
+</div>
+
+<div class="container rutas-table my-5">
+    <div class="row rutas-head">
+        <div class="col">Vale</div>
+        <div class="col">Fecha</div>
+        <div class="col">Tipo</div>
+        <div class="col">Litros</div>
+        <div class="col">Costo</div>
+        <div class="col">Total</div>
+        <div class="col">Unidad</div>
+        <div class="col">Operador</div>
+        <div class="col">Kilometros</div>
+        <div class="col">Rendimiento</div>
+        <div class="col">Autorizó</div>
+    </div>
+    <section id="table"></section>
+</div>
+<div class="container my-5 rutas-table" id="totales">
+    
+</div>
+<script src="../../../../JavaScript/dieselDateQuery.js"></script>

@@ -1,0 +1,12 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3"> Pruebas de Alcoholimetro </h1>
+
+<div class="container">
+    <div class="row my-3">
+        <% for (test of tests) {%>
+                <div class="col">
+                    <a class="btn btn-primary" href="/alcoholimetro/<%= test.company %>/show/<%= test._id %>"><%= test.serial %></a> 
+                </div>
+        <% } %>  
+    </div>
+</div>

@@ -1,0 +1,61 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="offset-md-2 my-3 data">Registro de Ruta de <%= route.company %>  </h1>
+
+<div class="container my-2 mx-2 rutas-table dataTwo">
+    <div class="row rutas-head">
+        <div class="col pt-2">Total Rutas</div>
+        <div class="col pt-2">Unidad</div>
+        <div class="col pt-2">Tipo</div>
+        <div class="col-2 pt-2">Ruta</div>
+        <div class="col pt-2">Chofer</div>
+        <div class="col pt-2">Turno</div>
+        <div class="col pt-2">Servicio</div>
+        <div class="col pt-2">Personas</div>
+        <div class="col">Hora de Inicio</div>
+        <div class="col">Hora de Termino</div>
+    </div>
+    <% route.route.forEach((item, index) => {%>
+        <div class="row rutas-row">
+            <div class="col ps-3">
+                <%= index + 1 %> 
+            </div>
+            <div class="col">
+                <%= route.driver[index].bus.unidad %>
+            </div>
+            <div class="col">
+                <%= route.driver[index].bus.tipo %>
+            </div>
+            <div class="col-2">
+                <%= item %> 
+            </div>
+            <div class="col">
+                <%= route.driver[index].name %> 
+            </div>
+            <div class="col ps-4">
+                <%= route.shift[index] %> 
+            </div>
+            <div class="col">
+                <%= route.service[index] %> 
+            </div>
+            <div class="col">
+                <%= route.numOfPassengers[index] %> 
+            </div>
+            <div class="col">
+                <%= route.startTime[index] %> 
+            </div>
+            <div class="col">
+                <%= route.endTime[index] %> 
+            </div>
+        </div>
+    <% })  %>  
+</div>
+
+<div class="container">
+    <button class="btn btn-info my-3" id="downloadBtn">Descarga PDF</button>
+ </div>
+ <span hidden id="currentUser"><%= currentUser.firstName %> <%= currentUser.lastName %></span>
+ <span hidden id="currentDate"><%= new Date().toLocaleDateString() %></span>
+ <span hidden id="name"><%= route.company %> <%=route.date.toLocaleDateString()%></span>
+ <script src="../../JavaScript/jspdf.min.js"></script>
+ <script src="../../JavaScript/html2pdf.bundle.min.js"></script>
+ <script src="../../JavaScript/standardRoutesPDF.js"></script>

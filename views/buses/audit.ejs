@@ -1,0 +1,156 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3">Checklist de Unidad</h1>
+
+<div class="container">
+    <form action ="/buses/audit" method="POST">
+        <div class="form-floating col-6 pb-2">
+            <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingDriver" name="driver">
+              <% for (chofer of choferes) {%> 
+              <option value='<%= chofer._id %>'><%= chofer.name %></option>
+              <% } %> 
+            </select>
+            <label for="floatingDriver">Chofer: </label>
+        </div>
+            <div class="form-floating col-6 pb-2">
+                <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingBus" name="unit">
+                    <% for (bus of units) {%>
+                        <option value="<%= bus.unidad %>"><%= bus.unidad %></option>
+                    <% } %>  
+                </select>
+                <label for="floatingBus">Unidad:</label>
+            </div>
+            <div class="form-floating col-6 pb-2">
+                <input type="date" class="form-control form-control-lg" name="date" id="date" placeholder="Fecha:" required>
+                <label for="date" class="form-label">Fecha: </label>
+            </div>
+            <div class="title">
+                <div class="row mb-3">
+                    <span class="col-4 me-5">Sistemas o Accesorios</span>
+                    <span class="col-4 me-5">Sí / No /   N/A</span>
+                </div>
+            </div>
+            <div class="form-check">
+              <div class="row mb-3">
+                <label class="form-check-label col-4 me-5" for="sideMirrors">Espejos Laterales.</label>
+                <input class="form-check-input col-4 me-5" type="radio" id="sideMirrors" name="sideMirrors" value="Sí">
+                <input class="form-check-input col-4 me-5" type="radio" id="sideMirrors" name="sideMirrors" value="No">
+                <input class="form-check-input col-4 me-5" type="radio" id="sideMirrors" name="sideMirrors" value="N/A">
+              </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="windshield">Parabrisas.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="windshield" name="windshield" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="windshield" name="windshield" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="windshield" name="windshield" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="wipers">Limpia Parabrisas.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="wipers" name="wipers" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="wipers" name="wipers" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="wipers" name="wipers" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="fuel">Nivel de Combustible.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="fuel" name="fuel" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="fuel" name="fuel" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="fuel" name="fuel" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="seatbelt">Cinturón de Seguridad.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="seatbelt" name="seatbelt" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="seatbelt" name="seatbelt" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="seatbelt" name="seatbelt" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="lights">Luces frontales y traseras,de frenos, de emergencia, direccional.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="lights" name="lights" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="lights" name="lights" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="lights" name="lights" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="insideCleaness">Limpieza Interior.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="insideCleaness" name="insideCleaness" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="insideCleaness" name="insideCleaness" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="insideCleaness" name="insideCleaness" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="outsideCleaness">Limpieza Exterior.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="outsideCleaness" name="outsideCleaness" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="outsideCleaness" name="outsideCleaness" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="outsideCleaness" name="outsideCleaness" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="seats">Asientos.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="seats" name="seats" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="seats" name="seats" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="seats" name="seats" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="windows">Ventanas.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="windows" name="windows" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="windows" name="windows" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="windows" name="windows" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="horn">Claxon.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="horn" name="horn" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="horn" name="horn" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="horn" name="horn" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="doors">Condición de las Puertas.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="doors" name="doors" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="doors" name="doors" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="doors" name="doors" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="frontWheels">Llantas Delanteras.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="frontWheels" name="frontWheels" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="frontWheels" name="frontWheels" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="frontWheels" name="frontWheels" value="N/A">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="backWheels">Llantas Traseras.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="backWheels" name="backWheels" value="Sí">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="backWheels" name="backWheels" value="No">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="backWheels" name="backWheels" value="N/A">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-6 pb-2">
+                    <textarea type="text" class="form-control form-control-lg" name="comments" id="floatingComments" placeholder="Comentarios:"></textarea>
+                    <label for="floatingComments" class="form-label">Comentarios: </label>
+                </div>
+                <div class="form-floating col-6 pb-2">
+                  <input type="text" class="form-control form-control-lg" name="inspectedBy" id="inspectedBy" placeholder="Inspeccionado por:" required>
+                  <label for="inspectedBy" class="form-label">Inspeccionado por: </label>
+              </div>
+            </div>
+        <button class="btn btn-success m-3">Mandar</button>
+      </form>
+</div>

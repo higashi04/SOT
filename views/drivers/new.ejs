@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate') %> 
+
+<h1 class="m-3">Chofer Nuevo</h1>
+
+  <div class="mb-3 container">
+  <div class="row">
+    <div class="col-md-12 offset-md-2 my-3">
+      <h4>Datos Personales</h4>
+      <form action ="/driver/new" method="POST" novalidate>
+        <div class="form-floating col-6 pb-2">
+          <input type="text" class="form-control form-control-lg" name="name" id="floatingName" placeholder="Nombre:" required>
+          <label for="floatingName" class="form-label">Nombre: </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+          <input type="text" class="form-control form-control-lg" name="phone" id="floatingPhone" placeholder="Teléfono:" required>
+          <label for="floatingPhone" class="form-label">Teléfono: </label>
+        </div>
+        <div class="form-floating col-6 pb-2">
+            <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingCoordinator" name="coordinator">
+              <option value="Seleccione uno">Coordinador:</option>
+              <option value='Elizardo Brewster Rubio'>Elizardo Brewster Rubio</option>
+              <option value="Jose Antonio Hernandez Garcia">Jose Antonio Hernandez Garcia</option>
+              <option value="David Benavides Chavez">David Benavides Chavez</option>
+              <option value="Jesus Nava">Jesus Nava</option>
+              <option value="Raymundo Zamora Garcia">Raymundo Zamora Garcia</option>
+              <option value="Jessica Alaniz">Jessica Alaniz</option>
+            </select>
+        </div>
+            <div class="form-floating col-6 pb-2">
+                <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingCompany" name="company">
+                  <option value="Seleccione uno">Empresa:</option>
+                  <option value='OES'>OES</option>
+                  <option value="MEDLINE">MEDLINE</option>
+                  <option value="BPI">BPI</option>
+                  <option value="AISTERMI">AISTERMI</option>
+                  <option value="TRANSPORTES VILLARREAL">TRANSPORTES VILLARREAL</option>
+                </select>
+            </div>
+            <div class="form-floating col-6 pb-2">
+              <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg" id="floatingUnit" name="bus">
+                  <% for (bus of buses) {%>
+                      <option value="<%=bus._id%>"><%= bus.unidad %></option>
+                  <% } %> 
+              </select>
+              <label for="bus">Asigne una Unidad: </label>
+            </div>    
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchPreviousHire" name="esReingreso" value="true">
+              <label class="form-check-label" for="flexSwitchPreviousHire">¿Es Reingreso?</label>
+          </div>
+        <button class="btn btn-success m-3">Mandar</button>
+      </form>
+    </div>
+  </div>
+</div>

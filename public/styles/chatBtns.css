@@ -1,0 +1,24 @@
+.chat-btn {
+    background-color: #64c0da;
+    color: #fff;
+    padding: 0.8rem 1.25rem;
+    text-decoration: none;
+    border: 0;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.15s ease-in-out;
+    transition-property: color, background-color;
+    font: bold 0.8rem sans-serif;
+    box-shadow: 0 4px #6fcddd;
+}
+
+.chat-btn:hover {
+    background-color: #0e7490;
+  }
+.chat-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 #0595ae;
+  }

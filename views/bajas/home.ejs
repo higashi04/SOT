@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3">Bajas De Personal</h1>
+
+<div class="container">
+    <div class="row">
+        <% if(currentUser.puesto === 'Analista de Procesos' || currentUser.isAdmin) {%>
+            <div class="col-4">
+                <a class="btn btn-primary fontIncrease" href="/bajas/new">Crear Registro Nuevo</a>
+            </div>
+        <% } %>
+        <div class="col-4">
+            <a class="btn btn-primary fontIncrease" href="/bajas/show">Consultar Registros</a>
+        </div>
+    </div>
+</div>

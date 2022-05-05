@@ -1,0 +1,110 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3">Prueba de Manejo</h1>
+
+<div class="container">
+    <form action ="/driver/test" method="POST" novalidate>
+        <div class="form-floating col-6 pb-2">
+            <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingDriver" name="driver">
+              <option value="Seleccione uno">Chofer:</option>
+              <% for (chofer of choferes) {%> 
+                <% if(chofer.fueDadoDeBaja === false) {%> <option value='<%= chofer._id %>'><%= chofer.name %></option><% } %>
+              <% } %> 
+            </select>
+        </div>
+            <div class="form-floating col-6 pb-2">
+                <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="floatingBus" name="unit">
+                    <option value="Seleccione uno">Unidad:</option>
+                    <% for (bus of buses) {%>
+                        <option value="<%= bus._id %>"><%= bus.unidad %></option>
+                    <% } %>  
+                </select>
+            <div class="form-floating col-6 pb-2">
+                <input type="date" class="form-control form-control-lg" name="testDate" id="floatingDate" placeholder="Fecha:" required>
+                <label for="floatingDate" class="form-label">Fecha: </label>
+            </div>
+            <div class="title">
+                <div class="row mb-3">
+                    <span class="col-4 me-3">Características</span>
+                    <span class="col-4 me-5">Pasa / No pasa </span>
+                </div>
+            </div>
+            <div class="form-check">
+              <div class="row mb-3">
+                <label class="form-check-label col-4 me-5" for="Engine">Encendido del Motor.</label>
+                <input class="form-check-input col-4 me-5" type="radio" id="Engine" name="turnOnEngine" value="true">
+                <input class="form-check-input col-4 me-5" type="radio" id="Engine" name="turnOnEngine" value="false">
+              </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="firstEngine">Movimiento de Vehiculo en primera velocidad.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="firstEngine" name="firstEngine" value="true">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="firstEngine" name="firstEngine" value="false">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="EngineChange">No dominar cambios de velocidad.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="EngineChange" name="engineChange" value="true">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="EngineChange" name="engineChange" value="false">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="Parking">Estacionamiento.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Parking" name="parking" value="true">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Parking" name="parking" value="false">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="Focus">Inseguridad y no concentracion en la conduccion.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Focus" name="focus" value="true">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Focus" name="focus" value="false">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="Reverse">No dominar movimientos en retroceso de vehiculo y uso de espejos retrovisores.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Reverse" name="reverse" value="true">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Reverse" name="reverse" value="false">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="Brake">No adecuado uso del freno.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Brake" name="brake" value="true">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Brake" name="brake" value="false">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="Speed">Utilizacion de la velocidad maxima y minima establecidas.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Speed" name="speed" value="true">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Speed" name="speed" value="false">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="TurnEngineOff">Se apagó el motor.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="TurnEngineOff" name="turnEngineOff" value="true">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="TurnEngineOff" name="turnEngineOff" value="false">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="Precautions">Precauciones, Imprudencias temerarias, o maniobras peligrosas.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Precautions" name="precautions" value="true">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Precautions" name="precautions" value="false">
+                </div>
+            </div>
+            <div class="form-check">
+                <div class="row mb-3">
+                  <label class="form-check-label col-4 me-5" for="Pass">Pasa.</label>
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Pass" name="pass" value="true">
+                  <input class="form-check-input col-4 me-5" type="radio" role="switch" id="Pass" name="pass" value="false">
+                </div>
+            </div>
+        <button class="btn btn-success m-3">Mandar</button>
+      </form>
+</div>

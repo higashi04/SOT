@@ -1,0 +1,61 @@
+<% layout('layouts/boilerplate') %> 
+<h2 class="offset-md-4 my-3">Licencia</h2>
+<div class="container my-3">
+    <div class="row my-3">
+        <div class="col-3">
+            <span class="title">Número de Licencia: </span> <%= licenseShow.number %>
+        </div>
+        <div class="col-3">
+            <span class="title">Tipo: </span> <%= licenseShow.licenseType %>
+        </div>
+        <div class="col-3">
+            <span class="title">Fecha de Emisión: </span> <%= licenseShow.startDate.toLocaleDateString() %> 
+        </div>
+        <div class="col-3">
+            <span class="title">Fecha de Expiración: </span> <%= licenseShow.expirationDate.toLocaleDateString() %> 
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-3">
+            <span class="title"> Días a Vencer: </span> <%= licenseShow.days %> <% if (licenseShow.days < 1) {%> día <% } else {%> días <% } %>   
+        </div>
+        <div class="col-3">
+            <span class="title">Faltan <%= licenseShow.expires %> <% if (licenseShow.expires > 1) {%> días <% } else {%> día <% } %> </span>
+        </div>
+    </div>
+</div>
+<% if (currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%> 
+<div class="container my-3 ">
+    <div class="mx-3">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
+            Actualizar Licencia
+          </button>
+        </p>
+    <div class="collapse" id="collapse">
+        <div class="container license-margin">
+            <div class="mx-3">
+                <form action="/driver/show/license/<%= licenseShow._id %>?_method=PUT" method="post">
+                    <div class="form-floating col-6 pb-2">
+                        <input type="text" class="form-control form-control-lg" name="licenseType" id="floatingLicenseType" placeholder="Tipo de Licencia:" required>
+                        <label for="floatingLicenseType" class="form-label">Tipo de Licencia: </label>
+                    </div>
+                    <div class="form-floating col-6 pb-2">
+                         <input type="text" class="form-control form-control-lg" name="number" id="floatingLicenseNumber" placeholder="Número de Licencia:" required>
+                         <label for="floatingLicenseNumber" class="form-label">Número de Licencia: </label>
+                    </div>
+                    <div class="form-floating col-6 pb-2">
+                        <input type="date" class="form-control form-control-lg" name="startDate" id="floatingStartDate" placeholder="Fecha de Emisión:" required>
+                        <label for="floatingStartDate" class="form-label">Fecha de Emisión: </label>
+                    </div>
+                    <div class="form-floating col-6 pb-2">
+                        <input type="date" class="form-control form-control-lg" name="expirationDate" id="floatingExpirationDate" placeholder="Fecha de Expiración:" required>
+                        <label for="floatingStartDate" class="form-label">Fecha de Emisión: </label>
+                    </div>
+                    <button class="btn btn-success">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+<% } %> 
+

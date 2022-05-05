@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate') %> 
+<div class="container my-3 card">
+    <div class="row card-body">
+        <% for (user of users) {%>
+            <div class="container mt-3 col-3 card-text">
+                <div><span class="title">Usuario: </span> <%= user.username %> </div>
+                <div><span class="title">Nombre(s): </span><%= user.firstName %> </div>
+                <div><span class="title">Apellido(s): </span><%= user.lastName %> </div>
+                <div><span class="title">Email: </span><%= user.email %> </div>
+                <div><span class="title">Puesto: </span><%= user.puesto %> </div>
+               <% if(currentUser.isAdmin || user._id.equals(currentUser._id) ) {%>
+                <a class="btn btn-primary my-3" href="/users/<%=user._id%>/edit">Editar</a></button>
+                <% } %>  
+                <% if(currentUser.isAdmin) {%> 
+                    <form action="/users/<%=user._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger mb-3">
+                            Eliminar
+                        </button>
+                    </form><% } %> 
+            </div>
+        <% } %>  
+    </div>
+</div>

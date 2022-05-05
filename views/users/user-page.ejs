@@ -1,0 +1,13 @@
+<% layout('layouts/boilerplate') %> 
+    <h1>Usuarios</h1>
+        <ol>
+        <% for (let user of users) {%>
+       <li> <ul>   
+                <li> <a href="/users/<%=user.id%>"><%= user.username %></a></li>
+                <li> <%= user.email %>  </li>
+                <li> <%= user.puesto %>  </li>
+            </ul>
+        </li>
+        <% } %>     
+    </ol>
+    <br>

@@ -1,0 +1,32 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="m-3">Ordenes de compra</h1>
+<% const pur = compra.reverse() %>
+<div class="mx-5 my-3">
+    <div class="container my-3">
+        <div class="row m-3">
+            <% for (purchase of compra) {%>
+                <div class="col-6 order my-2">
+                    <a class="btn btn-dark" href="/compras/show/<%=purchase._id%>">
+                        <%= purchase.serial !== undefined ? purchase.serial : `Compra_${purchase.serialNum}` %>
+                    </a> 
+                        por <%= purchase.author ? purchase.author.fullname : 'Baja'%>  con fecha de <%= purchase.date.toLocaleDateString() %> 
+                </div>
+            <% } %>  
+        </div> 
+    </div>
+</div>
+ 
+<% layout('layouts/boilerplate') %> 
+<h1 class="m-3">Busqueda por Proveedor</h1>
+
+<div class="container">
+    <div class="row">
+      <input type="text" class="m-3" name="searchBar" id="searchBar">
+      <section>
+        <div class="row" id="searchResults"></div>
+      </section>
+    </div>
+</div>
+
+
+<script src="../../JavaScript/liveSearchCompras.js"></script>
