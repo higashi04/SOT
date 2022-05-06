@@ -1,7 +1,7 @@
 .chat-btn {
     background-color: #64c0da;
     color: #fff;
-    padding: 0.8rem 1.25rem;
+    padding: 0.4rem .75rem;
     text-decoration: none;
     border: 0;
     border-radius: 0.75rem;
@@ -22,3 +22,44 @@
     transform: translateY(4px);
     box-shadow: 0 0 #0595ae;
   }
+
+  @media (max-device-width: 992px) {
+    .chat-btn {
+        width: 25%;
+        height: 25%;
+        font-size: 0.5rem;
+    }
+}
+
+.soporte-btn {
+  background-color: #444444;
+  color: #fff;
+  padding: 0.8rem 1.25rem;
+  text-decoration: none;
+  border: 0;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.15s ease-in-out;
+  transition-property: color, background-color;
+  font: bold 0.8rem sans-serif;
+  box-shadow: 0 4px #252525;
+}
+
+.soporte-btn:hover {
+  background-color: #505353;
+}
+.soporte-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 #313131;
+}
+
+@media (max-device-width: 992px) {
+  .soporte-btn {
+      width: 25%;
+      height: 25%;
+      font-size: 0.5rem;
+  }
+}
