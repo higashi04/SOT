@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %> 
-<h1>Perfil</h1>
+<h1 class="offset-md-4 my-2">Perfil</h1>
 <div class="container my-3">
     <div class="col-6"><span class="title">Usuario: </span><%=user.username%> </div>
     <div class="col-6"><span class="title">Nombre: </span><%= user.firstName %>  </div>
@@ -16,4 +16,18 @@
         </button>
     </form>
     <% } %> 
+</div>
+
+<div class="container m-5">
+    <div class="row">
+        <div class="col-6">
+            <h3>Mensajes:</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            
+        </div>
+        <div class="col-6"></div>
+    </div>
 </div>

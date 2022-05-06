@@ -8,29 +8,35 @@
         <div class="navbar-nav">
           <% if (currentUser) {%>
             <% if(currentUser.puesto === 'Supervisor de Coordinadores' || currentUser.isAdmin) {%>
-              <a class="nav-link" href="/driver">Choferes</a>
+              <a class="btn soporte-btn m-2" href="/driver">Choferes</a>
             <% } %>
             <% if(currentUser.puesto === 'Ejecutivo de Mantenimiento y Almacen' || currentUser.isAdmin) {%>
-              <a class="nav-link" href="/buses">Camiones</a>
+              <a class="btn soporte-btn m-2" href="/buses">Camiones</a>
             <% } %> 
             <% if(currentUser.puesto === 'Recepcionista' || currentUser.isAdmin) { %>
-              <a class="nav-link" href="/reception"> Recepción </a> 
-              <a class="nav-link" href="/hr/attendance">Asistencia</a>
+              <a class="btn soporte-btn m-2" href="/reception"> Recepción </a> 
+              <a class="btn soporte-btn m-2" href="/hr/attendance">Asistencia</a>
             <% } %>
             <% if(currentUser.puesto === 'Ejecutivo de Almacen y Diesel' || currentUser.isAdmin) {%>
-              <a class="nav-link" href="/inv">Inventario</a>
+              <a class="btn soporte-btn m-2" href="/inv">Inventario</a>
             <% } %>
             <% if(currentUser.puesto === 'Ejecutivo de Compras' || currentUser.isAdmin) {%>
-              <a href="/compras" class="nav-link"> Compras </a>
+              <a href="/compras" class="btn soporte-btn m-2"> Compras </a>
             <% } %> 
             <% if(currentUser.puesto === 'Auxiliar de Operaciones' || currentUser.isAdmin) {%>
-              <a href="/routes" class="nav-link"> Rutas Fijas </a>
-              <a href="/driving" class="nav-link"> Rutas Diarias </a>
+              <a href="/routes" class="btn soporte-btn m-2"> Rutas Fijas </a>
+              <a href="/driving" class="btn soporte-btn m-2"> Rutas Diarias </a>
             <% } %>
             <% if(currentUser.puesto === 'Analista de Procesos' || currentUser.isAdmin) {%>
-              <a href="/gafete" class="nav-link">Gafetes</a>
+              <a href="/gafete" class="btn soporte-btn m-2">Gafetes</a>
             <% } %> 
-              <a class="btn btn-dark" href="/tickets">Soporte Técnico</a>
+              <a class="btn soporte-btn m-2" href="/tickets">Soporte Técnico</a>
+              <a class="btn chat-btn m-2" href="/inbox">
+                Bandeja de Entrada 
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-inbox" viewBox="0 0 16 16">
+                    <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4H4.98zm9.954 5H10.45a2.5 2.5 0 0 1-4.9 0H1.066l.32 2.562a.5.5 0 0 0 .497.438h12.234a.5.5 0 0 0 .496-.438L14.933 9zM3.809 3.563A1.5 1.5 0 0 1 4.981 3h6.038a1.5 1.5 0 0 1 1.172.563l3.7 4.625a.5.5 0 0 1 .105.374l-.39 3.124A1.5 1.5 0 0 1 14.117 13H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .106-.374l3.7-4.625z"/>
+                </svg>
+            </a>
           <% } %>   
         </div>
         <div class="ms-auto navbar-nav">

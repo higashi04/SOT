@@ -29,9 +29,10 @@ const recepcionRoutes = require('./Routes/recepcion');
 const recruitmentRoutes = require('./Routes/recruit');
 const alcoholimetroRoutes = require('./Routes/alcoholimetro');
 const dielselRoutes = require('./Routes/diesel');
-const gafeteChoferRoutes = require('./Routes/gafetes')
+const gafeteChoferRoutes = require('./Routes/gafetes');
 const logrosRoutes = require('./Routes/logros');
-const discplinaRoutes = require('./Routes/disciplina')
+const discplinaRoutes = require('./Routes/disciplina');
+const messageRoutes = require('./Routes/messaging');
 //models//
 const Users = require('./models/users')
 /////////
@@ -155,6 +156,7 @@ app.use('/diesel', dielselRoutes);
 app.use('/gafete', gafeteChoferRoutes);
 app.use('/logros', logrosRoutes);
 app.use('/disc', discplinaRoutes);
+app.use('/inbox', messageRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')

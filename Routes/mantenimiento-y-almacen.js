@@ -3,12 +3,17 @@ const router = express.Router();
 const isLoggedIn = require('../middleware/isLoggedin');
 const catchAsync = require('../AsyncErrors');
 const nodemailer = require('nodemailer')
+const webpush  = require('web-push')
+const vapidPublic = process.env.VAPID_PUBLIC
+const vapidPrivate = process.env.VAPID_PRIVATE
 //models
 const mtto = require('../models/mantenimiento');
 const bus = require('../models/buses');
 const Inv = require('../models/inventory');
 const User = require('../models/users');
 const Refactions = require('../models/refactions');
+
+webpush.setVapidDetails(`mailto:${process.env.USER}`, vapidPublic, vapidPrivate)
 
 const mail = async(headers, data) => {
     const almacenista = await User.findOne({puesto: 'Ejecutivo de Almacen y Diesel'})
@@ -62,7 +67,7 @@ router.post('/repairs', isLoggedIn, catchAsync(async(req, res) => {
         await refaction.save()
         req.flash('success', 'El vale fue generado éxitosamente.')
         res.redirect('/mtto')
-        mail(req.headers.host,refaction._id)
+        //mail(req.headers.host,refaction._id)
     } catch(e) {
         req.flash('error', 'Se produjo un error.')
         console.log(e)
@@ -72,6 +77,12 @@ router.post('/repairs', isLoggedIn, catchAsync(async(req, res) => {
         res.redirect('/mtto')
     } 
 }));
+router.post('/repairs/notification', isLoggedIn, (req, res) => {
+    const subs = req.body;
+    res.status(201).json({})
+    const payload = JSON.stringify({title: 'Nuevo Vale de Refacciones.'})
+    webpush.sendNotification(subs, payload).catch(err => console.log(err))
+})
 router.get('/repairs/show', isLoggedIn, catchAsync(async(req, res) =>{
     const refactions = await Refactions.find({})
     res.render('mantenimiento-y-almacen/show', {refactions})
@@ -110,5 +121,6 @@ router.put('/:id', isLoggedIn, catchAsync(async(req, res) => {
         console.log(e.message)
     }
 }));
+
 
 module.exports = router
