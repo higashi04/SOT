@@ -1,0 +1,26 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-3">Mensajes Directos con <%= dm.receiver[0].fullname %> </h1>
+
+<div class="container chat-container mb-5">
+    <div class="row">
+        <div class="col-4 users">
+
+        </div>
+        <div class="col-8 chat">
+            <div class="output"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8 form-floating">
+            <input type="text" class="form-control" name="send" id="send" placeholder="Mensaje:">
+            <label for="send">Mensaje:</label>
+        </div>
+        <div class="col-4">
+            <button class="btn btn-success" id="send-btn">Mandar</button>
+        </div>
+    </div>
+</div>
+
+<span hidden><%= domain %><%= originalUrl %> </span>
+<script src="../../../../JavaScript/dm.js"></script>
+<script src="../../../../JavaScript/socket.io.min.js"></script>

@@ -1,3 +1,17 @@
 <% layout('layouts/boilerplate') %> 
 
 <h1 class="construction">En proceso de construccion, no funcional</h1>
+
+
+<div class="container m-5">
+    <% for(user of users) {%>
+        <div class="row m-5">
+            <div class="col-6">
+                <form action="/inbox/new/<%= user._id %>" method="post">
+                    <button class="chat-btn"><%= user.fullname %></button>
+                </form>
+            </div>
+        </div>
+    <% } %>  
+</div>
+

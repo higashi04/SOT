@@ -117,6 +117,7 @@ app.use((req, res, next) =>{
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     res.locals.originalUrl = req.originalUrl
+    res.locals.domain = req.headers.host
     next();
 });
 //'mongodb://localhost:27017/trasn-vill'
