@@ -1,6 +1,7 @@
 <% layout('layouts/boilerplate') %> 
+<<% layout('layouts/boilerplate') %> 
 <% const companyArr = ['OES', 'MEDLINE', 'BPI', 'AISTERMI', 'TRANSPORTES VILLARREAL'] %> 
-<% const coordinatorArr = ['Elizardo Brewster Rubio', 'Jose Antonio Hernandez Garcia', 'David Benavides Chavez', 'Jesus Nava', 'Jessica Alaniz'] %> 
+<% const coordinatorArr = ['Jose Edgar Sanchez Barajas', 'Jose Antonio Hernandez Garcia', 'David Benavides Chavez', 'Jesus Nava', 'Jessica Alaniz'] %> 
 <h1 class="m-3">Modificar Chofer</h1> 
 <div class="mb-3 container">
     <div class="row">
@@ -17,11 +18,10 @@
             </div>
             <div class="form-floating col-6 pb-2">
                 <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingCoordinator" name="coordinator">
-                    <option value='Elizardo Brewster Rubio' <%= chofer.coordinator === coordinatorArr[0] ? 'selected' : '' %>>Elizardo Brewster Rubio</option>
+                    <option value='Jose Edgar Sanchez Barajas' <%= chofer.coordinator === coordinatorArr[0] ? 'selected' : '' %>>Jose Edgar Sanchez Barajas</option>
                     <option value="Jose Antonio Hernandez Garcia" <%= chofer.coordinator === coordinatorArr[1] ? 'selected' : '' %>>Jose Antonio Hernandez Garcia</option>
                     <option value="David Benavides Chavez" <%= chofer.coordinator === coordinatorArr[2] ? 'selected' : '' %>>David Benavides Chavez</option>
                     <option value="Jesus Nava" <%= chofer.coordinator === coordinatorArr[3] ? 'selected' : '' %>>Jesus Nava</option>
-                    <option value="Raymundo Zamora Garcia" <%= chofer.coordinator === coordinatorArr[4] ? 'selected' : '' %>>Raymundo Zamora Garcia</option>
                     <option value="Jessica Alaniz" <%= chofer.coordinator === coordinatorArr[5] ? 'selected' : '' %>>Jessica Alaniz</option>
                 </select>
                 <label for="coordinator">Coordinador:</label>

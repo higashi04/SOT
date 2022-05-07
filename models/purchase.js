@@ -11,10 +11,22 @@ const CompraSchema = new Schema({
         type: String,
         required: true
     },
-    objeto: [String],
-    partNumber: [String],
-    cantidad: [Number],
-    importe: [Number],
+    objeto: [{
+        type: String,
+        required: true
+    }],
+    partNumber: [{
+        type: String,
+        required: [true, 'El campo Número de Parte es obligatorio, en caso de no contar con él favor de escribir N/A']
+    }],
+    cantidad: [{
+        type: Number,
+        required: [true, 'El campo Cantidad es obligatorio.']
+    }],
+    importe: [{
+        type: Number,
+        required: [true, 'El campo Importe es obligatorio.']
+    }],
     author: 
         {
             type: Schema.Types.ObjectId,

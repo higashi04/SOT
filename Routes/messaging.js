@@ -31,7 +31,7 @@ route.get('/chat/:id', isLoggedIn, catchAsync(async(req, res) => {
 // route.put('/newMessage/:id', isLoggedIn, catchAsync(async(req, res) => {
 //     const dm = await dmSchema.findById(req.params.id)
 //     dm.messages.push(req.body)
-
+ 
 // }))
 route.post('/chat/:id', isLoggedIn, catchAsync(async(req, res) => {
     const dm = await dmSchema.findById(req.params.id)
