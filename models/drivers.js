@@ -38,12 +38,11 @@ const DriverSchema = new Schema({
     {
         type: String,
         enum: [
-            'Elizardo Brewster Rubio',
+            'Jose Edgar Sanchez Barajas',
             'Jose Antonio Hernandez Garcia',
             'Jessica Alaniz',
             'David Benavides Chavez',
             'Jesus Nava',
-            'Raymundo Zamora Garcia'
         ]
     },
     license: {
