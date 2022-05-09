@@ -8,6 +8,12 @@ const ingrigFour = document.getElementById('4')
 const infrigFive = document.getElementById('5')
 const infrigSix = document.getElementById('6')
 const infrigSeven = document.getElementById('7')
+const infrigEight = document.getElementById('8')
+const infrigNine = document.getElementById('9')
+const infrigTen = document.getElementById('10')
+const infrigEleven = document.getElementById('11')
+const infrigTwelve = document.getElementById('12')
+
 let countOne = 0
 let countTwo = 0
 let countThree = 0
@@ -15,6 +21,11 @@ let countFour = 0
 let countFive = 0
 let countSix = 0
 let countSeven = 0
+let countEight = 0
+let countNine = 0
+let countTen = 0
+let countEleven = 0
+let countTwelve = 0
 
 const oesCounter = document.getElementById('oes')
 const medlineCounter = document.getElementById('medline')
@@ -87,7 +98,26 @@ const ingrigCounter = () => {
                countSeven ++
                infrigSeven.innerText = countSeven
                break;
-       
+            case 'Inclumplimiento de las Instrucciones':
+                countEight ++
+                infrigEight.innerText = countEight
+                break;
+            case 'Rendimiento Laboral':
+                countNine ++
+                infrigNine.innerText = countNine
+                break;
+            case 'Groserias a los Empleados':
+                countTen ++
+                infrigTen.innerText = countTen
+                break;
+            case 'Insubordinación':
+                countEleven ++
+                infrigEleven.innerText = countEleven
+                break;
+            case 'Trabajando en Asuntos Personales':
+                countTwelve ++
+                infrigTwelve.innerText = countTwelve
+                break;
            default:
                break;
        }
