@@ -26,24 +26,10 @@ const DriverSchema = new Schema({
     company: 
     {
         type: String,
-        enum: [
-            'OES',
-            'MEDLINE',
-            'BPI',
-            'AISTERMI',
-            'TRANSPORTES VILLARREAL'
-        ]
     },
     coordinator: 
     {
         type: String,
-        enum: [
-            'Jose Edgar Sanchez Barajas',
-            'Jose Antonio Hernandez Garcia',
-            'Jessica Alaniz',
-            'David Benavides Chavez',
-            'Jesus Nava',
-        ]
     },
     license: {
         type: Schema.Types.ObjectId,
