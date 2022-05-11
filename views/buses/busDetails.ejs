@@ -13,6 +13,18 @@
         <div class="col-4 mx-2"><span class="title">Modelo TC: </span><%= bus.modelTC %></div>
         <div class="col-3"><span class="title">Año TC: </span><%= bus.yearTC %></div>
     </div>
+    <% if(bus.chofer) {%> 
+      <div class="row my-3">
+        <div class="col-3 title">
+          Chofer
+        </div>
+        <div class="col-3">
+          <%= bus.chofer.name %> 
+        </div>
+        <div class="col-3 title">Empresa Asignada</div>
+        <div class="col-3"> <%= bus.chofer.company %>  </div>
+      </div>
+    <% } %> 
 </div>
 
 <div class="my-3 container">
@@ -81,4 +93,3 @@
     </form>
 </div>
 <% } %> 
-

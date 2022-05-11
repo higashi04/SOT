@@ -33,6 +33,9 @@ router.post('/new', isLoggedIn,catchAsync(async(req, res) =>{
         const chofer = new driver(req.body)
         chofer.bus = req.body.bus
         await chofer.save()
+        const unit = await Bus.findById(req.body.bus)
+        unit.chofer = chofer._id
+        unit.save()
         req.flash('success', 'Chofer guardado correctamente.')
         res.redirect('/driver/new')
     } catch(e) {

@@ -60,12 +60,13 @@ router.get('/show', isLoggedIn, catchAsync(async(req, res)=>{
 }));
 
 router.get('/show/:id', isLoggedIn, catchAsync(async(req, res)=>{
-    await Bus.findById(req.params.id).populate({path: 'mantenimiento'}).exec(function(err, foundBus) {
+    await Bus.findById(req.params.id).populate({path: 'mantenimiento'}).populate({path: 'chofer'}).exec(async function(err, foundBus) {
         if(err){
             req.flash('error', 'Se produjo un error')
             return res.redirect('/');
         }
-        res.render('buses/busDetails', {bus: foundBus})
+        const driv = await chofer.find({fueDadoDeBaja: false})
+        res.render('buses/busDetails', {bus: foundBus, driv})
     })
 }));
 

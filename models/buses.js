@@ -15,7 +15,11 @@ const busSchema = new Schema({
     mantenimiento: [{
         type: Schema.Types.ObjectId,
         ref: 'Maint'
-    }]
+    }],
+    chofer: {
+        type: Schema.Types.ObjectId,
+        ref: 'driver'
+    }
 });
 
 module.exports = mongoose.model('bus', busSchema);
