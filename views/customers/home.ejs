@@ -1,0 +1,57 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-5">Cuentas de Clientes</h1>
+
+<div class="container offset-md-4 my-5">
+    <h2 class="my-5">Nuevo</h2>
+    <form action="/clientes/new" method="post">
+        <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="username" id="floatingUsername" placeholder="Usuario:" required>
+            <label for="floatingUsername" class="form-label">Usuario: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="firstName" id="floatingFirstName" placeholder="Nombre(s):" required>
+            <label for="floatingFirstName" class="form-label">Nombre(s): </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="text" class="form-control form-control-lg" name="lastName" id="floatingLastName" placeholder="Apellido:" required>
+            <label for="floatingLastName" class="form-label">Apellido: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="email" class="form-control form-control-lg" name="email" id="floatingInput" placeholder="Email: " required>
+            <label for="floatingInput" class="form-label">Email: </label>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <input type="password" class="form-control form-control-lg" name="password" autoComplete="off" id="floatingPassword" placeholder="Contraseña:" required>
+            <label for="floatingPassword" class="form-label">Contraseña: </label> 
+            <span class="pass-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" id="eye-toggle" viewBox="0 0 16 16">
+                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+              </svg>
+            </span>
+          </div>
+          <div class="form-floating col-6 pb-2">
+            <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="floatingPuesto" name="company">
+                <option value='OES'>OES</option>
+                <option value="MEDLINE">MEDLINE</option>
+                <option value="BPI">BPI</option>
+                <option value="AISTERMI">AISTERMI</option>
+                <option value="TRANSPORTES VILLARREAL">TRANSPORTES VILLARREAL</option>
+            </select>
+            <label for="floatingPuesto" class="form-label">Empresa: </label>
+          </div>
+          <button class="btn btn-success m-3">Mandar</button>
+    </form>
+</div>
+
+<div class="container offset-md-4 my-5">
+    <% for (customer of customers) {%>
+        <div class="row m-3">
+            <div class="col">
+                <a class="btn btn-dark" href="/clientes/<%= customer._id %>"> <%= customer.username %> de <%= customer.company %> </a>
+            </div>
+        </div>
+    <% } %>  
+</div>
+
+<script src="../../JavaScript/passwordToggle.js"></script>

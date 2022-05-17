@@ -33,6 +33,7 @@ const gafeteChoferRoutes = require('./Routes/gafetes');
 const logrosRoutes = require('./Routes/logros');
 const discplinaRoutes = require('./Routes/disciplina');
 const messageRoutes = require('./Routes/messaging');
+const customerRoutes = require('./Routes/customers');
 //models//
 const Users = require('./models/users')
 /////////
@@ -158,6 +159,7 @@ app.use('/gafete', gafeteChoferRoutes);
 app.use('/logros', logrosRoutes);
 app.use('/disc', discplinaRoutes);
 app.use('/inbox', messageRoutes);
+app.use('/clientes', customerRoutes);
 /////
 app.get('/error', (req, res)=>{
     res.render('home/error')
