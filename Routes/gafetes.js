@@ -30,7 +30,10 @@ router.post('/new', isLoggedIn, upload.single('photo') ,catchAsync(async(req, re
             newGafete.photo.url = req.file.path
             newGafete.photo.filename = req.file.filename
             await newGafete.save()
-            console.log(newGafete)
+            const driver = await driverSchema.findById(req.body.chofer).exec()
+            driver.photo.url = req.file.path
+            driver.photo.filename = req.file.filename
+            await driver.save()
             req.flash('success', 'Se genera gafete nuevo.')
             res.redirect(`/gafete/show/${newGafete._id}`)
         } catch(e) {

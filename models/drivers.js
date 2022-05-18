@@ -49,6 +49,10 @@ const DriverSchema = new Schema({
             ref: 'audit'
         }
     ],
+    photo: {
+        url: String,
+        filename: String
+    }
     
     })
 
