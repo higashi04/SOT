@@ -23,7 +23,17 @@
                 <div class="offset-md-4 my-3">
                     <span class="title">Unidad: </span> <%= chofer.bus.unidad %> 
                 </div>  
-            <% } %> 
+            <% } %>
+            <% if(chofer.address) {%>
+                <div class="offset-md-4 my-3">
+                    <span class="title">Dirección: </span> <%= chofer.address %> 
+                </div>
+            <% } %>  
+            <% if(chofer.imss) {%>
+                <div class="offset-md-4 my-3">
+                    <span class="title">IMSS: </span> <%= chofer.imss %> 
+                </div>  
+            <% } %>
             <% if (chofer.checklist) {%>
                 <div class="offset-md-4 my-3">
                     <span class="title">Chofer cuenta con su checklist.</span> 

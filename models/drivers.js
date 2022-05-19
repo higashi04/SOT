@@ -52,7 +52,9 @@ const DriverSchema = new Schema({
     photo: {
         url: String,
         filename: String
-    }
+    },
+    imss: String,
+    address: String
     
     })
 

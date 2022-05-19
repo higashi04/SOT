@@ -50,6 +50,16 @@
                     <label class="form-check-label title" for="fueDadoDeBaja">Marcar la Casilla si el chofer es recontratado.</label>
                 </div>
             <% } %> 
+            <% if(currentUser.isAdmin || currentUser.puesto === 'Analista de Procesos') {%>
+                <div class="form-floating col-6 pb-2">
+                    <input type="text" name="imss" class="form-control form-control-lg" id="imss" placeholder="IMSS:">
+                    <label for="imss" class="form-label">Imss:</label>
+                </div>
+                <div class="form-floating col-6 pb-2">
+                    <input type="text" name="address" class="form-control form-control-lg" id="address" placeholder="Dirección:">
+                    <label for="address" class="form-label">Dirección:</label>
+                </div>
+            <% } %>  
             <button class="btn btn-success m-3">Mandar</button>
         </form>
         </div>
