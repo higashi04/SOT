@@ -65,7 +65,7 @@ router.get('/show/:id', isLoggedIn, catchAsync(async(req, res)=>{
         })
 }));
 router.get('/edit/:id', isLoggedIn, catchAsync(async(req, res) => {
-    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin || req.user.puesto === 'Analista de Procesos') {
         try{
             const chofer = await driver.findById(req.params.id).populate({path: 'bus'}).exec()
             const buses = await Bus.find({})
@@ -82,7 +82,7 @@ router.get('/edit/:id', isLoggedIn, catchAsync(async(req, res) => {
 
 }))
 router.put('/edit/:id', isLoggedIn, catchAsync(async(req, res) =>{
-    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin || req.user.puesto === 'Analista de Procesos') {
         try{
             const {id} = req.params
             const editedDriver = await driver.findByIdAndUpdate(id, req.body)
