@@ -15,11 +15,11 @@
     </div>
     <div class="row my-5">
         <div class="col-6">
-            <a class="btn btn-primary" href="/clientes/<%= customer._id %>/edit">Editar</a>
+            <a class="btn btn-primary" href="/clientes/show/<%= customer._id %>/edit">Editar</a>
         </div>
         <div class="col-6">
             <% if(currentUser.isAdmin) {%> 
-                <form action="/clientes/<%=customer._id%>?_method=DELETE" method="POST">
+                <form action="/clientes/show/<%=customer._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-danger">
                         Eliminar
                     </button>

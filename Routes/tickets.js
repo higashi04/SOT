@@ -25,9 +25,7 @@ const mail = async(headers, data, user, ticket) => {
               'http://' + headers +'/tickets/show/' + data +'\n\n' +
               'Un cordial saludo.\n'
           };
-          smtpTransport.sendMail(mailOptions, function(err) {
-            done(err, 'done');
-          });
+          smtpTransport.sendMail(mailOptions);
 }
 
 const mailSolution = async(headers, data, ticket, userMail) => {
@@ -48,9 +46,7 @@ const mailSolution = async(headers, data, ticket, userMail) => {
               'http://' + headers +'/tickets/show/' + data +'\n\n' +
               'Un cordial saludo.\n'
           };
-          smtpTransport.sendMail(mailOptions, function(err) {
-            done(err, 'done');
-          });
+          smtpTransport.sendMail(mailOptions);
 }
 
 router.get('/', isLoggedIn, (req, res) => {
@@ -65,7 +61,7 @@ router.post('/new', isLoggedIn, catchAsync(async(req, res) =>{
     newTicket.user = req.user._id
     await newTicket.save()
     mail(req.headers.host, newTicket._id, req.user.username, newTicket.serie1)
-    req.flash('success', `Se genera el ticket ${newTicket.serial}. Guarde este número para su seguimiento.`)
+    req.flash('success', `Se genera el ticket ${newTicket.serie1}. Guarde este número para su seguimiento.`)
     res.redirect('/tickets')
 }));
 router.get('/show', isLoggedIn, catchAsync(async(req,res) => {

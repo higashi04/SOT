@@ -3,7 +3,7 @@
 <h1 class="offset-md-4 my-5"> <%= customer.fullname %>  </h1>
 
 <div class="container offset-md4">
-    <form action="/clientes/<%= customer._id %>/edit?_method=PUT" method="post">
+    <form action="/clientes/show/<%= customer._id %>/edit?_method=PUT" method="post">
         <div class="form-floating col-6 pb-2">
             <input type="text" class="form-control form-control-lg" name="username" id="floatingUsername" placeholder="Usuario:" value="<%= customer.username %>" required>
             <label for="floatingUsername" class="form-label">Usuario: </label>

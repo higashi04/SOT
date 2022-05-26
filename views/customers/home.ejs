@@ -48,7 +48,7 @@
     <% for (customer of customers) {%>
         <div class="row m-3">
             <div class="col">
-                <a class="btn btn-dark" href="/clientes/<%= customer._id %>"> <%= customer.username %> de <%= customer.company %> </a>
+                <a class="btn btn-dark" href="/clientes/show/<%= customer._id %>"> <%= customer.username %> de <%= customer.company %> </a>
             </div>
         </div>
     <% } %>  
