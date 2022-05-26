@@ -1,0 +1,17 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-5">Vacantes</h1>
+
+<div class="container m-5">
+    <div class="row my-3">
+        <div class="col-6">
+            <a class="btn btn-primary" href="/vacantes/new">Generar Vacante Nueva</a>
+        </div>
+    </div>
+    <div class="row my-3">
+        <% for (vacante of vacantes) {%>
+            <div class="col-6 m-3">
+                <a class="btn btn-dark" href="/vacantes/show/<%= vacante._id %>"><%= vacante.position %> </a>
+            </div>
+        <% } %>  
+    </div>
+</div>

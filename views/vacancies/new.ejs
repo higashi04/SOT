@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate') %> 
+<h1 class="offset-md-4 my-5">Nueva Vacante</h1>
+
+<div class="container m-5">
+    <form action="/vacantes/new" method="POST">
+        <div class="row my-3 form-floating">
+            <input type="text" class="form-control" id="position" name="position" placeholder="Puesto" required>
+            <label for="position">Puesto</label>
+        </div>
+        <div class="row my-3">
+            <div class="col-6 form-floating">
+                <input type="number" class="form-control" id="ageStart" name="ageStart" placeholder="Edad Mínima" required>
+                <label for="ageStart">Edad Mínima</label>
+            </div>
+            <div class="col-6 form-floating">
+                <input type="number" class="form-control" id="ageEnd" name="ageEnd" placeholder="Edad Máxima" required>
+                <label for="ageEnd">Edad Máxima</label>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="form-check col-4">
+                <input class="form-check-input" type="radio" name="gender" id="gender1" value="Masculino">
+                <label class="form-check-label" for="gender1">
+                  Masculino
+                </label>
+              </div>
+              <div class="form-check col-4">
+                <input class="form-check-input" type="radio" name="gender" id="gender2" value="Femenino">
+                <label class="form-check-label" for="gender2">
+                  Femenino
+                </label>
+              </div>
+              <div class="form-check col-4">
+                <input class="form-check-input" type="radio" name="gender" id="gender3" value="Indistinto">
+                <label class="form-check-label" for="gender3">
+                  Indistinto
+                </label>
+              </div>
+        </div>
+        <div class="row my-3">
+            <div class="form-floating pb-2">
+                <textarea class="form-control" placeholder="Requisitos: " id="requirements" name="requirements"></textarea>
+                <label for="requirements">Requisitos: </label>
+            </div> 
+        </div>
+        <button class="btn btn-success">Generar Vacante</button>
+    </form>
+</div>
