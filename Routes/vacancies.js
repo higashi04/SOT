@@ -15,7 +15,7 @@ router.get('/new', isLoggedIn, (req, res) => {
 });
 
 router.post('/new', isLoggedIn, catchAsync(async(req, res) => {
-  if (req.user.isAdmin || req.user.position === 'Analista de Procesos') {
+  if (req.user.puesto === 'Analista de Procesos' || req.user.isAdmin) {
     const newVacancy = new VacancySchema(req.body)
     await newVacancy.save()
     req.flash('success', 'Vacante creada con éxito.')
@@ -36,7 +36,7 @@ router.get('/edit/:id', isLoggedIn, catchAsync(async(req, res) => {
     res.render('vacancies/edit', {vacante})
 }))
 router.put('/edit/:id', isLoggedIn, catchAsync(async(req, res) => {
-    if (req.user.isAdmin || req.user.position === 'Analista de Procesos') {
+    if (req.user.puesto === 'Analista de Procesos' || req.user.isAdmin) {
         const vacante = await VacancySchema.findByIdAndUpdate(req.params.id, req.body)
         if(req.body.covered === 'true') {
             vacante.covered = true
