@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const passportLocalMongoose = require('passport-local-mongoose');
 
 const customerSchema = new Schema({
     username: {
@@ -22,6 +21,10 @@ const customerSchema = new Schema({
     lastName: {
         type: String,
         required: true
+    },
+    password: {
+        type: String,
+        required: true
     }
 })
 
@@ -30,5 +33,4 @@ customerSchema.virtual('fullname').get(function(){
     return fullname
 })
 
-customerSchema.plugin(passportLocalMongoose)
 module.exports = mongoose.model('customers', customerSchema)
