@@ -29,6 +29,11 @@ router.get('/show/aistermi', isLoggedIn, catchAsync(async(req, res) => {
     const lists = await logrosSchema.find({company: company}).exec()
     res.render('logros/show', {company, lists})
 }))
+router.get('/show/ezo', isLoggedIn, catchAsync(async(req, res) => {
+    const company = 'EZO'
+    const lists = await logrosSchema.find({company: company}).exec()
+    res.render('logros/show', {company, lists})
+}))
 router.get('/new/oes', isLoggedIn, catchAsync(async(req, res) => {
     const company = 'OES'
     const choferes = await drivers.find({company: company}).populate({path: 'bus'}).exec()
@@ -46,6 +51,11 @@ router.get('/new/medline', isLoggedIn, catchAsync(async(req, res) => {
 }))
 router.get('/new/aistermi', isLoggedIn, catchAsync(async(req, res) => {
     const company = 'AISTERMI'
+    const choferes = await drivers.find({company: company}).populate({path: 'bus'}).exec()
+    res.render('logros/new', {company, choferes})
+}))
+router.get('/new/ezo', isLoggedIn, catchAsync(async(req, res) => {
+    const company = 'EZO'
     const choferes = await drivers.find({company: company}).populate({path: 'bus'}).exec()
     res.render('logros/new', {company, choferes})
 }))
@@ -108,6 +118,24 @@ router.post('/new/aistermi', isLoggedIn, catchAsync(async(req, res) => {
     if(req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
         try {
             const company = 'AISTERMI'
+            const newReg = new logrosSchema(req.body)
+            newReg.company = company
+            await newReg.save()
+            req.flash('success', 'Se guarda el registro correctamente.')
+            res.redirect(`/logros/show/${company}`)
+        } catch(e) {
+            req.flash('error', 'Se produce un error.')
+            res.redirect('/logros')
+        }
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/logros')
+    }
+}))
+router.post('/new/ezo', isLoggedIn, catchAsync(async(req, res) => {
+    if(req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+        try {
+            const company = 'EZO'
             const newReg = new logrosSchema(req.body)
             newReg.company = company
             await newReg.save()

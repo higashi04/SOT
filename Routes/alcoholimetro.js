@@ -70,6 +70,15 @@ router.get('/aistermi', isLoggedIn, catchAsync(async(req, res) => {
         res.redirect('/alcoholimetro')
     }
 }))
+router.get('/ezo', isLoggedIn, catchAsync(async(req, res) => {
+    try{
+        const drivers = await driversSchema.find({company: 'EZO'}).exec()
+        res.render('alcoholimetro/new', {drivers})
+    } catch(e) {
+        req.flash('error', 'Se produjo un error.')
+        res.redirect('/alcoholimetro')
+    }
+}))
 router.get('/tvillarreal', isLoggedIn, catchAsync(async(req, res) => {
     try{
         const drivers = await driversSchema.find({company: 'TRANSPORTES VILLARREAL'}).exec()
@@ -152,6 +161,24 @@ router.post('/BPI/new', isLoggedIn, catchAsync(async(req, res) => {
         res.redirect('/alcoholimetro')
     }
 }))
+router.post('/EZO/new', isLoggedIn, catchAsync(async(req, res) => {
+    if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
+        try{
+            const newTest = new alcoholimetroSchema(req.body)
+            newTest.serial = serial()
+            newTest.company = 'BPI'
+            await newTest.save()
+            req.flash('success', 'Se guarda el registro correctamente.')
+            res.redirect('/alcoholimetro')
+        } catch(e){
+            req.flash('error', 'Se produjo un error.')
+            res.redirect('/alcoholimetro')
+        }
+    } else {
+        req.flash('error', 'No tiene autorización para esto.')
+        res.redirect('/alcoholimetro')
+    }
+}))
 router.post('tvillarreal/new', isLoggedIn, catchAsync(async(req, res) => {
     if (req.user.puesto === 'Supervisor de Coordinadores' || req.user.isAdmin) {
         try{
@@ -206,6 +233,15 @@ router.get('/AISTERMI/show', isLoggedIn, catchAsync(async(req, res) => {
     })
 }))
 router.get('/BPI/show', isLoggedIn, catchAsync(async(req, res) => {
+    await alcoholimetroSchema.find({company: 'BPI'}).exec((err, tests) => {
+        if(err) {
+            req.flash('error', 'Se produjo un error.')
+            res.redirect('/alcoholimetro')
+        }
+        res.render('alcoholimetro/show', {tests})
+    })
+}))
+router.get('/EZO/show', isLoggedIn, catchAsync(async(req, res) => {
     await alcoholimetroSchema.find({company: 'BPI'}).exec((err, tests) => {
         if(err) {
             req.flash('error', 'Se produjo un error.')

@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %> 
-<% const companyArr = ['OES', 'MEDLINE', 'BPI', 'AISTERMI', 'TRANSPORTES VILLARREAL'] %> 
+<% const companyArr = ['OES', 'MEDLINE', 'BPI', 'AISTERMI', 'EZO','TRANSPORTES VILLARREAL'] %> 
 <h1 class="offset-md-4 my-5"> <%= customer.fullname %>  </h1>
 
 <div class="container offset-md4">
@@ -26,7 +26,8 @@
                 <option value="MEDLINE" <%= customer.company === companyArr[1] ? 'selected' : '' %>>MEDLINE</option>
                 <option value="BPI" <%= customer.company === companyArr[2] ? 'selected' : '' %>>BPI</option>
                 <option value="AISTERMI" <%= customer.company === companyArr[3] ? 'selected' : '' %>>AISTERMI</option>
-                <option value="TRANSPORTES VILLARREAL" <%= customer.company === companyArr[4] ? 'selected' : '' %>>TRANSPORTES VILLARREAL</option>
+                <option value="EZO" <%= customer.company === companyArr[4] ? 'selected' : '' %>>EZO</option>
+                <option value="TRANSPORTES VILLARREAL" <%= customer.company === companyArr[5] ? 'selected' : '' %>>TRANSPORTES VILLARREAL</option>
             </select>
             <label for="floatingPuesto" class="form-label">Empresa: </label>
           </div>
